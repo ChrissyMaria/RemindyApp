@@ -1,0 +1,214 @@
+<template>
+    <div class="page" data-name="about">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">New Medication</div>
+            </div>
+        </div>
+        <div class="page-content" id="page-reminder-content">
+            <!-- image-->
+            <div id="med_info">
+                <div id="image-container">
+                    <img class="medi_image" src="./images/cipro.png" alt="Medicament">
+                </div>
+
+                <!-- information -->
+                <div id="med_name">
+                    <h2>Ciprofloxacin</h2>
+                    <a href="(.*)" class="item-content item-link">
+                        more information
+                    </a>
+                </div>
+            </div>
+
+
+            <!--set intake section -->
+            <div id="set-reminder">
+                <h3>Reminder Settings</h3>
+                <p>These values are taken from the package insert. Please customize them according to your doctors
+                    recommendations and your personal preferences </p>
+                <div class="toolbar tabbar">
+                    <div class="toolbar-inner">
+                        <a href="#tab-1" class="tab-link tab-link-active">daily</a>
+                        <a href="#tab-2" class="tab-link">weekly</a>
+                        <a href="#tab-3" class="tab-link">monthly</a>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <!-- ############## DAILY-->
+                    <div id="tab-1" class="tab tab-active list">
+                        <ul class="noStyle">
+                            <li class="swipeout">
+                                <div class="swipeout-content item-content">
+                                    <div class="flex-grid">
+                                        <!-- >set time -->
+                                        <div class="col1">
+                                            <div class="list no-margin" id="timer">
+                                                <ul>
+                                                    <li>
+                                                        <div class="item-content item-input">
+                                                            <div class="item-inner">
+                                                                <div class="item-title item-label">Time</div>
+                                                                <div class="item-input-wrap">
+                                                                    <input type="text" placeholder="Time"
+                                                                           readonly="readonly"
+                                                                           id="demo-picker-date"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="block block-strong no-padding no-margin margin-bottom"
+                                                 id="zeroHeight">
+                                                <div id="demo-picker-date-container"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col2">
+                                            <small>Amount</small>
+                                            <div class="stepper stepper-small stepper-round stepper-fill stepper-init"
+                                                 id="amount">
+                                                <div class="stepper-button-minus" id="minus"></div>
+                                                <div class="stepper-input-wrap" id="border_stepper">
+                                                    <input type="text" value="1" min="0" max="9" step="1" readonly>
+                                                </div>
+                                                <div class="stepper-button-plus" id="plus"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swipeout-actions-right">
+                                    <!-- We add data-confirm and data-confirm-title attributes -->
+                                    <a href="#" class="swipeout-delete"
+                                       data-confirm="Are you sure want to delete this intake?"
+                                       data-confirm-title="Delete?">Delete</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- ############## WEEKLY-->
+                    <div id="tab-2" class="page-content tab">
+                        <div class="block">
+                            <p>weekly</p>
+                            ...
+                        </div>
+                    </div>
+
+                    <!-- ############## MONTHLY-->
+                    <div id="tab-3" class="page-content tab">
+                        <div class="block">
+                            <p>monthly</p>
+                            ...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="fab fab-extended fab-center-bottom" @click="addIntake">
+                <a href="#" class="open-alert">
+                    <i class="icon f7-icons ios-only">add</i>
+                    <i class="icon material-icons md-only">add</i>
+                    <div class="fab-text">Add intake</div>
+                </a>
+            </div>
+            <a class="col button button-big button-raised button-fill link" @click="addMedicationToIndex"
+               id="add_button" href="/">Finish</a>
+        </div>
+    </div>
+</template>
+
+<script>
+    return {
+        methods: {
+            addIntake: function () {
+
+                console.log("Should add intake");
+
+            },
+            addMedicationToIndex: function () {
+                var self = this;
+                var app = self.$app;
+
+                var cipro = {
+                    type: "Ciprofloxacin",
+                    img: "./images/cipro.png"
+                };
+                app.data.medicationList.push(cipro);
+            }
+        },
+        on: {
+            pageMounted: function () {
+                $$('.open-alert').on('click', function () {
+                    app.dialog.alert('Currently not working.', 'Remindy');
+                });
+                var today = new Date();
+                var pickerInline = app.picker.create({
+                    // containerEl: '#demo-picker-date-container',
+                    inputEl: '#demo-picker-date',
+                    toolbar: true,
+                    rotateEffect: true,
+                    closeByOutsideClick: true,
+                    toolbarCloseText: 'Set time',
+                    openIn: 'popover',
+                    value: [
+                        today.getHours(),
+                        today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+                    ],
+                    formatValue: function (values, displayValues) {
+                        return values[0] + ':' + values[1];
+                    },
+                    cols: [
+                        // Hours
+                        {
+                            values: (function () {
+                                var arr = [];
+                                for (var i = 0; i <= 23; i++) {
+                                    arr.push(i);
+                                }
+                                return arr;
+                            })(),
+                        },
+                        // Divider
+                        {
+                            divider: true,
+                            content: ':'
+                        },
+                        // Minutes
+                        {
+                            values: (function () {
+                                var arr = [];
+                                for (var i = 0; i <= 59; i++) {
+                                    arr.push(i < 10 ? '0' + i : i);
+                                }
+                                return arr;
+                            })(),
+                        }
+                    ],
+                    on: {
+                        change: function (picker, values) {
+                            var daysInMonth = new Date(picker.value[2], picker.value[0] * 1 + 1, 0).getDate();
+                            if (values[1] > daysInMonth) {
+                                picker.cols[1].setValue(daysInMonth);
+                            }
+                        },
+                    }
+                });
+
+
+            }
+        }
+
+    }
+</script>
+

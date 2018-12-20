@@ -1,0 +1,309 @@
+/*
+
+primary color: #005FAC;
+secondary color: #EED630;
+light shades: #F2F4EF;
+
+
+ */
+
+
+:root {
+    --primary-color: #005FAC;
+    --secondary-color: #EED630;
+    --light-shades: #F2F4EF;
+}
+
+body {
+    color: var(--light-shades);
+}
+
+/*####################################################################################################*/
+/* ####################################### MEDICATION CABINET #################################### */
+
+.navbar-inner {
+    background-color: var(--primary-color);
+}
+
+.row {
+    height: 30%;
+    border: 1px solid #ddd;
+    position: relative;
+}
+.block {
+    height: 65%;
+    overflow: scroll;
+}
+
+.cabinet_img {
+    width: 50%;
+    margin-left: 20%;
+    position: absolute;
+    bottom: 0px;
+}
+
+/* Today's View */
+.md .block+.block-footer{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background-color: var(--primary-color);
+    color: var(--light-shades);
+    height:22.5%;
+    padding: 16px;
+    overflow: scroll;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.md h4 {
+    font-size: 20px;
+    position: fixed;
+    background-color: var(--primary-color);
+    z-index: 100;
+    width: 100%;
+}
+
+.md .list .item-after{
+    color: var(--light-shades);
+}
+
+
+/* FAB */
+#ownFab {
+    bottom: 20%;
+}
+a.item-content.item-link{
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+#med_name a.item-content.item-link{
+    background: white;
+    color: var(--primary-color);
+}
+#fabBackground {
+    position: absolute;
+    bottom: calc(20% - 11px);
+    right: 4px;
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    z-index: 100;
+}
+/*####################################################################################################*/
+/* ####################################### NEW MEDICATION SCAN #################################### */
+
+/* Search*/
+#SearchInput {
+    font-size: 16px;
+}
+
+/*Scan */
+#scan {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 90%;
+    height: 50%;
+    background-color: #b8b8b8;
+    margin: auto;
+    z-index: 5;
+}
+
+/* Little popover when scanned */
+
+.sheet-modal.my-sheet.modal-in{
+    height: 30%;
+}
+.toolbar-inner {
+    background: var(--primary-color);
+}
+.sheet-modal-inner {
+    margin: 5px 0;
+}
+
+.sheet-modal-inner img{
+    width: 40%;
+    height: auto;
+    margin: 16px;
+
+
+}
+
+#test{
+    height: 15%;
+    overflow: scroll;
+    display: none;
+}
+
+#linkToSpecification {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+
+/*medication name*/
+#popoverMedicationName {
+    background-color: transparent;
+    font-size: 16px;
+    padding: 16px;
+    width: 60%;
+    right: 16px;
+    font-weight: normal;
+    text-align: right;
+}
+
+/*####################################################################################################*/
+/* ####################################### MEDICATION SPECIFIC. #################################### */
+.page{
+    height: 100%;
+    overflow: scroll;
+}
+#med_info {
+    height: 22.5%;
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+#image-container{
+    width: 60%;
+    height: auto;
+    float: left;
+}
+.medi_image{
+    width: 70%;
+    height: auto;
+}
+
+#med_name{
+    height: 100%;
+    margin: auto;
+    box-sizing: border-box;
+    width: 40%;
+    float: right;
+}
+#med_name h2{
+    margin: 16px 8px 0px 0px;
+}
+
+
+
+.block-title{
+    text-align: center;
+
+}
+
+#add_button{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color:var(--primary-color);
+}
+
+#set-reminder{
+    height: 70%;
+    padding: 0px  16px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Time and Amount content*/
+.tabs{
+    height: 40%; /* so it is under FAB*/
+    overflow: scroll;
+}
+.flex-grid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 33%;
+    width: 100%;
+}
+
+.col1, .col2{
+    width: 45%;
+    height: 100%;
+    color: black;
+}
+.noStyle{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+div#tab-1{
+    margin: 0;
+}
+
+
+
+.md .list ul:before, .md .list ul:after, .md .block-strong:after, .md .block-strong:before, .md .item-input-wrap:after, .md .item-input-wrap:before {
+    background-color: rgba(0,0,0,0);
+}
+#zeroHeight {
+    -webkit-font-smoothing: none;
+    height: 0px;
+    margin-bottom: 0!important;
+}
+
+/* TIME PICKER */
+
+.item-title.item-label {
+    color: black;
+}
+.popover.picker-popover.modal-in.popover-on-bottom {
+    width: calc(100% - 16px);
+}
+
+
+
+
+
+/* AMOUNT */
+#amount{
+    width: 100%;
+    margin: auto;
+}
+#minus, #plus{
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+#border_stepper{
+    border-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+.md .stepper .stepper-input-wrap input, .md .stepper .stepper-value input{
+    color:var(--primary-color);
+}
+
+.md .stepper-fill .stepper-button-minus:after, .md .stepper-fill .stepper-button-minus:before, .md .stepper-fill .stepper-button-plus:after, .md .stepper-fill .stepper-button-plus:before, .md .stepper-fill .stepper-button:after, .md .stepper-fill .stepper-button:before, .md .stepper-fill-md .stepper-button-minus:after, .md .stepper-fill-md .stepper-button-minus:before, .md .stepper-fill-md .stepper-button-plus:after, .md .stepper-fill-md .stepper-button-plus:before, .md .stepper-fill-md .stepper-button:after, .md .stepper-fill-md .stepper-button:before {
+    background: var(--primary-color);
+}
+
+.block.block-strong.no-padding.no-margin.margin-bottom{
+    height: 200px;
+
+}
+
+div#tab-1{
+    padding-top: 10px;
+}
+
+#tab-1 ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+/* FAB*/
+.md .fab-buttons a, .md .fab>a {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+.fab.fab-extended.fab-center-bottom{
+    bottom: 70px;
+}

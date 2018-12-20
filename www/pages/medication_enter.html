@@ -1,0 +1,143 @@
+<template>
+    <div class="page" data-name="about">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">New Medication</div>
+                <div class="subnavbar">
+                    <form class="searchbar" id="searchbar-autocomplete">
+                        <div class="searchbar-inner">
+                            <div class="searchbar-input-wrap">
+                                <input type="search" placeholder="Search manually" id="SearchInput"/>
+                                <i class="searchbar-icon"></i>
+                                <span class="input-clear-button"></span>
+                            </div>
+                            <span class="searchbar-disable-button">Cancel</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="page-content">
+            <div class="list no-hairlines-md">
+
+
+                <div id="scan">
+                    <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet">Scan</a>
+                </div>
+
+
+
+                <!-- Popover when medication is selected -->
+                <div class="sheet-modal my-sheet">
+                    <div class="toolbar">
+                        <div class="toolbar-inner">
+                            <div class="left"></div>
+                            <div class="right"><a class="link sheet-close" href="#" id="closePopover">Re-enter</a></div>
+                        </div>
+                    </div>
+                    <div class="sheet-modal-inner">
+                        <h4 id="popoverMedicationName"></h4>
+                        <img src="./images/cipro.png" alt="Medicament">
+                        <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/"> <i
+                                class="material-icons">
+                            navigate_next
+                        </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<script>
+    return {
+        data: function () {
+            return {
+                medication: 'AAR OS N Dragees ; ABASAGLAR 100 E/ml Injektionslösung KwikPen ; ABNOBAVISCUM Pini 20 mg ; B12 ASMEDIC ; BN DOLO Ampullen ; CABERGOLIN-CT ; CIPROFLOXACIN ; COAPROVEL 300'.split(' ; '),
+            };
+        },
+        on: {
+            pageBeforeRemove() {
+                var self = this;
+                // Destroy all autocompletes
+                self.autocompleteDropdownPlaceholder.destroy();
+            },
+            pageInit: function () {
+                var self = this;
+                var app = self.$app;
+                var medication = self.medication;
+                var $ = self.$;
+                console.log("Test");
+
+
+                // Searchbar Autocomplete
+                self.autocompleteSearchbar = app.autocomplete.create({
+                    openIn: 'dropdown',
+                    inputEl: '#searchbar-autocomplete input[type="search"]',
+                    dropdownPlaceholderText: ' Enter your medication',
+                    source: function (query, render) {
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Find matched items
+                        for (var i = 0; i < medication.length; i++) {
+                            if (medication[i].toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(medication[i]);
+                        }
+                        // Render items by passing array with result items
+                        render(results);
+                    },
+                    on: {
+                        change: function () {
+                            $$('#sheetOpenLink').trigger('click');
+                        }
+                    }
+                });
+
+                self.searchbar = app.searchbar.create({
+                    el: '#searchbar-autocomplete',
+                    customSearch: true,
+                    on: {
+                        search: function (query) {
+                            console.log(query);
+                        },
+                    }
+                });
+
+                $$('.my-sheet').on('sheet:open', function (e, sheet) {
+                    console.log('my-sheet open');
+                    $$('#popoverMedicationName').text($$('#SearchInput').val());
+                });
+
+                $$('.my-sheet').on('sheet:close', function (e, sheet) {
+                    $$('#SearchInput').val('');
+                });
+
+                $$('#sheetOpenLink').click(function () {
+                    if ($$('#popoverMedicationName').text($$('#SearchInput').val() == "")) {
+                        $$('#popoverMedicationName').text('CIPROFLOXACIN');
+                    } else {
+                        $$('#popoverMedicationName').text($$('#SearchInput').val());
+                    }
+
+                })
+
+
+            },
+
+        }
+
+    }
+
+</script>
