@@ -1,5 +1,10 @@
+<!-- ####################################################################################### -->
+<!-- This page contains the medication specification: more information, intake -->
+<!-- ####################################################################################### -->
 <template>
     <div class="page" data-name="about">
+        <!-- --------------------------- Navigation Bar --------------------------------- -->
+        <!-- Contains: Back button and page title ("New Medication") -->
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="left">
@@ -11,14 +16,16 @@
                 <div class="title">New Medication</div>
             </div>
         </div>
+
+        <!-- ############################# Scrollable page content ########################## -->
         <div class="page-content" id="page-reminder-content">
-            <!-- image-->
+            <!-- ----------------------- Medic. image and name on top ------------------------- -->
             <div id="med_info">
+                <!-- image -->
                 <div id="image-container">
                     <img class="medi_image" src="./images/cipro.png" alt="Medicament">
                 </div>
-
-                <!-- information -->
+                <!-- name and link to "more information" -->
                 <div id="med_name">
                     <h2>Ciprofloxacin</h2>
                     <a href="(.*)" class="item-content item-link">
@@ -28,7 +35,7 @@
             </div>
 
 
-            <!--set intake section -->
+            <!-- ---------------------------- Set intake  ------------------------------ -->
             <div id="set-reminder">
                 <h3>Reminder Settings</h3>
                 <p>These values are taken from the package insert. Please customize them according to your doctors
@@ -40,15 +47,16 @@
                         <a href="#tab-3" class="tab-link">monthly</a>
                     </div>
                 </div>
-
+                <!-- TO BE DONE HERE: Specify "weekly" and "monthly" -->
                 <div class="tabs">
-                    <!-- ############## DAILY-->
+                    <!-- -------------------- DAILY --------------------- -->
                     <div id="tab-1" class="tab tab-active list">
-                        <ul class="noStyle">
-                            <li class="swipeout">
+                        <ul>
+                        <ul>
+                            <li class="swipeout"> <!-- to make it deletable by swiping -->
                                 <div class="swipeout-content item-content">
                                     <div class="flex-grid">
-                                        <!-- >set time -->
+                                        <!--  -------- set time -------- -->
                                         <div class="col1">
                                             <div class="list no-margin" id="timer">
                                                 <ul>
@@ -71,6 +79,7 @@
                                                 <div id="demo-picker-date-container"></div>
                                             </div>
                                         </div>
+                                        <!--  -------- set amount -------- -->
                                         <div class="col2">
                                             <small>Amount</small>
                                             <div class="stepper stepper-small stepper-round stepper-fill stepper-init"
@@ -84,6 +93,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--  -------- Specify what happens when we swipe it to the left (=delete) -------- -->
                                 <div class="swipeout-actions-right">
                                     <!-- We add data-confirm and data-confirm-title attributes -->
                                     <a href="#" class="swipeout-delete"
@@ -96,7 +106,7 @@
 
 
 
-                    <!-- ############## WEEKLY-->
+                    <!-- -------------------- WEEKLY --------------------- -->
                     <div id="tab-2" class="page-content tab">
                         <div class="block">
                             <p>weekly</p>
@@ -104,7 +114,7 @@
                         </div>
                     </div>
 
-                    <!-- ############## MONTHLY-->
+                    <!-- -------------------- MONTHLY --------------------- -->
                     <div id="tab-3" class="page-content tab">
                         <div class="block">
                             <p>monthly</p>
@@ -128,14 +138,22 @@
     </div>
 </template>
 
+
+<!-- ADD CODE HERE -->
 <script>
     return {
         methods: {
+            /**
+             * Adds a new intake
+             */
             addIntake: function () {
-
+                // TO BE DONE HERE: Add a new intake
                 console.log("Should add intake");
 
             },
+            /**
+             * Adds the current medication to our medication array: it will be displayed in the cabinet
+             */
             addMedicationToIndex: function () {
                 var self = this;
                 var app = self.$app;
@@ -149,9 +167,13 @@
         },
         on: {
             pageMounted: function () {
+                // Click on add intake
+                // TO BE DONE HERE: Replace this content so that we can actually add a medication
                 $$('.open-alert').on('click', function () {
                     app.dialog.alert('Currently not working.', 'Remindy');
                 });
+
+                //Time picker
                 var today = new Date();
                 var pickerInline = app.picker.create({
                     // containerEl: '#demo-picker-date-container',
@@ -204,11 +226,8 @@
                         },
                     }
                 });
-
-
             }
         }
-
     }
 </script>
 

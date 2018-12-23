@@ -25,47 +25,21 @@
   <link rel="stylesheet" href="css/icons.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
+
+
+
 <body>
 <div id="app">
   <!-- Status bar overlay for fullscreen mode-->
   <div class="statusbar"></div>
-  <!-- Left panel with cover effect-->
-  <div class="panel panel-left panel-cover theme-dark">
-    <div class="view">
-      <div class="page">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="title">Left Panel</div>
-          </div>
-        </div>
 
-        <div class="page-content">
-          <div class="block">Left panel content goes here</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Right panel with reveal effect-->
-  <div class="panel panel-right panel-reveal theme-dark">
-    <div class="view">
-      <div class="page">
-        <div class="navbar">
-          <div class="navbar-inner">
-            <div class="title">Right Panel</div>
-          </div>
-        </div>
-        <div class="page-content">
-          <div class="block">Right panel content goes here</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Your main view, should have "view-main" class -->
+  <!-- ####################################################################################### -->
+  <!-- ######################## MAIN VIEW: here comes page content ########################### -->
+  <!-- ####################################################################################### -->
   <div class="view view-main ios-edges">
     <!-- Page, data-name contains page name which can be used in callbacks -->
     <div class="page" data-name="home">
-      <!-- Top Navbar -->
+      <!-- -------------------------------- Top Navbar ---------------------------------- -->
       <div class="navbar">
         <div class="navbar-inner">
           <div class="left">
@@ -78,6 +52,8 @@
         </div>
       </div>
 
+      <!-- --------------------------------- FAB ------------------------------------- -->
+      <!-- to achieve a white Background for our FAB -->
       <div id="fabBackground"> </div>
       <div class="fab fab-right-bottom" id="ownFab">
         <a href="/medication_enter/" class="item-content item-link">
@@ -86,19 +62,18 @@
       </div>
 
 
+      <!-- ############################# Scrollable page content ########################## -->
 
-
-      <!-- Scrollable page content-->
+      <!-- --------------------------- Medication Cabinet --------------------------------- -->
+      <!-- TO BE DONE HERE: Reset this content here with cards content -->
       <div class="page-content">
         <div class="block">
           <div class="row">
             <div class="col-100 tablet-100 cabinet">
-              <!--<img class="cabinet_img" src="./images/packshot_Aristelle-0-03-mg-2-mg-Filmtabletten.png.jpeg" alt="Medicament">-->
             </div>
           </div>
           <div class="row">
             <div class="col-100 tablet-100 cabinet">
-              <!--<img class="cabinet_img" src="./images/Thyroxin.png" alt="Medicament">-->
             </div>
           </div>
           <div class="row" id="placeholderImage">
@@ -113,10 +88,13 @@
           </div>
           <div class="row">
             <div class="col-100 tablet-100 cabinet">
-
             </div>
           </div>
         </div>
+
+        <!-- --------------------------- FOOTER: Today's View --------------------------------- -->
+        <!-- ICON: check_circle_outline for taken medication -->
+        <!-- ICON: radio_button_unchecked for medication to be taken -->
         <div class="block-footer">
           <h4>Today</h4>
           <div class="list">
@@ -141,15 +119,8 @@
               </li>
             </ul>
           </div>
-
-
-
-
         </div>
-
       </div>
-
-
     </div>
   </div>
 </div>
@@ -170,8 +141,6 @@
 
 <!-- Your custom app scripts -->
 <script src="js/app.js"></script>
-
-
 
 </body>
 </html>

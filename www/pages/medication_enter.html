@@ -1,5 +1,10 @@
+<!-- ####################################################################################### -->
+<!-- This page contains the medication enter: scan or manually -->
+<!-- ####################################################################################### -->
 <template>
     <div class="page" data-name="about">
+        <!-- --------------------------- Navigation Bar --------------------------------- -->
+        <!-- Contains: Back button and page title ("New Medication") -->
         <div class="navbar">
             <div class="navbar-inner sliding">
                 <div class="left">
@@ -8,7 +13,11 @@
                         <span class="ios-only">Back</span>
                     </a>
                 </div>
-                <div class="title">New Medication</div>
+                <div class="title">
+                    New Medication
+                </div>
+
+                <!-- -------------------------- Manual Search --------------------------- -->
                 <div class="subnavbar">
                     <form class="searchbar" id="searchbar-autocomplete">
                         <div class="searchbar-inner">
@@ -25,17 +34,17 @@
         </div>
 
 
+        <!-- ############################# Scrollable page content ########################## -->
         <div class="page-content">
             <div class="list no-hairlines-md">
-
-
+                <!-- --------------------------- Scan --------------------------------- -->
+                <!-- TO BE DONE HERE: Replace this placeholder here with actual scan -->
                 <div id="scan">
                     <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet">Scan</a>
                 </div>
 
 
-
-                <!-- Popover when medication is selected -->
+                <!-- -------------------- Popover when medication is entered --------------------- -->
                 <div class="sheet-modal my-sheet">
                     <div class="toolbar">
                         <div class="toolbar-inner">
@@ -45,7 +54,10 @@
                     </div>
                     <div class="sheet-modal-inner">
                         <h4 id="popoverMedicationName"></h4>
+                        <!-- here actual medication name will be added dynamically -->
                         <img src="./images/cipro.png" alt="Medicament">
+                        <!-- here actual medication img will be added dynamically -->
+                        <!-- little arrow on bottom: link to next page-->
                         <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/"> <i
                                 class="material-icons">
                             navigate_next
@@ -58,29 +70,34 @@
     </div>
 </template>
 
-
+<!-- ADD CODE HERE -->
 <script>
     return {
         data: function () {
             return {
+                // Array with medication names. Relevant in manual search.
+                // TO BE DONE (?): Replace this with dynamically content, eg medication database
                 medication: 'AAR OS N Dragees ; ABASAGLAR 100 E/ml Injektionslösung KwikPen ; ABNOBAVISCUM Pini 20 mg ; B12 ASMEDIC ; BN DOLO Ampullen ; CABERGOLIN-CT ; CIPROFLOXACIN ; COAPROVEL 300'.split(' ; '),
             };
         },
         on: {
+            //when page is quit
             pageBeforeRemove() {
                 var self = this;
                 // Destroy all autocompletes
                 self.autocompleteDropdownPlaceholder.destroy();
             },
+            //when page is loaded
             pageInit: function () {
-                var self = this;
-                var app = self.$app;
-                var medication = self.medication;
+                //variables
+                var self = this; //current page
+                var app = self.$app; //whole app
+                var medication = self.medication; //reference to array with medication names
                 var $ = self.$;
                 console.log("Test");
 
 
-                // Searchbar Autocomplete
+                // Manual Searchbar Autocomplete
                 self.autocompleteSearchbar = app.autocomplete.create({
                     openIn: 'dropdown',
                     inputEl: '#searchbar-autocomplete input[type="search"]',
@@ -99,12 +116,12 @@
                         render(results);
                     },
                     on: {
+                        //to open the little popover when manual search item is entered
                         change: function () {
                             $$('#sheetOpenLink').trigger('click');
                         }
                     }
                 });
-
                 self.searchbar = app.searchbar.create({
                     el: '#searchbar-autocomplete',
                     customSearch: true,
@@ -115,6 +132,7 @@
                     }
                 });
 
+                //Popover: open and close
                 $$('.my-sheet').on('sheet:open', function (e, sheet) {
                     console.log('my-sheet open');
                     $$('#popoverMedicationName').text($$('#SearchInput').val());
@@ -124,20 +142,23 @@
                     $$('#SearchInput').val('');
                 });
 
+                //Popover: fill content
                 $$('#sheetOpenLink').click(function () {
+                    //SCAN
+                    /* Note: when we scan a medication, we currently get no feedback since it is a fake
+                    We thus need to reowrk this function: Instead of .text('CIPROFLOXACIN') we should add the medication name we get
+                    from our scan */
                     if ($$('#popoverMedicationName').text($$('#SearchInput').val() == "")) {
                         $$('#popoverMedicationName').text('CIPROFLOXACIN');
-                    } else {
+                    }
+                    //MANUAL SEARCH
+                    /* Fill content with current medication name that was entered in search */
+                    else {
                         $$('#popoverMedicationName').text($$('#SearchInput').val());
                     }
-
                 })
-
-
             },
-
         }
-
     }
 
 </script>

@@ -1,40 +1,42 @@
-/*
+/* ################################## CSS FOR REMINDY #################################### */
+/* ####################################################################################### */
 
-primary color: #005FAC;
-secondary color: #EED630;
-light shades: #F2F4EF;
-
-
- */
-
-
+/* ---------------------------- Define colour scheme ------------------------- */
 :root {
     --primary-color: #005FAC;
     --secondary-color: #EED630;
     --light-shades: #F2F4EF;
 }
 
+/* -------------------------------- Whole App  -------------------------------- */
 body {
     color: var(--light-shades);
 }
 
-/*####################################################################################################*/
-/* ####################################### MEDICATION CABINET #################################### */
+/* ####################################################################################### */
+/* ----------------------------------------- Index --------------------------------------- */
+/* ####################################################################################### */
 
+/* ----------------- Navigation bar ----------------- */
 .navbar-inner {
     background-color: var(--primary-color);
 }
 
+/* -------------------- Cabinet --------------------- */
+/* Rows in cabinet -> will be no longer needed with new cards-design */
 .row {
     height: 30%;
     border: 1px solid #ddd;
     position: relative;
 }
+
+/* Overwrite block class: we need a height of 65% since we have the today's view on bottom */
 .block {
     height: 65%;
     overflow: scroll;
 }
 
+/* images in cabinet: may be changed in cards-design*/
 .cabinet_img {
     width: 50%;
     margin-left: 20%;
@@ -42,13 +44,14 @@ body {
     bottom: 0px;
 }
 
-/* Today's View */
-.md .block+.block-footer{
+/* -------------------- Today's View --------------------- */
+/* Whole footer */
+.md .block + .block-footer {
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: var(--primary-color);
     color: var(--light-shades);
-    height:22.5%;
+    height: 22.5%;
     padding: 16px;
     overflow: scroll;
     position: fixed;
@@ -56,6 +59,8 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
+
+/* Headline: "Today" */
 .md h4 {
     font-size: 20px;
     position: fixed;
@@ -64,24 +69,26 @@ body {
     width: 100%;
 }
 
-.md .list .item-after{
+/* intake time */
+.md .list .item-after {
     color: var(--light-shades);
 }
 
-
-/* FAB */
+/* ------------------------ FAB ------------------------ */
 #ownFab {
     bottom: 20%;
 }
-a.item-content.item-link{
+
+a.item-content.item-link {
     background: var(--secondary-color);
     color: var(--primary-color);
 }
 
-#med_name a.item-content.item-link{
+#med_name a.item-content.item-link {
     background: white;
     color: var(--primary-color);
 }
+
 #fabBackground {
     position: absolute;
     bottom: calc(20% - 11px);
@@ -92,15 +99,18 @@ a.item-content.item-link{
     border-radius: 40px;
     z-index: 100;
 }
-/*####################################################################################################*/
-/* ####################################### NEW MEDICATION SCAN #################################### */
 
-/* Search*/
+/* ####################################################################################### */
+/* ----------------------------------- Medication_enter ---------------------------------- */
+/* ####################################################################################### */
+
+/* -------------------- Manual Search ------------------- */
 #SearchInput {
     font-size: 16px;
 }
 
-/*Scan */
+/* ------------------------ Scan ------------------------ */
+/* will be replaced with new scan */
 #scan {
     position: absolute;
     top: 50%;
@@ -112,39 +122,28 @@ a.item-content.item-link{
     z-index: 5;
 }
 
-/* Little popover when scanned */
+/* ---------------------- Popover ----------------------- */
 
-.sheet-modal.my-sheet.modal-in{
+.sheet-modal.my-sheet.modal-in {
     height: 30%;
 }
+
 .toolbar-inner {
     background: var(--primary-color);
 }
+
 .sheet-modal-inner {
     margin: 5px 0;
 }
 
-.sheet-modal-inner img{
+/* image in popover */
+.sheet-modal-inner img {
     width: 40%;
     height: auto;
     margin: 16px;
-
-
 }
 
-#test{
-    height: 15%;
-    overflow: scroll;
-    display: none;
-}
-
-#linkToSpecification {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-}
-
-/*medication name*/
+/* medication name in popover */
 #popoverMedicationName {
     background-color: transparent;
     font-size: 16px;
@@ -155,12 +154,24 @@ a.item-content.item-link{
     text-align: right;
 }
 
-/*####################################################################################################*/
-/* ####################################### MEDICATION SPECIFIC. #################################### */
-.page{
+/* little arrow on bottom: link to next page */
+#linkToSpecification {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+}
+
+
+/* ####################################################################################### */
+/* ---------------------------------- Med_specification ---------------------------------- */
+/* ####################################################################################### */
+.page {
     height: 100%;
     overflow: scroll;
 }
+
+/* ------------------ Current medication: image and name  -------------------- */
+/* whole box */
 #med_info {
     height: 22.5%;
     width: 100%;
@@ -168,53 +179,66 @@ a.item-content.item-link{
     box-sizing: border-box;
 }
 
-#image-container{
+/* image container */
+#image-container {
     width: 60%;
     height: auto;
     float: left;
 }
-.medi_image{
+
+/* image within this container */
+.medi_image {
     width: 70%;
     height: auto;
 }
 
-#med_name{
+/* name container */
+#med_name {
     height: 100%;
     margin: auto;
     box-sizing: border-box;
     width: 40%;
     float: right;
 }
-#med_name h2{
+
+/* name within this container */
+#med_name h2 {
     margin: 16px 8px 0px 0px;
 }
 
-
-
-.block-title{
+/* no idea where this belongs to */
+.block-title {
     text-align: center;
-
 }
 
-#add_button{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-    background-color:var(--primary-color);
-}
-
-#set-reminder{
+/* -------------------------------- Set intake ---------------------------- */
+/* Whole container: later includes all intakes */
+#set-reminder {
     height: 70%;
-    padding: 0px  16px;
+    padding: 0px 16px;
     box-sizing: border-box;
     position: relative;
 }
 
 /* Time and Amount content*/
-.tabs{
-    height: 40%; /* so it is under FAB*/
+.tabs {
+    height: 40%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
 }
+
+div#tab-1 {
+    margin: 0;
+    padding-top: 10px;
+}
+
+/* to have no bullet points in list */
+#tab-1 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* One intake: includes time and amount container (see below) */
 .flex-grid {
     display: flex;
     justify-content: flex-start;
@@ -223,87 +247,93 @@ a.item-content.item-link{
     width: 100%;
 }
 
-.col1, .col2{
+/* col1 = time container, col2 = amount container */
+.col1, .col2 {
     width: 45%;
     height: 100%;
     color: black;
 }
-.noStyle{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-div#tab-1{
-    margin: 0;
-}
 
-
-
-.md .list ul:before, .md .list ul:after, .md .block-strong:after, .md .block-strong:before, .md .item-input-wrap:after, .md .item-input-wrap:before {
-    background-color: rgba(0,0,0,0);
-}
-#zeroHeight {
-    -webkit-font-smoothing: none;
-    height: 0px;
-    margin-bottom: 0!important;
-}
-
-/* TIME PICKER */
-
+/* ******************* Time ******************* */
+/* color of title */
 .item-title.item-label {
     color: black;
 }
+
+/* popover to set time */
 .popover.picker-popover.modal-in.popover-on-bottom {
     width: calc(100% - 16px);
 }
 
+/* to have no weird colors when time is set */
+.md .list ul:before, .md .list ul:after, .md .block-strong:after, .md .block-strong:before, .md .item-input-wrap:after, .md .item-input-wrap:before {
+    background-color: rgba(0, 0, 0, 0);
+}
 
+/* we need this to have the time and amount in one line. Seems to be a framework setting that needs to be overwritten */
+#zeroHeight {
+    -webkit-font-smoothing: none;
+    height: 0px;
+    margin-bottom: 0 !important;
+}
 
-
-
-/* AMOUNT */
-#amount{
+/* ***************** Amount ****************** */
+/* container within the amount container */
+#amount {
     width: 100%;
     margin: auto;
 }
-#minus, #plus{
+
+#minus, #plus {
     background: var(--secondary-color);
     color: var(--primary-color);
 }
-#border_stepper{
+
+/* border of plus / minus input */
+#border_stepper {
     border-color: var(--secondary-color);
     color: var(--primary-color);
 }
-.md .stepper .stepper-input-wrap input, .md .stepper .stepper-value input{
-    color:var(--primary-color);
+
+/* color of number */
+.md .stepper .stepper-input-wrap input, .md .stepper .stepper-value input {
+    color: var(--primary-color);
 }
 
 .md .stepper-fill .stepper-button-minus:after, .md .stepper-fill .stepper-button-minus:before, .md .stepper-fill .stepper-button-plus:after, .md .stepper-fill .stepper-button-plus:before, .md .stepper-fill .stepper-button:after, .md .stepper-fill .stepper-button:before, .md .stepper-fill-md .stepper-button-minus:after, .md .stepper-fill-md .stepper-button-minus:before, .md .stepper-fill-md .stepper-button-plus:after, .md .stepper-fill-md .stepper-button-plus:before, .md .stepper-fill-md .stepper-button:after, .md .stepper-fill-md .stepper-button:before {
     background: var(--primary-color);
 }
 
-.block.block-strong.no-padding.no-margin.margin-bottom{
+/* no idea what its doing - but we should let it :D */
+.block.block-strong.no-padding.no-margin.margin-bottom {
     height: 200px;
-
 }
 
-div#tab-1{
-    padding-top: 10px;
-}
-
-#tab-1 ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-
-
-/* FAB*/
-.md .fab-buttons a, .md .fab>a {
+/* ************* Add another intake ************** */
+/* FAB */
+.md .fab-buttons a, .md .fab > a {
     background: var(--secondary-color);
     color: var(--primary-color);
 }
-.fab.fab-extended.fab-center-bottom{
+
+.fab.fab-extended.fab-center-bottom {
     bottom: 70px;
 }
+
+/* --------------------- Finish process: button on bottom ------------------------- */
+#add_button {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+
+
+
+
+
+
+
+
+
