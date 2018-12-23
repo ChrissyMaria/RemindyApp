@@ -17,6 +17,64 @@ body {
 /* ----------------------------------------- Index --------------------------------------- */
 /* ####################################################################################### */
 
+/* ------------------- Login Page ------------------ */
+.page-content.login-screen-content{
+    background-color: var(--primary-color);
+    padding-top: 2.5%;
+}
+/* Title: Remindy */
+#login_page .login-screen-title{
+    font-size: 44px;
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+/* App Description*/
+.page-content.login-screen-content p {
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    margin: 12.5% 0;
+}
+/* to prevent that other paragraphs have the same setting */
+.page-content.login-screen-content form p{
+    font-size: initial;
+    font-weight: 500;
+    margin: initial;
+}
+/* Input */
+/* Text in Login*/
+#login_page .item-title.item-label, #login_page input::placeholder, #login_page input, #login_page .block-footer{
+    color: white;
+    font-weight: 500;
+}
+#login_page .item-label{
+    font-size: 16px;
+}
+#login_page input::placeholder{
+    font-size: 14px;
+}
+/* Bottom*/
+#login_page .block-footer{
+    width: 100%;
+    padding: 0;
+}
+/*Buttons*/
+a#signWithout{
+    margin-top: 2.5%;
+}
+#login_page a.list-button.button-outline.link.login-screen-close {
+    padding: 0px;
+    color: white;
+    border: solid 1px white;
+    border-radius: 10px;
+    font-weight: 500;
+    margin-left: 15%;
+    width: 70%;
+}
+
+
+
+
 /* ----------------- Navigation bar ----------------- */
 .navbar-inner {
     background-color: var(--primary-color);

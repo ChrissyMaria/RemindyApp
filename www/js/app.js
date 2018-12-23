@@ -31,6 +31,7 @@ var app  = new Framework7({
   routes: routes,
   on: {
     pageInit: function () {
+
       for(var i=0; i<this.data.medicationList.length; i++) {
         console.log("bla");
         var test = $$('.cabinet').toArray();
@@ -43,13 +44,15 @@ var app  = new Framework7({
   }
 });
 
-// Init/Create main view
-var mainView = app.views.create('.view-main', {
-  url: '/'
+var login = app.loginScreen.create({
+  el: '#my-login-screen'
+})
+
+login.open(function () {
+
 });
 
-// Login Screen Demo
-$$('#my-login-screen .login-button').on('click', function () {
+login.close(function () {
   var username = $$('#my-login-screen [name="username"]').val();
   var password = $$('#my-login-screen [name="password"]').val();
 
@@ -57,17 +60,35 @@ $$('#my-login-screen .login-button').on('click', function () {
   app.loginScreen.close('#my-login-screen');
 
   // Alert username and password
-  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+  app.dialog.create({
+    title: 'Remindy',
+    text: 'Welcome ' + username + '!',
+  }).open();
+
+  setTimeout(function () {
+    app.dialog.close();
+  }, 2000);
 });
 
-//Filling Cabinet
-var medicationOverview = $$('.cabinet').toArray();
 
-for(var i=0; i<app.medicationList; i++) {
-  $$('.cabinet').toArray()[i].text("Let's see");
-}
+$$('.login-screen .list-button').on('click', function () {
+  var username = $$('.login-screen input[name = "username"]').val();
+  var pwd = $$('.login-screen input[name = "password"]').val();
+  app.dialog.create({
+    title: 'Remindy',
+    text: 'Welcome ' + username + '!',
+  }).open();
+  setTimeout(function () {
+    app.dialog.close();
+  }, 2000);
+});
 
-/*
-for(var i=0; i<medicationOverview.length; i++) {
-  if (i<list.length())
-}*/
+// Init/Create main view
+var mainView = app.views.create('.view-main', {
+  url: '/'
+});
+
+
+
+
+
