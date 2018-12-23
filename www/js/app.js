@@ -14,10 +14,11 @@ var app  = new Framework7({
         firstName: 'John',
         lastName: 'Doe',
       },
-      medicationList: [
+      medicationList: [thyroxin, aristelle]
+      /*medicationList: [
         {type:"Aristelle", img: "./images/packshot_Aristelle-0-03-mg-2-mg-Filmtabletten.png.jpeg"},
         {type:"Thyroxin", img:"./images/Thyroxin.png"},
-      ]
+      ]*/
     };
   },
   // App root methods

@@ -23,11 +23,13 @@
             <div id="med_info">
                 <!-- image -->
                 <div id="image-container">
-                    <img class="medi_image" src="./images/cipro.png" alt="Medicament">
+                    <!-- image will be added dynamically in code below-->
                 </div>
                 <!-- name and link to "more information" -->
                 <div id="med_name">
-                    <h2>Ciprofloxacin</h2>
+                    <h2>
+                        <!-- title will be added dynamically in code below-->
+                    </h2>
                     <a href="(.*)" class="item-content item-link">
                         more information
                     </a>
@@ -157,16 +159,21 @@
             addMedicationToIndex: function () {
                 var self = this;
                 var app = self.$app;
-
-                var cipro = {
-                    type: "Ciprofloxacin",
-                    img: "./images/cipro.png"
-                };
-                app.data.medicationList.push(cipro);
+                app.data.medicationList.push(ciprofloxacin);
             }
         },
         on: {
             pageMounted: function () {
+                //Medication information
+                //TO BE DONE HERE: currently it always adds ciprofloxacin. If we have time we could arrange that it adds the medication that was entered
+                //image
+                var img = $$('<img class="medi_image" alt="Medicament"/>');
+                var my_src = ciprofloxacin.img; //from database meds.js
+                img.attr("src",my_src);
+                $$('#image-container').append(img);
+                //title
+                $$('#med_name h2').text(ciprofloxacin.name); //from database meds.js
+
                 // Click on add intake
                 // TO BE DONE HERE: Replace this content so that we can actually add a medication
                 $$('.open-alert').on('click', function () {
