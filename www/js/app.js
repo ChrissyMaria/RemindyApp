@@ -70,17 +70,19 @@ login.close(function () {
   }, 2000);
 });
 
+// Create toast with large message
+var toastTop = app.toast.create({
+  text: 'Welcome back!',
+  position: 'top',
+  closeTimeout: 2000,
+});
+$$('.open-toast-top').on('click', function () {
+  toastTop.open();
+});
 
 $$('.login-screen .list-button').on('click', function () {
   var username = $$('.login-screen input[name = "username"]').val();
   var pwd = $$('.login-screen input[name = "password"]').val();
-  app.dialog.create({
-    title: 'Remindy',
-    text: 'Welcome ' + username + '!',
-  }).open();
-  setTimeout(function () {
-    app.dialog.close();
-  }, 2000);
 });
 
 // Init/Create main view

@@ -19,6 +19,10 @@ routes = [
     path: '/medication_enter/',
     componentUrl: './pages/medication_enter.html',
   },
+  {
+    path: '/profile/',
+    componentUrl: './pages/profile.html',
+  },
   // Page Loaders & Router
   {
     path: '/page-loader-template7/:user/:userId/:posts/:postId/',
