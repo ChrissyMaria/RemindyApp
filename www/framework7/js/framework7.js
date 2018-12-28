@@ -29391,13 +29391,25 @@
         notification.$el.addClass('notification-transitioning');
         notification.$el.transform('');
 
-        if (
+        /* Try to solve the closing within the notifications.js DID NOT WORK OUT*/
+          if (
           (touchesDiff < -10 && timeDiff < 300)
           || (-touchesDiff >= notificationHeight / 1)
         ) {
           notification.close();
-        }
-      }
+          }
+
+          // Try to add other functions within this area
+          if (
+              (touchesDiff < 10 && timeDiff < 300)
+              //|| (-touchesDiff <= notificationHeight / 1)
+          ) {
+              console.log("BOOM Runter gehts")
+              //notification.close();
+          }
+
+
+       }
 
       function attachTouchEvents() {
         {
