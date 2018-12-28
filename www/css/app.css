@@ -416,10 +416,9 @@ div#tab-1 {
 }
 
 #noti-appName {
-    color: blue;
+    color: #2196f3;
     font-size: 12px;
-    margin:0px 6px;
-
+    margin: 0px 6px;
 }
 
 #noti-time {
@@ -439,17 +438,26 @@ div#tab-1 {
     background: #757575;
 }
 
-#noti-subtitle p{
+#noti-subtitle p {
     margin-left: 16px;
     margin-bottom:0px;
 }
 
-#noti-text p{
+#noti-text p {
     margin-left: 16px;
     margin-top: 0px;
     color: dimgrey;
 }
 
+#noti-default-btn {
+    display:flex;
+    justify-content:flex-start;
+    margin-left: 16px;
+}
+
+.noti-btn {
+    margin-right:10px;
+}
 
 
 
