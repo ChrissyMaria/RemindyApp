@@ -95,8 +95,23 @@
                 </div>-->
                 <!-- Scrollable page content-->
                 <div class="page-content">
+                    <div>
+                        <a href="#" onclick="showNotification()">Press here for notification!</a>
+                    </div>
 
-
+                    <div id="notification">
+                        <div id="noti-header">
+                            <img id="noti-img" src="images/notify_logo.png" />
+                            <span id="noti-appName">Remindy</span>
+                            <span id="noti-time">now</span>
+                        </div>
+                        <div id="noti-subtitle">
+                            <p>Medication Reminder</p>
+                        </div>
+                        <div id="noti-text">
+                            <p>You are running out of Thyroxin!</p>
+                        </div>
+                    </div>
                     <!--POPUP TRIGGER-->
                     <a href="#" onclick="showNotificationCallbackOnClose()"><img src="images/background_notify.png" style="width:411px;" /></a>
                     <!--END POPUP TRIGGER -->
@@ -169,7 +184,7 @@
     </div>
     <!-- Cordova -->
     <!-- POPUP JAVASCRIPT CODE -->
-    <!--Copied to notifications.js-->
+        <!--Copied to notifications.js-->
     <!-- END POPUP JAVASCRIPT CODE -->
     <!-- Framework7 library -->
     <script src="framework7/js/framework7.min.js"></script>
@@ -180,6 +195,8 @@
     <!-- Your custom app scripts -->
     <script src="js/meds.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/notis.js"></script>
+    <script src="js/notificationSelfmade.js"></script>
     <script src="js/notifications.js"></script>
 
 

@@ -13,7 +13,7 @@ function showNotificationCallbackOnClose() {
                 '    margin-top: 10px;\n' +
                 '    display: flex;\n' +
                 '    justify-content: flex-end;"><span><a class="link popup-open" style="margin-right:10px;"><i class="material-icons">add_shopping_cart</i>BUY</a></span>' + '<span><a class="link popup-open"><i class="material-icons">call</i>CALL DOCTOR</a></span></div>',
-            //swipeToClose: false,
+            swipeToClose: false,
             //closeOnClick: false,
             on: {
                 close: function () {
