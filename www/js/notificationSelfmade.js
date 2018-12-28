@@ -11,19 +11,23 @@ function off() {
     document.getElementById("overlay").style.display = "none";
 }
 
-    /*--------------------------First attempt on adding a swipe listener------------------
+    /*--------------------------Adding a swipe listener------------------
  * -------------------------SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
 
-    /* self.addEventListener("touchstart", startTouch, false);
-     self.addEventListener("touchmove", moveTouch, false);
+    document.getElementById("notification").addEventListener("touchstart", startTouch, false);
+    document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
  
      // Swipe Up / Down / Left / Right
      var initialX = null;
-     var initialY = null;
+    var initialY = null;
+    var d = null;
+    var initialTime = null; 
+    var nowTime = null;
  
      function startTouch(e) {
          initialX = e.touches[0].clientX;
          initialY = e.touches[0].clientY;
+         initialTime = + new Date(); 
      };
  
      function moveTouch(e) {
@@ -40,14 +44,16 @@ function off() {
  
          var diffX = initialX - currentX;
          var diffY = initialY - currentY;
- 
-       
+         nowTime = + new Date();
+         diffTime = nowTime - initialTime;
  
          if (Math.abs(diffX) > Math.abs(diffY)) {
              // sliding horizontally
              if (diffX > 0) {
                  // swiped left
-                 console.log("swiped left");
+                 
+                console.log(diffTime + "swiped left");
+                 
              } else {
                  // swiped right
                  console.log("swiped right");
@@ -55,21 +61,21 @@ function off() {
          } else {
              // sliding vertically
              if (diffY > 0) {
-                 // swiped up
+                 //swiped up
                  //this.close();
                  console.log("swiped up");
-                 //////////////////////Copied from framework7.js/////////////////
-                 if (
-                     (touchesDiff < -10 && timeDiff < 300)
-                     || (-touchesDiff >= notificationHeight / 1)
-                 ) {
-                     notification.close();
-                 }
+
+                 
                  ///////////////////////////////////////////////////////////////
  
              } else {
                  // swiped down
                  console.log("swiped down");
+
+                 // this should represent a slow down scrolling --> if a certain time is exceeded (300ms) when the position (-50) is reached
+                 if (diffY <= 50 && diffTime > 300) {
+                     console.log("DOOOOWN we go!")
+                 }
              }
          }
  
@@ -77,7 +83,7 @@ function off() {
          initialY = null;
  
          e.preventDefault();
-     };*/
+     };
 
     // Open Notification
     //self.notificationCallbackOnClose.open();

@@ -394,7 +394,7 @@ div#tab-1 {
     top: 350px; /* Sit 300px under top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
-    height: 133px; /* Notification height taken from Framework7 height*/
+    height: auto; /* Notification height taken from Framework7 height*/
     background-color: white; /* White background with no opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     /*cursor: pointer; Add a pointer on hover */

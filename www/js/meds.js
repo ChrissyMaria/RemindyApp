@@ -22,6 +22,7 @@ var thyroxin = {
         moderateInteractions: ["THYROID PREPARATIONS/BILE ACID SEQUESTRANTS; SEVELAMER", "LEVOTHYROXINE/ORAL CALCIUM " +
         "ACETATE; CARBONATE; CITRATE", "THYROID/IRON SALTS, ORAL", "ORAL THYROID AGENTS/ALUMINUM;MAGNESIUM;LANTHANUM;SIMETHICONE"]
     }
+    //Should we add the link for purchase, to change it later dynamically on the Notification BUY BUTTON? https://www.blinkhealth.com/l-thyroxine-sodium
 }
 
 
