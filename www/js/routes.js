@@ -23,6 +23,7 @@ routes = [
     path: '/profile/',
     componentUrl: './pages/profile.html',
   },
+
   // Page Loaders & Router
   {
     path: '/page-loader-template7/:user/:userId/:posts/:postId/',
@@ -87,4 +88,5 @@ routes = [
     path: '(.*)',
     url: './pages/404.html',
   },
+
 ];
