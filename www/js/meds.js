@@ -2,6 +2,7 @@
 var thyroxin = {
     name: "Thyroxin",
     img: "./images/Thyroxin.png",
+    shortInfo: "Levothyroxine is used to treat an underactive thyroid (hypothyroidism). It replaces or provides more thyroid hormone.",
     generalInfo: "Levothyroxine is used to treat an underactive thyroid (hypothyroidism). " +
         "It replaces or provides more thyroid hormone, which is normally produced by the thyroid gland. " +
         "Having enough thyroid hormone is important for maintaining normal mental and physical " +
@@ -21,7 +22,15 @@ var thyroxin = {
         seriousInteractions: ["agents that affect IODIDE/RADIOACTIVE IODIDE"],
         moderateInteractions: ["THYROID PREPARATIONS/BILE ACID SEQUESTRANTS; SEVELAMER", "LEVOTHYROXINE/ORAL CALCIUM " +
         "ACETATE; CARBONATE; CITRATE", "THYROID/IRON SALTS, ORAL", "ORAL THYROID AGENTS/ALUMINUM;MAGNESIUM;LANTHANUM;SIMETHICONE"]
-    }
+    },
+    pills_left: 10,
+    per_day: 1,
+    intake: [
+        {
+            hour: '09:00',
+            taken: true
+        }
+    ]
 }
 
 
@@ -31,6 +40,7 @@ var thyroxin = {
 var aristelle = {
     name: "Aristelle",
     img: "./images/packshot_Aristelle-0-03-mg-2-mg-Filmtabletten.png.jpeg",
+    shortInfo: "Aristelle is used to prevent pregnancy. It is a combination of 2 hormones: an estrogen (ethinyl estradiol) and a progestin.",
     generalInfo: "This medication is a combination of 2 hormones: an estrogen (ethinyl estradiol) and a progestin " +
         "(drospirenone). It is used to prevent pregnancy. It works mainly by preventing the release of an egg " +
         "(ovulation) during your menstrual cycle. It also makes vaginal fluid thicker to help prevent sperm from " +
@@ -68,13 +78,22 @@ var aristelle = {
         moderateInteractions: ["CONTRACEPTIVES/XANTHINE DERIVATIVES", "ORAL CONTRACEPTIVES/PENICILLINS",
             "CONTRACEPTIVES/TETRACYCLINES; TIGECYCLINE", "DROSPIRENONE/ACE INHIBITORS; ARBS", "DROSPIRENONE/POTASSIUM SPARING DIURETICS",
             "DROSPIRENONE/NSAIDS", "DROSPIRENONE/POTASSIUM SUPPLEMENTS", "DROSPIRENONE/HEPARIN", "ORAL CONTRACEPTIVES/SELECT CEPHALOSPORIN"]
-    }
+    },
+    pills_left: 3,
+    per_day: (1/21),
+    intake: [
+        {
+            hour: '18:00',
+            taken: false
+        }
+    ]
 }
 
 //https://www.webmd.com/drugs/2/drug-7748/ciprofloxacin-oral/details
 var ciprofloxacin = {
     name: "Ciprofloxacin",
     img: "./images/cipro.png",
+    shortInfo: "Ciprofloxacin belongs to quinolone antibiotics and is used to treat bacterial infections. It works by stopping the growth of bacteria.",
     generalInfo: "This medication is used to treat a variety of bacterial infections. Ciprofloxacin belongs to a class " +
         "of drugs called quinolone antibiotics. It works by stopping the growth of bacteria." +
         "This antibiotic treats only bacterial infections. It will not work for virus infections " +
@@ -113,5 +132,17 @@ var ciprofloxacin = {
         moderateInteractions: ["QUINOLONES, ORAL/SUCRALFATE", "QUINOLONES, ORAL/DIDANOSINE PEDIATRIC SUSPENSION+ANTACIDS",
             "QUINOLONES/CORTICOSTEROIDS", "SELECTED QUINOLONES/ENTERAL NUTRITION", "ORAL FLUOROQUINOLONES/SEVELAMER",
             "CIPROFLOXACIN/QT PROLONGING AGENTS"]
-    }
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [
+        {
+            hour: '08:00',
+            taken: false
+        },
+        {
+            hour: '19:00',
+            taken: false
+        }
+    ]
 }
