@@ -28,6 +28,11 @@ var app = new Framework7({
     on: {
         pageInit: function () {
 
+          //clear content
+          $$('#test').empty();
+          $$('#meds_today').empty();
+
+
             // --------------------------- Fill Cards ------------------------------
             //idea: go through list with all medicaments and add them dynamically
             for (var i = 0; i < this.data.medicationList.length; i++) {
