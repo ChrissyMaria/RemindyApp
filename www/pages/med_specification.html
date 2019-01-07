@@ -54,7 +54,6 @@
                     <!-- -------------------- DAILY --------------------- -->
                     <div id="tab-1" class="tab tab-active list">
                         <ul>
-                        <ul>
                             <li class="swipeout"> <!-- to make it deletable by swiping -->
                                 <div class="swipeout-content item-content">
                                     <div class="flex-grid">
@@ -180,7 +179,17 @@
                     app.dialog.alert('Currently not working.', 'Remindy');
                 });
 
-                //Time picker
+                //Amount: schreibe Eingabe "Pillen pro Tag" in entsprechendes Objekt unter per_day
+                //Problem aktuell noch: wir koennen nur Ciprofloxacin hinzufuegen, denn wir haben nur hierfuer einen Eintrag in meds.js. Was machen wir mit anderen Medikamenten? An sich sollte es dynamisch gehen, in diesem Fall muss man aber alle Information zu einem Medikament (siehe meds.js) irgendwie aus dem Internet ziehen
+                var stepper = app.stepper.create({
+                    el: '.stepper',
+                    on: {
+                        change: function () {
+                            ciprofloxacin.per_day = stepper.getValue();
+                        }
+                    }
+                });
+
                 var today = new Date();
                 var pickerInline = app.picker.create({
                     // containerEl: '#demo-picker-date-container',
