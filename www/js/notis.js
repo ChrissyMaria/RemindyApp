@@ -1,7 +1,7 @@
 var notificationBuyCall = {
-    icon: '<img src="images/notify_logo.png">', // Remindy Logo
+    //no need for icon: '<img src="images/notify_logo.png">', // Remindy Logo
     title: 'Remindy',
-    timeSinceNoti: 'now', //specify notification time
+    timeSinceNoti: 'now', //specify notification time  nowTime = + new Date(); diffTime = nowTime - initialTime;
     subtitle: 'Medication Reminder',
     text: 'You are running out of Thyroxin' + '<div style="    position: relative;\n' +
         '    margin-top: 10px;\n' +
