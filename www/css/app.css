@@ -421,12 +421,6 @@ div#tab-1 {
     margin: 0px 6px;
 }
 
-#noti-time {
-    color: #757575;
-    font-size: 12px;
-
-}
-
 #noti-time::before {
     content: '';
     width: 3px;
@@ -436,6 +430,17 @@ div#tab-1 {
     vertical-align: middle;
     margin-right: 4px;
     background: #757575;
+}
+
+#noti-time {
+    color: #757575;
+    font-size: 12px;
+
+}
+
+#noti-expand {
+    font-size:16px; 
+    color: #757575;
 }
 
 #noti-subtitle p {
@@ -450,7 +455,7 @@ div#tab-1 {
 }
 
 #noti-default-btn {
-    display:flex;
+    display:none;
     justify-content:flex-start;
     margin-left: 16px;
 }
@@ -459,6 +464,9 @@ div#tab-1 {
     margin-right:10px;
 }
 
+#downText {
+    display:none;
+}
 
 
 

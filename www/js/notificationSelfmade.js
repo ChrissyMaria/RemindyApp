@@ -1,10 +1,7 @@
 function showNotification() {
     // Create notification object
     console.log("Notification here.");
-    document.getElementById("notification").style.display = "block";
-
-
-    
+    document.getElementById("notification").style.display = "block"; 
 }
 
 function off() {
@@ -75,6 +72,9 @@ function off() {
                  // this should represent a slow down scrolling --> if a certain time is exceeded (300ms) when the position (-50) is reached
                  if (diffY <= 50 && diffTime > 300) {
                      console.log("DOOOOWN we go!")
+
+                     document.getElementById("noti-default-btn").style.display = "flex";
+
                  }
              }
          }
@@ -89,3 +89,9 @@ function off() {
     //self.notificationCallbackOnClose.open();
 //}
 
+
+$("noti-expand").click(function () {
+    console.log("geht rein");
+    $("downText").toggle();
+    
+});

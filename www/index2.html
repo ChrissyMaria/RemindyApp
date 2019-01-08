@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="framework7/css/framework7.min.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/app.css">
+    
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
@@ -94,33 +95,36 @@
                     </div>
                 </div>-->
 
-                    <div>
-                        <a href="#" onclick="showNotification()">Press here for notification!</a>
-                    </div>
+                <div>
+                    <a href="#" onclick="showNotification()">Press here for notification!</a>
+                </div>
 
-                    <div id="notification">
-                      
-                        <div id="noti-header" >
-                            <img id="noti-img" src="images/notify_logo.png" />
-                            <span id="noti-appName">Remindy</span>
-                            <span id="noti-time">now</span>
-                        </div>
-                        <div id="noti-subtitle">
-                            <p>Medication Reminder</p>
-                        </div>
-                        <div id="noti-text">
-                            <p>You are running out of Thyroxin!</p>
-                        </div>
-                        <div id="noti-default-btn">
-                            <span class="noti-btn"><a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a></span>
-                            <span class="noti-btn"><a class="link external" href="http://www.google.com"><i class="material-icons">call</i>CALL DOCTOR</a></span>
-                        </div>
+                <div id="notification">
+
+                    <div id="noti-header">
+                        <img id="noti-img" src="images/notify_logo.png" />
+                        <span id="noti-appName">Remindy</span>
+                        <span id="noti-time">now</span>
+                        <span> <i class="material-icons" id="noti-expand">expand_more</i></span>
                     </div>
-                     
-                    <!--POPUP TRIGGER-->
-                    <a href="#" onclick="showNotificationCallbackOnClose()"><img src="images/background_notify.png" style="width:411px;" /></a>
-                    <!--END POPUP TRIGGER -->
-                
+                    <div id="noti-subtitle">
+                        <p>Medication Reminder</p>
+                    </div>
+                    <div id="noti-text">
+                        <p>You are running out of Thyroxin!</p>
+                        <p id="downText">This is just another text that appears if the users swipes down reaaaaaally slowly. At least that's what should happen.</p>
+
+                    </div>
+                    <div id="noti-default-btn">
+                        <span class="noti-btn"><a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a></span>
+                        <span class="noti-btn"><a class="link external" href="http://www.google.com"><i class="material-icons">call</i>CALL DOCTOR</a></span>
+                    </div>
+                </div>
+
+                <!--POPUP TRIGGER-->
+                <a href="#" onclick="showNotificationCallbackOnClose()"><img src="images/background_notify.png" style="width:411px;" /></a>
+                <!--END POPUP TRIGGER -->
+
             </div>
         </div>
 
@@ -189,10 +193,13 @@
     </div>
     <!-- Cordova -->
     <!-- POPUP JAVASCRIPT CODE -->
-        <!--Copied to notifications.js-->
+    <!--Copied to notifications.js-->
     <!-- END POPUP JAVASCRIPT CODE -->
     <!-- Framework7 library -->
     <script src="framework7/js/framework7.min.js"></script>
+
+    <!--JQuery Script-->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!-- App routes -->
     <script src="js/routes.js"></script>
@@ -203,6 +210,7 @@
     <script src="js/notis.js"></script>
     <script src="js/notificationSelfmade.js"></script>
     <script src="js/notifications.js"></script>
+
 
 
 
