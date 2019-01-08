@@ -28,6 +28,7 @@ var thyroxin = {
     intake: [
         {
             hour: '09:00',
+            amount: 1,
             taken: true
         }
     ]
@@ -84,6 +85,7 @@ var aristelle = {
     intake: [
         {
             hour: '18:00',
+            amount: 1,
             taken: false
         }
     ]
@@ -138,11 +140,17 @@ var ciprofloxacin = {
     intake: [
         {
             hour: '08:00',
+            amount: 1,
             taken: false
         },
         {
             hour: '19:00',
+            amount: 1,
             taken: false
         }
     ]
 }
+
+//TO DO: Wir muessen die intake hour eigentlich als Datum definieren
+// IBU hinzufuegen: Notification "buy" laeuft hiermit
+// per day: ist intake, also wie viele Eintraege pro Pille
