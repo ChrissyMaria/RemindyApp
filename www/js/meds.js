@@ -154,3 +154,5 @@ var ciprofloxacin = {
 //TO DO: Wir muessen die intake hour eigentlich als Datum definieren
 // IBU hinzufuegen: Notification "buy" laeuft hiermit
 // per day: ist intake, also wie viele Eintraege pro Pille
+
+//Bla Bla 
