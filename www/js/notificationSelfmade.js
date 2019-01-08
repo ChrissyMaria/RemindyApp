@@ -68,12 +68,13 @@ function off() {
              } else {
                  // swiped down
                  console.log("swiped down");
+                 document.getElementById("noti-default-btn").style.display = "flex";
 
-                 // this should represent a slow down scrolling --> if a certain time is exceeded (300ms) when the position (-50) is reached
-                 if (diffY <= 50 && diffTime > 300) {
+                 // this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
+                 if (diffY <= 90 && diffTime > 300) {
                      console.log("DOOOOWN we go!")
 
-                     document.getElementById("noti-default-btn").style.display = "flex";
+                     document.getElementById("downText").style.display = "block";
 
                  }
              }
