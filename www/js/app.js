@@ -14,7 +14,17 @@ var app = new Framework7({
                 firstName: 'John',
                 lastName: 'Doe',
             },
-            medicationList: [thyroxin, aristelle]
+            medicationList: [thyroxin, aristelle],
+            medication_times: [
+                {
+                    name: aristelle.name,
+                    time_to_take: aristelle.intake[0].time
+                },
+                {
+                    name: thyroxin.name,
+                    time_to_take: thyroxin.intake[0].time
+                }
+            ]
         };
     },
     // App root methods
@@ -47,7 +57,11 @@ var app = new Framework7({
                 var p_last_until = $$(' <p class="date"></p>');
                 var text = $$('<p class="med_description"></p>');
                 //p_last_until: calculate how long pills will last
-                var days = this.data.medicationList[i].pills_left / this.data.medicationList[i].per_day;
+                var pills_amount = 0;
+                for(var j=0; j<this.data.medicationList[i].intake.length; j++) {
+                    pills_amount += this.data.medicationList[i].intake[j].amount;
+                }
+                var days = this.data.medicationList[i].pills_left / pills_amount;
                 var dat = new Date();
                 dat.setDate(dat.getDate() + parseInt(days));
                 var options = {year: 'numeric', month: 'long', day: 'numeric'};  //for date output
@@ -67,6 +81,46 @@ var app = new Framework7({
 
             // --------------------------- Today's View ------------------------------
             // idea: look for every medication how many pills per day and when to take
+            //1. Sortiere Array nach Uhrzeiten
+
+            for (var i = 0; i < this.data.medicationList.length; i++) {
+                console.log(i);
+                for(var j = 0; i < this.data.medicationList[i].intake[j].length; j++) {
+                    console.log(j);
+                    this.data.medication_times.push({
+                        name: this.data.medicationList[i].name,
+                        time_to_take: this.data.medicationList[i].intake[j].time
+                    });
+                    console.log(this.data.medication_times);
+                }
+            }
+
+            this.data.medication_times.sort(sortDates);
+
+            function sortDates(a,b) {
+                date_a = a.time_to_take.getDate();
+                date_b = b.time_to_take.getDate();
+                if (a > b) {
+                    console.log(-1);
+                    return -1;
+                }
+
+                else if (a == b){
+                    console.log(0);
+                    return 0;
+                } // it's equals
+
+                else {
+                    console.log(1);
+                    return 1;
+                }
+
+            }
+
+            // for(var i=0; i<this.data.medication_times.length; i++){
+            //     console.log(this.data.medication_times[i]);
+            // }
+
             var ul = $$('<ul/>');
             for (var i = 0; i < this.data.medicationList.length; i++) {
                 var li = $$('<li/>');
@@ -86,7 +140,9 @@ var app = new Framework7({
                         icon = $$('<i class="material-icons">radio_button_unchecked</i>');
                     }
                     //set time
-                    item_after.text(this.data.medicationList[i].intake[j].hour);
+                    var hours = (this.data.medicationList[i].intake[j].time.getHours() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getHours();
+                    var minutes = (this.data.medicationList[i].intake[j].time.getMinutes() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getMinutes();
+                    item_after.text(hours + ":" + minutes);
                 }
 
                 item_media.append(icon);
@@ -132,15 +188,6 @@ login.close(function () {
     }, 2000);
 });
 
-// Create toast with large message
-/*var toastTop = app.toast.create({
-  text: 'Welcome back!',
-  position: 'top',
-  closeTimeout: 2000,
-});
-$$('.open-toast-top').on('click', function () {
-  toastTop.open();
-});*/
 
 $$('.login-screen .list-button').on('click', function () {
     var username = $$('.login-screen input[name = "username"]').val();
