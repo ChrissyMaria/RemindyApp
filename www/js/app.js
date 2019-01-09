@@ -14,6 +14,7 @@ var app = new Framework7({
                 firstName: 'John',
                 lastName: 'Doe',
             },
+
             medicationList: [thyroxin, aristelle],
             medication_times: [
                 {
@@ -25,6 +26,7 @@ var app = new Framework7({
                     time_to_take: thyroxin.intake[0].time
                 }
             ]
+
         };
     },
     // App root methods
@@ -57,6 +59,7 @@ var app = new Framework7({
                 var p_last_until = $$(' <p class="date"></p>');
                 var text = $$('<p class="med_description"></p>');
                 //p_last_until: calculate how long pills will last
+
                 var pills_amount = 0;
                 for(var j=0; j<this.data.medicationList[i].intake.length; j++) {
                     pills_amount += this.data.medicationList[i].intake[j].amount;
@@ -120,7 +123,7 @@ var app = new Framework7({
             // for(var i=0; i<this.data.medication_times.length; i++){
             //     console.log(this.data.medication_times[i]);
             // }
-
+          
             var ul = $$('<ul/>');
             for (var i = 0; i < this.data.medicationList.length; i++) {
                 var li = $$('<li/>');
@@ -140,6 +143,7 @@ var app = new Framework7({
                         icon = $$('<i class="material-icons">radio_button_unchecked</i>');
                     }
                     //set time
+
                     var hours = (this.data.medicationList[i].intake[j].time.getHours() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getHours();
                     var minutes = (this.data.medicationList[i].intake[j].time.getMinutes() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getMinutes();
                     item_after.text(hours + ":" + minutes);

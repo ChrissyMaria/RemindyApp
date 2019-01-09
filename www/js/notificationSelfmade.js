@@ -1,15 +1,34 @@
 function showNotification() {
     // Create notification object
     console.log("Notification here.");
-    document.getElementById("notification").style.display = "block"; 
+    document.getElementById("notification").style.display = "block";
+
+    var subtitle = $$('<p></p>');
+    subtitle.text(notificationBuyCall.subtitle);
+    $$('#noti-subtitle').append(subtitle);
+
+    var text = $$('<p></p>');
+    text.text(notificationBuyCall.text);
+    $$('#noti-text').append(text);
+
+}
+
+function createNotificationBuyCall () {
+
 }
 
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
 
-    /*--------------------------Adding a swipe listener------------------
- * -------------------------SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
+
+
+
+
+
+
+    /*--------------------------Adding swipe listener------------------
+ * -----------------------------SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
 
     document.getElementById("notification").addEventListener("touchstart", startTouch, false);
     document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
