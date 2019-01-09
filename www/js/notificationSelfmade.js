@@ -110,11 +110,11 @@ function takeNotification() {
 
     fillHeaderNotification();
 
-    var subtitle = $$('<p></p>');
+    var subtitle = $$('<p id="sub"></p>');
     subtitle.text(notificationTake.subtitle);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p></p>');
+    var text = $$('<p id="txt"></p>');
     text.text(notificationTake.text);
     $$('#noti-text').append(text);
 
@@ -124,12 +124,12 @@ function takeNotification() {
 
     //Buttons
     //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
-    var button = $$('<span class="noti-btn">');
-    var button2 = $$('<span class="noti-btn-middle">');
+    var button = $$('<span class="noti-btn-middle">');
+    var button2 = $$('<span class="noti-btn">');
     var button3 = $$('<span class="noti-btn">');
-    var link = $$('<a class="link external" href="www.google.de">TAKEN!</a>');
-    var link2 = $$('<a class="link external" href="www.google.de">IN 1 HOUR</a>');
-    var link3 = $$('<a class="link external" href="www.google.de">AT HOME</a>');
+    var link = $$('<a onclick="takenMedicationNotification()">TAKEN!</a>');
+    var link2 = $$('<a onclick="delayMedicineIntakeTime(1)">IN 1 HOUR</a>');    //1 is the hour
+    var link3 = $$('<a onclick="delayMedicineIntakeLocation(&quot;home&quot;)">AT HOME</a>');  //1 is home
     button.append(link);
     button2.append(link2);
     button3.append(link3);
@@ -138,6 +138,49 @@ function takeNotification() {
     $$('#noti-default-btn').append(button2);
     $$('#noti-default-btn').append(button3);
 }
+
+function disappearingButtons() {     //let the buttons disappear
+    $$('#noti-default-btn').empty();
+    $$('#noti-default-btn').hide();
+    $$('#noti-less').hide();
+    $$('#noti-expand').hide();
+}
+
+function takenMedicationNotification() {
+    console.log("TAKE IT IN!");
+
+    $$('#sub').html('You have taken your ' + ciprofloxacin.name + '!');
+    $$('#txt').html('Future-You says "Thank you!"');
+    disappearingButtons();
+
+    //TODO SET COUNT -1 OF PILLS
+    //ciprofloxacin.pills_left - 1; or something like this
+}
+
+function delayMedicineIntakeTime(hour) {
+    console.log("NOT NOW!");
+
+    if (hour == 1){
+        console.log("Delay for 1 hour!")
+
+        $$('#sub').html('You have delayed your intake by ' + hour + ' hour!');
+        $$('#txt').html('New reminder set.');
+        disappearingButtons();
+    }
+}
+
+function delayMedicineIntakeLocation(location) {
+    console.log("NOT NOW!");
+
+    if (location == "home"){
+        console.log("Homeboy")
+
+        $$('#sub').html('Take your medication when you arrive at ' + location + '!');
+        $$('#txt').html('New reminder set.');
+        disappearingButtons();
+    }
+}
+
 /*
 function updateWeatherHtml () {
   	// Change the src attribute of the icon image using jQuery .attr()
