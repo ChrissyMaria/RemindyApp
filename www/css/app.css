@@ -411,6 +411,7 @@ div#tab-1 {
     top: 350px; /* Sit 300px under top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
+    max-width: 412px;
     height: auto; /* Notification height taken from Framework7 height*/
     max-height: 500px;
     background-color: white; /* White background with no opacity */
@@ -456,7 +457,7 @@ div#tab-1 {
 
 }
 
-#noti-expand {
+#noti-expand, #noti-less{
     font-size:16px; 
     color: #757575;
 }
@@ -483,8 +484,20 @@ div#tab-1 {
     /*set lightgrey as background color*/
 }
 
+#noti-default-btn i.material-icons {
+    vertical-align: middle;
+    margin-right: 5px;
+    /*set lightgrey as background color*/
+}
+
 .noti-btn {
     margin-right:10px;
+}
+
+/*pushes all the items on the right hand side of the child to the right including the one this is applied to*/
+.noti-btn-middle {
+    margin-right:10px;
+    flex-grow: 1;
 }
 
 #downText {
