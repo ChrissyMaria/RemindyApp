@@ -34,66 +34,11 @@
      <div id="app">
              <!-- Status bar overlay for fullscreen mode-->
              <div class="statusbar"></div>
-             <!--&lt;!&ndash; Left panel with cover effect&ndash;&gt;
-             <div class="panel panel-left panel-cover theme-dark">
-                 <div class="view">
-                     <div class="page">
-                         <div class="navbar">
-                             <div class="navbar-inner">
-                                 <div class="title">Left Panel</div>
-                             </div>
-                         </div>
-                         <div class="page-content">
-                             <div class="block">This is obviously the left panel</div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             &lt;!&ndash; Right panel with reveal effect&ndash;&gt;
-             <div class="panel panel-right panel-reveal theme-dark">
-                 <div class="view">
-                     <div class="page">
-                         <div class="navbar">
-                             <div class="navbar-inner">
-                                 <div class="title">Right Panel</div>
-                             </div>
-                         </div>
-                         <div class="page-content">
-                             <div class="block">Right panel content goes here</div>
-                         </div>
-                     </div>
-                 </div>
-             </div>-->
 
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main ios-edges">
             <!-- Page, data-name contains page name which can be used in callbacks -->
             <div class="page" data-name="home">
-                <!-- Top Navbar -->
-                <!--<div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="left">
-                            <a href="#" class="link icon-only panel-open" data-panel="left">
-                                <i class="icon f7-icons ios-only">menu</i>
-                                <i class="icon material-icons md-only">menu</i>
-                            </a>
-                        </div>
-                        <div class="title sliding">Remindy</div>
-                        <div class="right">
-                            <a href="#" class="link icon-only panel-open" data-panel="right">
-                                <i class="icon f7-icons ios-only">menu</i>
-                                <i class="icon material-icons md-only">menu</i>
-                            </a>
-                        </div>
-                    </div>
-                </div>-->
-                <!-- Toolbar-->
-                <!--<div class="toolbar">
-                    <div class="toolbar-inner">
-                        <a href="#" class="link">Left Link</a>
-                        <a href="#" class="link">Right Link</a>
-                    </div>
-                </div>-->
 
                 <div>
                     <a href="#" onclick="buyCallNotification()">Press here for buyCallNotification()!</a>
@@ -102,28 +47,12 @@
                 </div>
 
                 <div id="notification">
-
                     <div id="noti-header">
                        <img id="noti-img" src="images/notify_logo.png" />
-                        <!--<span id="noti-appName">Remindy</span>
-                        <span id="noti-time">now</span>
-                        <span> <i class="material-icons" id="noti-expand">expand_more</i></span>-->
                     </div>
-                    <div id="noti-subtitle">
-                        <!--Subtitle is received out of notificationCallBuy in notis.js-->
-                    </div>
-                    <div id="noti-text">
-                        <!--<p>You are running out of Thyroxin!</p>-->
-                        <!--<iframe height="100" width="280" src="https://www.pharmacy2u.co.uk/ciprofloxacin.html">
-                            <a class="link external" href="https://www.pharmacy2u.co.uk/ciprofloxacin.html">Lorem ipsum </a>
-                        </iframe>-->
-                        <!--<p id="downText">This is just another text that appears if the users swipes down reaaaaaally slowly. At least that's what should happen.</p>-->
-
-                    </div>
-                    <div id="noti-default-btn" class="card-footer">
-                        <!--<span class="noti-btn"><a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a></span>
-                        <span class="noti-btn"><a class="link external" href="http://www.google.com"><i class="material-icons">call</i>CALL DOCTOR</a></span>-->
-                    </div>
+                    <div id="noti-subtitle"></div>
+                    <div id="noti-text"></div>
+                    <div id="noti-default-btn" class="card-footer"></div>
                 </div>
 
                 <!--POPUP TRIGGER-->
