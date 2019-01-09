@@ -27,7 +27,10 @@ var thyroxin = {
     per_day: 1,
     intake: [
         {
-            hour: '09:00',
+
+            //note: we have to define a whole new date - we will later simply extract the time
+            time: new Date(2019, 1, 9, 9, 30, 0, 0),
+
             amount: 1,
             taken: true
         }
@@ -84,7 +87,8 @@ var aristelle = {
     per_day: (1/21),
     intake: [
         {
-            hour: '18:00',
+
+            time: new Date(2019, 1, 9, 18, 0, 0, 0),
             amount: 1,
             taken: false
         }
@@ -139,12 +143,12 @@ var ciprofloxacin = {
     per_day: 2,
     intake: [
         {
-            hour: '08:00',
+            time: new Date(2019, 1, 9, 8, 0, 0, 0),
             amount: 1,
             taken: false
         },
         {
-            hour: '19:00',
+            time: new Date(2019, 1, 9, 19, 0, 0, 0),
             amount: 1,
             taken: false
         }
@@ -152,5 +156,8 @@ var ciprofloxacin = {
 }
 
 //TO DO: Wir muessen die intake hour eigentlich als Datum definieren
-// IBU hinzufuegen: Notification "buy" laeuft hiermit
+
+// IBU hinzufuegen: Notification "buy" laeuft hiermi
 // per day: ist intake, also wie viele Eintraege pro Pille
+//verfuegbare Pillen: errechnet sich aus:
+
