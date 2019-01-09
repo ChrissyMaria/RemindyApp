@@ -29379,25 +29379,27 @@
           isTouched = false;
           isMoved = false;
           return;
-        }
+          }
+
         isTouched = false;
         isMoved = false;
         if (touchesDiff === 0) {
           return;
-        }
-
+          }
+          
         var timeDiff = Utils.now() - touchStartTime;
         notification.$el.transition('');
         notification.$el.addClass('notification-transitioning');
         notification.$el.transform('');
 
-        if (
+        /* Try to solve the closing within the notifications.js DID NOT WORK OUT*/
+          if (
           (touchesDiff < -10 && timeDiff < 300)
           || (-touchesDiff >= notificationHeight / 1)
         ) {
           notification.close();
-        }
-      }
+          }
+       }
 
       function attachTouchEvents() {
         {
