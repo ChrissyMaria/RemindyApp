@@ -119,7 +119,10 @@ function takeNotification() {
     $$('#noti-text').append(text);
 
     var downText = $$('<p id="downText"></p>');
-    downText.text(notificationTake.downText);
+    var btnLink1 = $$('<a class="delayBtn"><i class="material-icons">access_time</i></a>');
+    var btnLink2 = $$('<a class="delayBtn"><i class="material-icons">location_on</i></a>');
+    downText.append(btnLink1);
+    downText.append(btnLink2);
     $$('#noti-text').append(downText);
 
     //Buttons
