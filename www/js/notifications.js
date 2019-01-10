@@ -302,12 +302,16 @@ function off() {
              // sliding horizontally
              if (diffX > 0) {
                  // swiped left
-
+                 var noti = document.getElementById('notification');
                 console.log(diffTime + "swiped left");
+                 noti.style.animationName = " ";
+                 noti.style.animationName = "left";
 
-             } else {
+             } else if (diffX <0){
                  // swiped right
                  console.log("swiped right");
+                 var noti = document.getElementById('notification');
+                 noti.style.animationName = "right";
              }
          } else {
              // sliding vertically
