@@ -1,15 +1,19 @@
 //  onclick="$('#datedisplay').html('Today'); $('#buttonDateLeft').hide();  $('#buttonDateRight').show(); "
+
+
+// --------------------------- Change Notification Height ------------------------------
+/*idea: Function which receives the height of the notification div and
+calculates the css 'top' attribute new - depending on size of notificatin*/
 function notiHeightCalculator() {
 
     var notiHeight = document.getElementById('notification').clientHeight; //get #myDiv
-
 
     var newHeight = 350 - ((notiHeight - 102)/2);
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
 }
 
-
+// --------------------------- Notification Default Header ------------------------------
 //builds the standard header of a notification (which is always the same) and controls the expand button
 function fillHeaderNotification() {
     /*var icon = $$('<img id="noti-img" />');
@@ -33,7 +37,7 @@ function fillHeaderNotification() {
     $$('#noti-header').append(less);
     $$('#noti-less').hide();
 
-
+    // --------------------------- CLICK LISTENER ------------------------------
     //click listeners - if someone presses on expand_more or expand_less icon button will show or hide
     $$('#noti-expand').on('click', function () {
         $$('#noti-expand').hide();
@@ -50,6 +54,7 @@ function fillHeaderNotification() {
     });
 }
 
+// --------------------------- BUY CALL NOTIFICATION ------------------------------
 function buyCallNotification() {
     // Create notification object
     console.log("Notification here.");
@@ -113,6 +118,8 @@ function buyMedicine() {
     $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
 }
+
+// --------------------------- INTAKE REMINDER NOTIFICATION ------------------------------
 
 function takeNotification() {
     console.log("Notification here.");
@@ -203,23 +210,8 @@ function delayMedicineIntakeLocation(location) {
     }
 }
 
-/*
-function updateWeatherHtml () {
-  	// Change the src attribute of the icon image using jQuery .attr()
-  	$('#iconimage').attr('src', 'img/rain.png')
-  	$('#summary').html('Rain in the evening');
-    $('#temperature').html('8° C');
-    $('#winddisplay').html('8 km/h');
-    $('#humiditydisplay').html('68%');
-  	$('#datedisplay').html('Tomorrow');
-	$('#buttonDateRight').hide();
-}
- */
 
-
-
-
-
+//whatever that is :-D
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
@@ -229,9 +221,8 @@ function off() {
 
 
 
-
-    /*--------------------------Adding swipe listener------------------
- * -----------------------------SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
+// --------------------------- SWIPE LISTENERS ------------------------------
+    /*SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
 
     document.getElementById("notification").addEventListener("touchstart", startTouch, false);
     document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
@@ -291,12 +282,14 @@ function off() {
                  // swiped down
                  console.log("swiped down");
 
+                 // --------------------------- Swiping down actions ------------------------------
+
                  $('#noti-expand').hide();
                  $('#noti-less').show();
                  document.getElementById("noti-default-btn").style.display = "flex";
                  notiHeightCalculator()
-
-                 // this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
+                 // --------------------------- Slow swiping ------------------------------
+                 // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
                  if (diffY <= 90 && diffTime > 300) {
                      console.log("DOOOOWN we go!")
 

@@ -408,7 +408,7 @@ div#tab-1 {
 
 #notification {
     position: absolute;
-    top: 350px; /* Sit 300px under top of the page content */
+    top: 350px; /* Sit 350px under top of the page content */
     display: none; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
     max-width: 412px;
