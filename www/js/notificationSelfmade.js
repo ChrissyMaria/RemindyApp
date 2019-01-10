@@ -119,8 +119,10 @@ function takeNotification() {
     $$('#noti-text').append(text);
 
     var downText = $$('<p id="downText"></p>');
-    var btnLink1 = $$('<a class="delayBtn"><i class="material-icons">access_time</i></a>');
-    var btnLink2 = $$('<a class="delayBtn"><i class="material-icons">location_on</i></a>');
+    var btnLink1 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
+        '<i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a>');
+    var btnLink2 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
+        '<i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
     downText.append(btnLink1);
     downText.append(btnLink2);
     $$('#noti-text').append(downText);

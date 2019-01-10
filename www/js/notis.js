@@ -28,7 +28,7 @@ var calDoc = {
 
 var notificationTake = {
     subtitle: 'Take your ' + ciprofloxacin.name + ' now!',
-    text: 'Swipe down slowly for more options.',
+    text: 'Swipe down slowly for more delay options.',
     downText: 'Here should two further buttons appear.',
 }
 

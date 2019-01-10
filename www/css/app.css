@@ -473,6 +473,20 @@ div#tab-1 {
     color: dimgrey;
 }
 
+#noti-text a.button {
+     margin-right: 16px;
+    margin-bottom: 6px;
+     border-color: #212121;
+    line-height: 30px;
+ }
+
+#noti-text a i.material-icons {
+    font-size: 26px;
+    vertical-align: middle;
+    margin: auto;
+    margin-right: 5px;
+}
+
 .card-footer {
     background: #fafafa;
     margin-left: 0px;
