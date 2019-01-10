@@ -13,29 +13,64 @@ function notiHeightCalculator() {
     notification.style.top = newHeight + 'px';
 }
 
+//Sets time of notification +1 after every 60 seconds - just an idea
+function notiTime() {
+
+    var min = 2;
+
+    setTimeout(function(){
+        $$('#noti-time').html(min);
+    }, 60000);
+
+    setInterval(function(){
+        $$('#noti-time').html((min++) + " min ago");
+        console.log(min);
+        }, 60000);
+}
+
+function clearNotification(){
+    $$('#notification').empty();
+}
+
 // --------------------------- Notification Default Header ------------------------------
 //builds the standard header of a notification (which is always the same) and controls the expand button
-function fillHeaderNotification() {
+function createNotification() {
     /*var icon = $$('<img id="noti-img" />');
     icon.src(notificationHeader.icon);
     $$('#noti-header').append(subtitle);*/
 
-    var appName = $$('<span id="noti-appName"></span>');
-    appName.text(notificationHeader.title);
-    $$('#noti-header').append(appName);
+    var notiHeader = $$('<div id="noti-header"/>');
+    $$('#notification').append(notiHeader);
 
-    var time = $$('<span id="noti-time"></span>');
-    time.text(notificationHeader.timeSinceNoti);
-    $$('#noti-header').append(time);
+        var notiImg = $$('<img src="images/notify_logo.png" />');
+        $$('#noti-header').append(notiImg);
 
-    var expand = $$('<i class="material-icons" id="noti-expand"></i>');
-    expand.text(notificationHeader.expand);
-    $$('#noti-header').append(expand);
+        var appName = $$('<span id="noti-appName"></span>');
+        appName.text(notificationHeader.title);
+        $$('#noti-header').append(appName);
 
-    var less = $$('<i class="material-icons" id="noti-less"></i>');
-    less.text(notificationHeader.less);
-    $$('#noti-header').append(less);
-    $$('#noti-less').hide();
+        var time = $$('<span id="noti-time"></span>');
+        time.html('now');
+        $$('#noti-header').append(time);
+
+        var expand = $$('<i class="material-icons" id="noti-expand"></i>');
+        expand.text(notificationHeader.expand);
+        $$('#noti-header').append(expand);
+
+        var less = $$('<i class="material-icons" id="noti-less"></i>');
+        less.text(notificationHeader.less);
+        $$('#noti-header').append(less);
+        $$('#noti-less').hide();
+
+    var notiSubtitle = $$('<div id="noti-subtitle"/>');
+    $$('#notification').append(notiSubtitle);
+
+    var notiText = $$('<div id="noti-text"/>');
+    $$('#notification').append(notiText);
+
+    var notiBtn = $$('<div id="noti-default-btn" class="card-footer"/>');
+    $$('#notification').append(notiBtn);
+
 
     // --------------------------- CLICK LISTENER ------------------------------
     //click listeners - if someone presses on expand_more or expand_less icon button will show or hide
@@ -60,7 +95,9 @@ function buyCallNotification() {
     console.log("Notification here.");
     document.getElementById("notification").style.display = "block";
 
-    fillHeaderNotification();
+    //Empties notification div and fills it with new content
+    clearNotification();
+    createNotification();
 
     var subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.subtitle);
@@ -85,6 +122,8 @@ function buyCallNotification() {
     //downText.text(notificationBuyCall.downText);
     $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
+
+    notiTime();
 }
 
 function buyMedicine() {
@@ -92,7 +131,8 @@ function buyMedicine() {
     console.log("Notification here.");
     document.getElementById("notification").style.display = "hide";
 
-    fillHeaderNotification();
+    clearNotification();
+    createNotification();
 
     var subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.subtitle);
@@ -125,7 +165,8 @@ function takeNotification() {
     console.log("Notification here.");
     document.getElementById("notification").style.display = "block";
 
-    fillHeaderNotification();
+    clearNotification();
+    createNotification();
 
     var subtitle = $$('<p id="sub"></p>');
     subtitle.text(notificationTake.subtitle);
