@@ -419,7 +419,21 @@ div#tab-1 {
     /*cursor: pointer; Add a pointer on hover */
     box-shadow: 0 2px 4px rgba(0,0,0,.22), 0 1px 2px rgba(0,0,0,.24);
     border-radius: 4px 4px 0 0;
+    animation-duration: 1s;
 }
+
+/* The animation code */
+@keyframes left {
+    0%   {transform: translateX(0px);}
+    50% {transform: translateX(-30px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes right {
+    0%   {transform: translateX(0px);}
+    100% {transform: translateX(450px);}
+}
+
 
 #noti-header {
     display:flex;

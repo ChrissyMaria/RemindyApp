@@ -2,7 +2,7 @@
 var notificationHeader = {
     icon: 'images/notify_logo.png',
     title: 'Remindy',
-    timeSinceNoti: 'now', //specify notification time  nowTime = + new Date(); diffTime = nowTime - initialTime;*/
+    timeSinceNoti: ' ', //specify notification time  nowTime = + new Date(); diffTime = nowTime - initialTime;*/
     expand: 'expand_more',
     less: 'expand_less',
 }
@@ -28,7 +28,7 @@ var calDoc = {
 
 var notificationTake = {
     subtitle: 'Take your ' + ciprofloxacin.name + ' now!',
-    text: 'Swipe down slowly for more delay options.',
+    text: 'Swipe down slowly for more  delay options.',
     downText: 'Here should two further buttons appear.',
 }
 
