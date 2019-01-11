@@ -434,6 +434,12 @@ div#tab-1 {
     100% {transform: translateX(450px);}
 }
 
+@keyframes resize {
+    0%   {transform: translateY(0px);}
+    100% {transform: translateY(0px);}
+}
+
+
 
 #noti-header {
     display:flex;
