@@ -7,6 +7,7 @@ var app = new Framework7({
     id: 'io.framework7.testapp', // App bundle ID
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
+    fastClicks: false,
     //fastClicks:false,
     // App root data
     data: function () {
