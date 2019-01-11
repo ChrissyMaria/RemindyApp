@@ -7,6 +7,7 @@ var app = new Framework7({
     id: 'io.framework7.testapp', // App bundle ID
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
+    //fastClicks:false,
     // App root data
     data: function () {
         return {
@@ -29,6 +30,8 @@ var app = new Framework7({
 
         };
     },
+
+
     // App root methods
     methods: {
         helloWorld: function () {
@@ -165,6 +168,8 @@ var app = new Framework7({
         },
     }
 });
+
+
 
 var login = app.loginScreen.create({
     el: '#my-login-screen'

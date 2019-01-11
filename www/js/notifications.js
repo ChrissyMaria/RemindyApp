@@ -28,8 +28,9 @@ function notiTime() {
         }, 60000);
 }
 
+//TODO: DELETE THIS FUNCTION AFTERWARDS
 function clearNotification(){
-    $$('#notification').empty();
+    //$$('#notification').empty();
 }
 
 // --------------------------- Notification Default Header ------------------------------
@@ -39,8 +40,8 @@ function createNotification() {
     icon.src(notificationHeader.icon);
     $$('#noti-header').append(subtitle);*/
 
-    const notiHeader = $$('<div id="noti-header"/>');
-    $$('#notification').append(notiHeader);
+/*    const notiHeader = $$('<div id="noti-header"/>');
+    $$('#notification').append(notiHeader);*/
 
         const notiImg = $$('<img src="images/notify_logo.png" />');
         $$('#noti-header').append(notiImg);
@@ -247,7 +248,14 @@ function delayMedicineIntakeLocation(location) {
         console.log("Insert Google Maps");
         $$('#downText').remove();
         $$('#noti-subtitle').remove();
-        $$('#noti-text').empty();
+        //$$('#noti-text').empty();
+        $$('#googleMaps').show();
+        //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
+        /*if ( document.styleSheet.href == "framework7/css/framework7.min.css") {
+            var stylesheet = document.styleSheet.href("href=\"framework7/css/framework7.min.css\")
+
+            void(document.styleSheets.item(i).disabled=true);
+        }*/
 
 
         //$$('#noti-text').html('<div id="mapholder"/>');
@@ -292,6 +300,11 @@ function off() {
          if (initialY === null) {
              return;
          }
+
+         /*if($$('#googleMaps').css('display') != 'none') {
+             console.log("Im out");
+             return; //stop the execution of function
+         }*/
 
          var currentX = e.touches[0].clientX;
          var currentY = e.touches[0].clientY;
