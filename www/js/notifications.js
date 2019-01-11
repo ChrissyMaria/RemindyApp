@@ -6,9 +6,9 @@
 calculates the css 'top' attribute new - depending on size of notificatin*/
 function notiHeightCalculator() {
 
-    var notiHeight = document.getElementById('notification').clientHeight; //get #myDiv
+    const notiHeight = document.getElementById('notification').clientHeight; //get #myDiv
 
-    var newHeight = 350 - ((notiHeight - 102)/2);
+    const newHeight = 350 - ((notiHeight - 102)/2);
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
 }
@@ -16,20 +16,21 @@ function notiHeightCalculator() {
 //Sets time of notification +1 after every 60 seconds - just an idea
 function notiTime() {
 
-    var min = 2;
+    let min = 2;
 
-    setTimeout(function(){
+    setTimeout(() => {
         $$('#noti-time').html(min);
     }, 60000);
 
-    setInterval(function(){
+    setInterval(() => {
         $$('#noti-time').html((min++) + " min ago");
         console.log(min);
         }, 60000);
 }
 
+//TODO: DELETE THIS FUNCTION AFTERWARDS
 function clearNotification(){
-    $$('#notification').empty();
+    //$$('#notification').empty();
 }
 
 // --------------------------- Notification Default Header ------------------------------
@@ -39,36 +40,36 @@ function createNotification() {
     icon.src(notificationHeader.icon);
     $$('#noti-header').append(subtitle);*/
 
-    var notiHeader = $$('<div id="noti-header"/>');
-    $$('#notification').append(notiHeader);
+/*    const notiHeader = $$('<div id="noti-header"/>');
+    $$('#notification').append(notiHeader);*/
 
-        var notiImg = $$('<img src="images/notify_logo.png" />');
+        const notiImg = $$('<img src="images/notify_logo.png" />');
         $$('#noti-header').append(notiImg);
 
-        var appName = $$('<span id="noti-appName"></span>');
+        const appName = $$('<span id="noti-appName"></span>');
         appName.text(notificationHeader.title);
         $$('#noti-header').append(appName);
 
-        var time = $$('<span id="noti-time"></span>');
+        const time = $$('<span id="noti-time"></span>');
         time.html('now');
         $$('#noti-header').append(time);
 
-        var expand = $$('<i class="material-icons" id="noti-expand"></i>');
+        const expand = $$('<i class="material-icons" id="noti-expand"></i>');
         expand.text(notificationHeader.expand);
         $$('#noti-header').append(expand);
 
-        var less = $$('<i class="material-icons" id="noti-less"></i>');
+        const less = $$('<i class="material-icons" id="noti-less"></i>');
         less.text(notificationHeader.less);
         $$('#noti-header').append(less);
         $$('#noti-less').hide();
 
-    var notiSubtitle = $$('<div id="noti-subtitle"/>');
+    const notiSubtitle = $$('<div id="noti-subtitle"/>');
     $$('#notification').append(notiSubtitle);
 
-    var notiText = $$('<div id="noti-text"/>');
+    const notiText = $$('<div id="noti-text"/>');
     $$('#notification').append(notiText);
 
-    var notiBtn = $$('<div id="noti-default-btn" class="card-footer"/>');
+    const notiBtn = $$('<div id="noti-default-btn" class="card-footer"/>');
     $$('#notification').append(notiBtn);
 
 
@@ -81,7 +82,7 @@ function createNotification() {
         console.log('Button with id ' + $(this).attr('id') +' clicked');
     });
 
-    $$('#noti-less').on('click', function () {
+    $$('#noti-less').on('click', () => {
         $$('#noti-less').hide();
         $$('#noti-expand').show();
         $$('#noti-default-btn').hide();
@@ -134,26 +135,27 @@ function buyMedicine() {
     clearNotification();
     createNotification();
 
-    var subtitle = $$('<p></p>');
+    const subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.subtitle);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p></p>');
+    const text = $$('<p></p>');
     text.text(notificationBuyCall.text);
     $$('#noti-text').append(text);
 
-    var downText = $$('<p id="downText"></p>');
+    const downText = $$('<p id="downText"></p>');
     downText.text(notificationBuyCall.downText);
     $$('#noti-text').append(downText);
 
     //Buttons
     //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
-    var button = $$('<span class="noti-btn">');
-    var button2 = $$('<span class="noti-btn">');
-    var link = $$('<a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a>');
-    var link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
+    const button = $$('<span class="noti-btn">');
+    const button2 = $$('<span class="noti-btn">');
+    const link = $$('<a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a>');
+    const link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
     button.append(link);
     button2.append(link2);
+
     //downText.text(notificationBuyCall.downText);
     $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
@@ -168,18 +170,18 @@ function takeNotification() {
     clearNotification();
     createNotification();
 
-    var subtitle = $$('<p id="sub"></p>');
+    const subtitle = $$('<p id="sub"></p>');
     subtitle.text(notificationTake.subtitle);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p id="txt"></p>');
+    const text = $$('<p id="txt"></p>');
     text.text(notificationTake.text);
     $$('#noti-text').append(text);
 
-    var downText = $$('<p id="downText"></p>');
-    var btnLink1 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
+    const downText = $$('<p id="downText"></p>');
+    const btnLink1 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
         '<i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a>');
-    var btnLink2 = $$('<a class="col button button-outline color-black" ' +
+    const btnLink2 = $$('<a class="col button button-outline color-black" ' +
         'onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)">' +
         '<i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
     downText.append(btnLink1);
@@ -188,12 +190,12 @@ function takeNotification() {
 
     //Buttons
     //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
-    var button = $$('<span class="noti-btn-middle">');
-    var button2 = $$('<span class="noti-btn">');
-    var button3 = $$('<span class="noti-btn">');
-    var link = $$('<a onclick="takenMedicationNotification()">TAKEN!</a>');
-    var link2 = $$('<a onclick="delayMedicineIntakeTime(1)">IN 1 HOUR</a>');    //1 is the hour
-    var link3 = $$('<a onclick="delayMedicineIntakeLocation(&quot;home&quot;)">AT HOME</a>');  //1 is home
+    const button = $$('<span class="noti-btn-middle">');
+    const button2 = $$('<span class="noti-btn">');
+    const button3 = $$('<span class="noti-btn">');
+    const link = $$('<a onclick="takenMedicationNotification()">TAKEN!</a>');
+    const link2 = $$('<a onclick="delayMedicineIntakeTime(1)">IN 1 HOUR</a>');    //1 is the hour
+    const link3 = $$('<a onclick="delayMedicineIntakeLocation(&quot;home&quot;)">AT HOME</a>');  //1 is home
     button.append(link);
     button2.append(link2);
     button3.append(link3);
@@ -201,6 +203,8 @@ function takeNotification() {
     $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
     $$('#noti-default-btn').append(button3);
+
+    notiTime();
 }
 
 function disappearingButtons() {     //let the buttons disappear
@@ -238,16 +242,23 @@ function delayMedicineIntakeLocation(location) {
 
     if (location == "home"){
         console.log("Homeboy")
+        getLocation(x = 48.148669, y = 11.568594, nameoflocation ='Arcisstraße 21, München');
 
-        $$('#sub').html('Take your medication when you arrive at ' + location + '!');
-        $$('#txt').html('New reminder set.');
-        disappearingButtons();
     } else if (location == "openmaps") {
         console.log("Insert Google Maps");
         $$('#downText').remove();
         $$('#noti-subtitle').remove();
-        $$('#noti-text').empty();
-        $$('#noti-text').html('<img src="images/maps.png" />');
+        //$$('#noti-text').empty();
+        $$('#googleMaps').show();
+        //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
+        /*if ( document.styleSheet.href == "framework7/css/framework7.min.css") {
+            var stylesheet = document.styleSheet.href("href=\"framework7/css/framework7.min.css\")
+
+            void(document.styleSheets.item(i).disabled=true);
+        }*/
+
+
+        //$$('#noti-text').html('<div id="mapholder"/>');
     }
 }
 
@@ -290,6 +301,11 @@ function off() {
              return;
          }
 
+         /*if($$('#googleMaps').css('display') != 'none') {
+             console.log("Im out");
+             return; //stop the execution of function
+         }*/
+
          var currentX = e.touches[0].clientX;
          var currentY = e.touches[0].clientY;
 
@@ -304,7 +320,6 @@ function off() {
                  // swiped left
                  var noti = document.getElementById('notification');
                 console.log(diffTime + "swiped left");
-                 noti.style.animationName = " ";
                  noti.style.animationName = "left";
 
              } else if (diffX <0){
