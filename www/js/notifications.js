@@ -241,16 +241,16 @@ function delayMedicineIntakeLocation(location) {
 
     if (location == "home"){
         console.log("Homeboy")
+        getLocation(x = 48.148669, y = 11.568594, nameoflocation ='Arcisstraße 21, München');
 
-        $$('#sub').html('Take your medication when you arrive at ' + location + '!');
-        $$('#txt').html('New reminder set.');
-        disappearingButtons();
     } else if (location == "openmaps") {
         console.log("Insert Google Maps");
         $$('#downText').remove();
         $$('#noti-subtitle').remove();
         $$('#noti-text').empty();
-        $$('#noti-text').html('<img src="images/maps.png" />');
+
+
+        //$$('#noti-text').html('<div id="mapholder"/>');
     }
 }
 
