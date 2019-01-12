@@ -250,7 +250,9 @@ function delayMedicineIntakeLocation(location) {
         $$('#noti-subtitle').remove();
         //$$('#noti-text').empty();
         $$('#googleMaps').show();
-        $$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
+        //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
+        $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
+
         /*if ( document.styleSheet.href == "framework7/css/framework7.min.css") {
             var stylesheet = document.styleSheet.href("href=\"framework7/css/framework7.min.css\")
 
