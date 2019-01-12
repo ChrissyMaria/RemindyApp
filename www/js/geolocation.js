@@ -153,6 +153,11 @@ function initMap() {
 
     var buttonSetLoc = $$('<span class="noti-btn-middle">Set Reminder to Location');
     buttonSetLoc.appendTo('#googleMaps');
+    var mapDiv = document.getElementById('title');
+
+    google.maps.event.addDomListener(mapDiv, 'click', function() {
+        console.log('Map was clicked!');
+    });
 
 
     autocomplete.addListener('place_changed', function() {
@@ -216,6 +221,8 @@ function initMap() {
                 console.log(this.lat);
                 console.log(this.long);
                 console.log(this.name);
+                this.lat = Number(this.lat);
+                this.long = Number(this.long);
                 getLocation(x= this.lat, y=this.long, nameoflocation =this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
