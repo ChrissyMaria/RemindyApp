@@ -7,13 +7,17 @@ function getLocation(x = [], y= [], nameoflocation = '') {
     setlong = y;
     if (nameoflocation != '') {
         console.log('You have set your destination to '+  nameoflocation);
+        console.log("Latitude is " + setlat);
+        console.log("Longitude is " + setlong);
         $$('#sub').html('Take your medication when you arrive at <br> <strong>'+ nameoflocation + '</strong> !');
         $$('#txt').html('New reminder set.');
 
         var mapHolder = $$('<div id="mapholder"/>');
         $$('#noti-text').append(mapHolder);
 
+        // variable for the given location data
         var latlon = setlat + "," + setlong;
+
 
         var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x150&&markers=color:red%7C"+setlat+","+setlong+"&sensor=false&key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU";
 
@@ -43,15 +47,46 @@ function showPosition(position) {
 
 
     //give a notification when set location is reached
+
     givenotification(position);
 }
 
 function givenotification(position) {
-    if (position.coords.latitude == setlat && position.coords.longitude == setlong) {
-        alert('You have arrived!');
+
+    //variable for actual position
+    var actualLatLng = new google.maps.LatLng({lat: position.coords.latitude, lng: position.coords.longitude});
+    var givenLatLng = new google.maps.LatLng({lat: setlat, lng: setlong});
+
+
+    console.log('actual LatLng is' + actualLatLng);
+    console.log('givenLatLng is ' + givenLatLng);
+
+    // this method compares your actual position (actualLatLng) with the setPosition for Reminder (givenLatLng).
+    // If you are less than 100 m away, the notification fires
+
+    if(google.maps.geometry.spherical.computeDistanceBetween(actualLatLng,givenLatLng)<100){
+        $$('#sub').remove();
+        $$('#txt').remove();
+        $$('#noti-text').remove();
+        takeNotification();
+        console.log('arrived in location, reminder set');
+        //alert('You have arrived!');
         navigator.geolocation.clearWatch(id);
-        console.log("stopped watching")
+        console.log("stopped watching");
     }
+
+
+    /*if (position.coords.latitude == setlat && position.coords.longitude == setlong) {
+        console.log(position.coords);
+        $$('#sub').remove();
+        $$('#txt').remove();
+        $$('#noti-text').remove();
+        takeNotification();
+        console.log('arrived in location');
+        //alert('You have arrived!');
+        navigator.geolocation.clearWatch(id);
+        console.log("stopped watching");
+    }*/
 
 
 
@@ -68,14 +103,15 @@ function givenotification(position) {
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},
-        zoom: 13
+        zoom: 13,
+        disableDefaultUI: true
     });
     var card = document.getElementById('pac-card');
     var input = document.getElementById('pac-input');
     var types = document.getElementById('type-selector');
     var strictBounds = document.getElementById('strict-bounds-selector');
 
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
 
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -116,7 +152,7 @@ function initMap() {
 
 
     var buttonSetLoc = $$('<span class="noti-btn-middle">Set Reminder to Location');
-    buttonSetLoc.appendTo(googleMaps);
+    buttonSetLoc.appendTo('#googleMaps');
 
 
     autocomplete.addListener('place_changed', function() {
@@ -153,8 +189,8 @@ function initMap() {
                 (place.address_components[1] && place.address_components[1].short_name || ''),
                 (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
-        console.log("Latitude is" + place.geometry.location.lat())
-        console.log("Longitude is" + place.geometry.location.lng())
+        console.log("Latitude is " + place.geometry.location.lat());
+        console.log("Longitude is " + place.geometry.location.lng());
         //getLocation(x=place.geometry.location.lat(), y=place.geometry.location.lng(), nameoflocation = place.name)
         }
 
