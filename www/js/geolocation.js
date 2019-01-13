@@ -65,9 +65,10 @@ function givenotification(position) {
     // If you are less than 100 m away, the notification fires
 
     if(google.maps.geometry.spherical.computeDistanceBetween(actualLatLng,givenLatLng)<100){
-        $$('#sub').remove();
-        $$('#txt').remove();
+        $$('#noti-header').empty();
+        $$('#noti-subtitle').remove();
         $$('#noti-text').remove();
+        $$('#noti-default-btn').remove();
         takeNotification();
         console.log('arrived in location, reminder set');
         //alert('You have arrived!');
