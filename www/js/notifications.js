@@ -226,7 +226,6 @@ function delayMedicineIntakeLocation(location) {
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
         $$('.pac-container').on('touchstart', function(){
-            console.log("Da steht was drin");
             document.getElementById("confirm-btn").classList.remove("inactive-btn");
 
         })
@@ -307,6 +306,22 @@ function off() {
                  console.log("swiped right");
                  var noti = document.getElementById('notification');
                  noti.style.animationName = "right";
+
+                 setTimeout(() => {
+                     $$('#noti-header').empty();
+                     $$('#noti-subtitle').remove();
+                     $$('#noti-text').remove();
+                     $$('#downText').remove();
+                     $$('#noti-default-btn').remove();
+                     $$('#googleMaps').hide();
+
+
+                     noti.style.display="none";
+                     noti.style.animationName = "none";
+                 }, 1000);
+
+
+
              }
          } else {
              // sliding vertically
