@@ -162,7 +162,7 @@ function initMap() {
         const linkSetLoc = $$('<a onclick=" " id="confirm-btn" class="inactive-btn">CONFIRM NEW LOCATION REMINDER</a>');
         buttonSetLoc.append(linkSetLoc);
     const btnCancel = $$('<span class="noti-btn">');
-        const linkCancel = $$('<a onclick=" ">CANCEL</a>');
+        const linkCancel = $$('<a onclick="cancelLocationReminder()">CANCEL</a>');
         btnCancel.append(linkCancel);
     buttonSetLoc.appendTo('#noti-map-btn');
     btnCancel.appendTo('#noti-map-btn');

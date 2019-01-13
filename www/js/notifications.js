@@ -241,6 +241,22 @@ function delayMedicineIntakeLocation(location) {
     }
 }
 
+function cancelLocationReminder() {
+    $$('#noti-header').empty();
+    $$('#noti-subtitle').remove();
+    $$('#noti-text').remove();
+    $$('#downText').remove();
+    $$('#noti-default-btn').remove();
+    $$('#googleMaps').hide();
+
+    takeNotification();
+    $$('#downText').show();
+    $$('#noti-expand').hide();
+    $$('#noti-less').show();
+    document.getElementById("noti-default-btn").style.display = "flex";
+
+    notiHeightCalculator();
+}
 
 //whatever that is :-D
 function off() {
@@ -314,7 +330,6 @@ function off() {
                      $$('#downText').remove();
                      $$('#noti-default-btn').remove();
                      $$('#googleMaps').hide();
-
 
                      noti.style.display="none";
                      noti.style.animationName = "none";
