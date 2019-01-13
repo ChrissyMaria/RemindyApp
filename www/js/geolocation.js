@@ -152,7 +152,7 @@ function initMap() {
 
 
 /*-----------------------CREATE MAP BUTTONS----------------------*/
-    
+
     const mapBtn = $$('<div id="noti-map-btn" class="card-footer"/>');
     $$('#googleMaps').append(mapBtn);
     var buttonSetLoc = $$('<span class="noti-btn-middle"/>');
@@ -239,6 +239,7 @@ function initMap() {
                 getLocation(x = this.lat, y = this.long, nameoflocation = this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
+                $$('#txt').show();
                 notiHeightCalculator();
             })
 

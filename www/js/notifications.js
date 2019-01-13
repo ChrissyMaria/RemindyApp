@@ -218,7 +218,8 @@ function delayMedicineIntakeLocation(location) {
         console.log("Insert Google Maps");
         $$('#downText').remove();
         $$('#noti-subtitle').remove();
-
+        $$('#noti-default-btn').hide();
+        $$('#txt').hide();
         //$$('#noti-text').empty();
         $$('#googleMaps').show();
         notiHeightCalculator();
