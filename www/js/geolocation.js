@@ -133,7 +133,6 @@ function initMap() {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
@@ -150,13 +149,17 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
+    /*if(!document.getElementById('pac-input') != ""){
+        console.log("Da steht was drin");
+    }*/
+
 
 /*-----------------------CREATE MAP BUTTONS----------------------*/
 
     const mapBtn = $$('<div id="noti-map-btn" class="card-footer"/>');
     $$('#googleMaps').append(mapBtn);
     var buttonSetLoc = $$('<span class="noti-btn-middle"/>');
-        const linkSetLoc = $$('<a onclick=" ">Set Reminder to Location!</a>');
+        const linkSetLoc = $$('<a onclick=" " id="confirm-btn" class="inactive-btn">CONFIRM NEW LOCATION REMINDER</a>');
         buttonSetLoc.append(linkSetLoc);
     const btnCancel = $$('<span class="noti-btn">');
         const linkCancel = $$('<a onclick=" ">CANCEL</a>');
@@ -167,6 +170,8 @@ function initMap() {
 
 
     var mapDiv = document.getElementById('title');
+    title.innerHTML="Type in location below to set a new reminder";
+    title.style.fontSize="16px";
 
     google.maps.event.addDomListener(mapDiv, 'click', function() {
         console.log('Map was clicked!');

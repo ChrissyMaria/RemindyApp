@@ -528,6 +528,10 @@ div#tab-1 {
     margin-right:10px;
 }
 
+.inactive-btn {
+    color:lightgrey !important;
+}
+
 /*pushes all the items on the right hand side of the child to the right including the one this is applied to*/
 .noti-btn-middle {
     margin-right:10px;

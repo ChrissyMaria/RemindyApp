@@ -225,6 +225,11 @@ function delayMedicineIntakeLocation(location) {
         notiHeightCalculator();
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
+        $$('.pac-container').on('touchstart', function(){
+            console.log("Da steht was drin");
+            document.getElementById("confirm-btn").classList.remove("inactive-btn");
+
+        })
 
         /*if ( document.styleSheet.href == "framework7/css/framework7.min.css") {
             var stylesheet = document.styleSheet.href("href=\"framework7/css/framework7.min.css\")
