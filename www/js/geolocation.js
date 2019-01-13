@@ -65,9 +65,10 @@ function givenotification(position) {
     // If you are less than 100 m away, the notification fires
 
     if(google.maps.geometry.spherical.computeDistanceBetween(actualLatLng,givenLatLng)<100){
-        $$('#sub').remove();
-        $$('#txt').remove();
+        $$('#noti-header').empty();
+        $$('#noti-subtitle').remove();
         $$('#noti-text').remove();
+        $$('#noti-default-btn').remove();
         takeNotification();
         console.log('arrived in location, reminder set');
         //alert('You have arrived!');
@@ -132,7 +133,6 @@ function initMap() {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
@@ -149,11 +149,29 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
+    /*if(!document.getElementById('pac-input') != ""){
+        console.log("Da steht was drin");
+    }*/
 
 
-    var buttonSetLoc = $$('<span class="noti-btn-middle">Set Reminder to Location');
-    buttonSetLoc.appendTo('#googleMaps');
+/*-----------------------CREATE MAP BUTTONS----------------------*/
+
+    const mapBtn = $$('<div id="noti-map-btn" class="card-footer"/>');
+    $$('#googleMaps').append(mapBtn);
+    var buttonSetLoc = $$('<span class="noti-btn-middle"/>');
+        const linkSetLoc = $$('<a onclick=" " id="confirm-btn" class="inactive-btn">CONFIRM NEW LOCATION REMINDER</a>');
+        buttonSetLoc.append(linkSetLoc);
+    const btnCancel = $$('<span class="noti-btn">');
+        const linkCancel = $$('<a onclick="cancelLocationReminder()">CANCEL</a>');
+        btnCancel.append(linkCancel);
+    buttonSetLoc.appendTo('#noti-map-btn');
+    btnCancel.appendTo('#noti-map-btn');
+
+
+
     var mapDiv = document.getElementById('title');
+    title.innerHTML="Type in location below to set a new reminder";
+    title.style.fontSize="16px";
 
     google.maps.event.addDomListener(mapDiv, 'click', function() {
         console.log('Map was clicked!');
@@ -223,9 +241,11 @@ function initMap() {
                 console.log(this.name);
                 this.lat = Number(this.lat);
                 this.long = Number(this.long);
-                getLocation(x= this.lat, y=this.long, nameoflocation =this.name);
+                getLocation(x = this.lat, y = this.long, nameoflocation = this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
+                $$('#txt').show();
+                notiHeightCalculator();
             })
 
 
@@ -233,6 +253,7 @@ function initMap() {
 
             infowindow.open(map, marker);
     });
+
 
     $$('.pac-container').on('touchend', function(e) {
         console.log('touchend');
