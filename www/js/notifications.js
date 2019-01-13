@@ -1,14 +1,11 @@
-//  onclick="$('#datedisplay').html('Today'); $('#buttonDateLeft').hide();  $('#buttonDateRight').show(); "
-
-
 // --------------------------- Change Notification Height ------------------------------
 /*idea: Function which receives the height of the notification div and
-calculates the css 'top' attribute new - depending on size of notificatin*/
+calculates the css 'top' attribute new - depending on size of notification*/
 function notiHeightCalculator() {
 
     const notiHeight = document.getElementById('notification').clientHeight; //get #myDiv
 
-    const newHeight = 350 - ((notiHeight - 102)/2);
+    const newHeight = (732 - notiHeight) / 2;
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
 }
@@ -80,6 +77,7 @@ function createNotification() {
         $$('#noti-less').show();
         document.getElementById("noti-default-btn").style.display = "flex"; //you can't use the $ in this case
         console.log('Button with id ' + $(this).attr('id') +' clicked');
+        notiHeightCalculator();
     });
 
     $$('#noti-less').on('click', () => {
@@ -87,6 +85,7 @@ function createNotification() {
         $$('#noti-expand').show();
         $$('#noti-default-btn').hide();
         $$('#downText').hide();
+        notiHeightCalculator();
     });
 }
 
@@ -125,40 +124,7 @@ function buyCallNotification() {
     $$('#noti-default-btn').append(button2);
 
     notiTime();
-}
-
-function buyMedicine() {
-    // Create notification object
-    console.log("Notification here.");
-    document.getElementById("notification").style.display = "hide";
-
-    clearNotification();
-    createNotification();
-
-    const subtitle = $$('<p></p>');
-    subtitle.text(notificationBuyCall.subtitle);
-    $$('#noti-subtitle').append(subtitle);
-
-    const text = $$('<p></p>');
-    text.text(notificationBuyCall.text);
-    $$('#noti-text').append(text);
-
-    const downText = $$('<p id="downText"></p>');
-    downText.text(notificationBuyCall.downText);
-    $$('#noti-text').append(downText);
-
-    //Buttons
-    //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
-    const button = $$('<span class="noti-btn">');
-    const button2 = $$('<span class="noti-btn">');
-    const link = $$('<a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a>');
-    const link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
-    button.append(link);
-    button2.append(link2);
-
-    //downText.text(notificationBuyCall.downText);
-    $$('#noti-default-btn').append(button);
-    $$('#noti-default-btn').append(button2);
+    notiHeightCalculator();
 }
 
 // --------------------------- INTAKE REMINDER NOTIFICATION ------------------------------
@@ -205,6 +171,7 @@ function takeNotification() {
     $$('#noti-default-btn').append(button3);
 
     notiTime();
+    notiHeightCalculator();
 }
 
 function disappearingButtons() {     //let the buttons disappear
@@ -212,6 +179,7 @@ function disappearingButtons() {     //let the buttons disappear
     $$('#noti-default-btn').hide();
     $$('#noti-less').hide();
     $$('#noti-expand').hide();
+    notiHeightCalculator();
 }
 
 function takenMedicationNotification() {
@@ -221,8 +189,10 @@ function takenMedicationNotification() {
     $$('#txt').html('Future-You says "Thank you!"');
     disappearingButtons();
 
+
     //TODO SET COUNT -1 OF PILLS
     //ciprofloxacin.pills_left - 1; or something like this
+
 }
 
 function delayMedicineIntakeTime(hour) {
@@ -250,6 +220,7 @@ function delayMedicineIntakeLocation(location) {
         $$('#noti-subtitle').remove();
         //$$('#noti-text').empty();
         $$('#googleMaps').show();
+        notiHeightCalculator();
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
 
