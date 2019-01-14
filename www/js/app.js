@@ -8,7 +8,6 @@ var app = new Framework7({
     name: 'Framework7', // App name
     theme: 'auto', // Automatic theme detection
     fastClicks: false,
-    //fastClicks:false,
     // App root data
     data: function () {
         return {
@@ -18,16 +17,7 @@ var app = new Framework7({
             },
 
             medicationList: [thyroxin, aristelle],
-            medication_times: [
-                {
-                    name: aristelle.name,
-                    time_to_take: aristelle.intake[0].time
-                },
-                {
-                    name: thyroxin.name,
-                    time_to_take: thyroxin.intake[0].time
-                }
-            ]
+            medication_times: []
 
         };
     },
@@ -49,21 +39,23 @@ var app = new Framework7({
           $$('#meds_today').empty();
 
 
+
             // --------------------------- Fill Cards ------------------------------
             //idea: go through list with all medicaments and add them dynamically
             for (var i = 0; i < this.data.medicationList.length; i++) {
                 // ###### general container
                 var container = $$('<div class="card demo-card-header-pic"/>');
                 // ###### header
-                var container_header = $$('<div style="background-color:#6087A7" \n' +
+                var container_header = $$('<div style="color:#373737" \n' +
                     '               class="card-header align-items-flex-end"/>');
+                var trash = $$('<i class="material-icons greyColor">clear </i>');
                 container_header.text(this.data.medicationList[i].name); //insert medication name
+                container_header.append(trash);
                 // ###### content
                 var card_content = $$('<div class="card-content card-content-padding cabinet"/>');
-                var p_last_until = $$(' <p class="date"></p>');
+                var p_last_until = $$(' <p class="date last_until"></p>');
                 var text = $$('<p class="med_description"></p>');
                 //p_last_until: calculate how long pills will last
-
                 var pills_amount = 0;
                 for(var j=0; j<this.data.medicationList[i].intake.length; j++) {
                     pills_amount += this.data.medicationList[i].intake[j].amount;
@@ -79,57 +71,78 @@ var app = new Framework7({
                 card_content.append(p_last_until, text);
                 // ###### link: read more
                 var link_container = $$('<div class="card-footer">');
+
+                var restock = $$('<a class="external"><i class="material-icons primaryColor open-preloader-custom">add_shopping_cart</i></a>');
                 var link = $$('<a href="#" class="link">Read more</a>');
-                link_container.append(link);
+                link_container.append(link, restock);
+
+                //reminder for restocking
+                if(days <=7 ) {
+                    $$(p_last_until).css({'color': '#005FAC', 'font-weight': 'bold'});
+                    $$(restock).addClass('wibble').css({'animation-delay':'1s', 'animation-duration': '.5s'});
+                }
                 // ###### fill container and append to index
                 container.append(container_header, card_content, link_container);
                 $$('#test').append(container);
             }
 
+            //Create delete function
+            $$('.greyColor').click(function (event) {
+                var target = event.target;
+                app.dialog.confirm('Do you want to delete this pill?', 'Remindy', () => {
+                    $$(target).parent().parent().remove();
+                });
+            });
+
+            //Buy medication
+            $$('.open-preloader-custom').on('click', function () {
+                app.dialog.preloader('You will be redirected to: www.blinkhealth.com');
+                setTimeout(function () {
+                    app.dialog.close();
+                }, 3000);
+            });
+
+            $$('.external').click(function(evt){
+                setTimeout(function() {
+                    window.open("https://www.blinkhealth.com/l-thyroxine-sodium", "_self");
+                }, 1000);
+            });
+
             // --------------------------- Today's View ------------------------------
             // idea: look for every medication how many pills per day and when to take
             //1. Sortiere Array nach Uhrzeiten
-
+            this.data.medication_times = [];
             for (var i = 0; i < this.data.medicationList.length; i++) {
-                console.log(i);
-                for(var j = 0; i < this.data.medicationList[i].intake[j].length; j++) {
-                    console.log(j);
-                    this.data.medication_times.push({
-                        name: this.data.medicationList[i].name,
-                        time_to_take: this.data.medicationList[i].intake[j].time
-                    });
-                    console.log(this.data.medication_times);
+                console.log("i: " + i + " name: " + this.data.medicationList[i].name );
+                for(var j = 0; j < this.data.medicationList[i].intake.length; j++) {
+                    console.log("j: " + j);
+                    var name = this.data.medicationList[i].name;
+                    var time_to_take = this.data.medicationList[i].intake[j].time;
+                    var tak = this.data.medicationList[i].intake[j].taken;
+                    this.data.medication_times.push({name: name, time_to_take: time_to_take, taken: tak});
                 }
             }
 
-            this.data.medication_times.sort(sortDates);
-
-            function sortDates(a,b) {
-                date_a = a.time_to_take.getDate();
-                date_b = b.time_to_take.getDate();
-                if (a > b) {
-                    console.log(-1);
-                    return -1;
-                }
-
-                else if (a == b){
-                    console.log(0);
-                    return 0;
-                } // it's equals
-
-                else {
-                    console.log(1);
-                    return 1;
-                }
-
+            for(var i=0; i<this.data.medication_times.length; i++) {
+                console.log(this.data.medication_times[i]);
             }
 
-            // for(var i=0; i<this.data.medication_times.length; i++){
-            //     console.log(this.data.medication_times[i]);
-            // }
+            //Sortieren
+            this.data.medication_times.sort(function(a,b){
+                // Turn your strings into dates, and then subtract them
+                // to get a value that is either negative, positive, or zero.
+                return new Date(a.time_to_take) - new Date(b.time_to_take);
+            });
+
+
+            console.log("Sortiert");
+            for(var i=0; i<this.data.medication_times.length; i++) {
+                console.log(this.data.medication_times[i]);
+            }
+
           
             var ul = $$('<ul/>');
-            for (var i = 0; i < this.data.medicationList.length; i++) {
+            for (var i = 0; i < this.data.medication_times.length; i++) {
                 var li = $$('<li/>');
                 var item_content = $$('<div class="item-content"/>');
                 var item_media = $$('<div class="item-media"/>');
@@ -137,28 +150,26 @@ var app = new Framework7({
                 //Icon and time: since we may have more than 1 intake, we have to go through all possible intakes of medication
                 var icon; //icon
                 var item_after = $$('<div class="item-after"/>'); //time to take
-                for(var j=0; j<this.data.medicationList[i].intake.length; j++) {
-                    if(this.data.medicationList[i].intake[j].taken) {
-                        //already taken: checkbox checked
-                        icon = $$('<i class="material-icons"> check_circle_outline</i>');
-
-                    } else {
-                        //still to be taken: empty checkbox
+                if(this.data.medication_times[i].taken) {
+                    //already taken: checkbox checked
+                    icon = $$('<i class="material-icons"> check_circle_outline</i>');
+                } else {
+                    //still to be taken: empty checkbox
                         icon = $$('<i class="material-icons">radio_button_unchecked</i>');
-                    }
+                }
                     //set time
 
-                    var hours = (this.data.medicationList[i].intake[j].time.getHours() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getHours();
-                    var minutes = (this.data.medicationList[i].intake[j].time.getMinutes() < 10 ? '0' : '') + this.data.medicationList[i].intake[j].time.getMinutes();
-                    item_after.text(hours + ":" + minutes);
-                }
+                var hours = (this.data.medication_times[i].time_to_take.getHours() < 10 ? '0' : '') + this.data.medication_times[i].time_to_take.getHours();
+                var minutes = (this.data.medication_times[i].time_to_take.getMinutes() < 10 ? '0' : '') + this.data.medication_times[i].time_to_take.getMinutes();
+                item_after.text(hours + ":" + minutes);
+
 
                 item_media.append(icon);
                 item_content.append(item_media);
 
                 var item_inner = $$('<div class="item-inner"/>');
                 var item_title = $$(' <div class="item-title"/>');
-                item_title.text(this.data.medicationList[i].name);
+                item_title.text(this.data.medication_times[i].name);
                 item_inner.append(item_title, item_after);
                 item_content.append(item_inner);
                 li.append(item_content);
