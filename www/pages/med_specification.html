@@ -138,8 +138,7 @@
 
 
             <div class="fab fab-extended fab-center-bottom">
-                <a href="#" class="open-alert">
-                    <i class="icon f7-icons ios-only">add</i>
+                <a href="#">
                     <i class="icon material-icons md-only">add</i>
                     <div class="fab-text" id="add_intake">Add intake</div>
                 </a>
@@ -156,6 +155,9 @@
     return {
         on: {
             pageMounted: function () {
+
+                var self = this;
+                var app = self.$app;
 
                 var allIntakes = [];
                 var intakeAmounts = [];
@@ -346,13 +348,13 @@
                 $$('#add_button').click(function () {
 
                     ciprofloxacin.intake = [];
-                    var self = this;
-                    var app = self.$app;
                     for(var i=0; i<intakeCounter; i++) {
                         var zeit = allIntakes[i].getValue();
                         console.log(zeit);
                         var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
                         var menge = intakeAmounts[i].getValue();
+                        if(menge == undefined)
+                            menge=1;
                         ciprofloxacin.intake[i] = {time: datum, amount:menge, taken:false};
                     }
 
