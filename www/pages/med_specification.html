@@ -54,9 +54,14 @@
                     <!-- -------------------- DAILY --------------------- -->
                     <div id="tab-1" class="tab tab-active list">
                         <ul>
-                            <li class="swipeout"> <!-- to make it deletable by swiping -->
-                                <div class="swipeout-content item-content">
+                            <li> <!-- to make it deletable by swiping -->
+                                <div class="item-content">
                                     <div class="flex-grid">
+                                        <div class="col0">
+                                           <i class="material-icons">
+                                                    delete
+                                           </i>
+                                        </div>
                                         <!--  -------- set time -------- -->
                                         <div class="col1">
                                             <div class="list no-margin" id="timer">
@@ -64,42 +69,48 @@
                                                     <li>
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
-                                                                <div class="item-title item-label">Time</div>
                                                                 <div class="item-input-wrap">
                                                                     <input type="text" placeholder="Time"
                                                                            readonly="readonly"
-                                                                           id="demo-picker-date"/>
+                                                                           id="demo-picker-date1"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <div class="block block-strong no-padding no-margin margin-bottom"
-                                                 id="zeroHeight">
+                                            <div class="block block-strong no-padding no-margin margin-bottom zeroHeight">
                                                 <div id="demo-picker-date-container"></div>
                                             </div>
                                         </div>
-                                        <!--  -------- set amount -------- -->
                                         <div class="col2">
-                                            <small>Amount</small>
-                                            <div class="stepper stepper-small stepper-round stepper-fill stepper-init"
-                                                 id="amount">
-                                                <div class="stepper-button-minus" id="minus"></div>
-                                                <div class="stepper-input-wrap" id="border_stepper">
-                                                    <input type="text" value="1" min="0" max="9" step="1" readonly>
-                                                </div>
-                                                <div class="stepper-button-plus" id="plus"></div>
+                                            <i class="material-icons">
+                                                expand_more
+                                            </i>
+                                        </div>
+                                        <!--  -------- set amount -------- -->
+                                        <div class="col3">
+                                            <div class="list no-hairlines-md">
+                                                <ul>
+                                                    <li>
+                                                        <div class="item-content item-input">
+                                                            <div class="item-inner">
+                                                                <div class="item-input-wrap">
+                                                                    <input type="text" value="1" readonly="readonly" id="demo-picker-device1"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
+                                        <div class="col4">
+                                            pill(s)
+                                            <i class="material-icons">
+                                                expand_more
+                                            </i>
+                                        </div>
                                     </div>
-                                </div>
-                                <!--  -------- Specify what happens when we swipe it to the left (=delete) -------- -->
-                                <div class="swipeout-actions-right">
-                                    <!-- We add data-confirm and data-confirm-title attributes -->
-                                    <a href="#" class="swipeout-delete"
-                                       data-confirm="Are you sure want to delete this intake?"
-                                       data-confirm-title="Delete?">Delete</a>
                                 </div>
                             </li>
                         </ul>
@@ -126,14 +137,14 @@
             </div>
 
 
-            <div class="fab fab-extended fab-center-bottom" @click="addIntake">
+            <div class="fab fab-extended fab-center-bottom">
                 <a href="#" class="open-alert">
                     <i class="icon f7-icons ios-only">add</i>
                     <i class="icon material-icons md-only">add</i>
-                    <div class="fab-text">Add intake</div>
+                    <div class="fab-text" id="add_intake">Add intake</div>
                 </a>
             </div>
-            <a class="col button button-big button-raised button-fill link" @click="addMedicationToIndex"
+            <a class="col button button-big button-raised button-fill link"
                id="add_button" href="/">Finish</a>
         </div>
     </div>
@@ -143,60 +154,16 @@
 <!-- ADD CODE HERE -->
 <script>
     return {
-        methods: {
-            /**
-             * Adds a new intake
-             */
-            addIntake: function () {
-                // TO BE DONE HERE: Add a new intake
-                console.log("Should add intake");
-
-            },
-            /**
-             * Adds the current medication to our medication array: it will be displayed in the cabinet
-             */
-            addMedicationToIndex: function () {
-                var self = this;
-                var app = self.$app;
-                app.data.medicationList.push(ciprofloxacin);
-            }
-        },
         on: {
             pageMounted: function () {
-                //Medication information
-                //TO BE DONE HERE: currently it always adds ciprofloxacin. If we have time we could arrange that it adds the medication that was entered
-                //image
-                var img = $$('<img class="medi_image" alt="Medicament"/>');
-                var my_src = ciprofloxacin.img; //from database meds.js
-                img.attr("src",my_src);
-                $$('#image-container').append(img);
-                //title
-                $$('#med_name h2').text(ciprofloxacin.name); //from database meds.js
 
-                // Click on add intake
-                // TO BE DONE HERE: Replace this content so that we can actually add a medication
-                $$('.open-alert').on('click', function () {
-                    app.dialog.alert('Currently not working.', 'Remindy');
-                });
+                var allIntakes = [];
+                var intakeAmounts = [];
 
-                //Amount: schreibe Eingabe "Pillen pro Tag" in entsprechendes Objekt unter per_day
-                //Problem aktuell noch: wir koennen nur Ciprofloxacin hinzufuegen, denn wir haben nur hierfuer einen Eintrag in meds.js. Was machen wir mit anderen Medikamenten? An sich sollte es dynamisch gehen, in diesem Fall muss man aber alle Information zu einem Medikament (siehe meds.js) irgendwie aus dem Internet ziehen
-                var stepper = app.stepper.create({
-                    el: '.stepper',
-                    on: {
-                        change: function () {
-                            ciprofloxacin.per_day = stepper.getValue();
-                        }
-                    }
-                });
-
-                // TO DO HERE:Change intake ampunt and time
-                //Wichtig dabei: über Ciprofloxacin.intakte.push
-                // Das Datum Dabei immer: new Date(2019, 1, 9, XX, YY, 0, 0) - XX und YY mit Stunden und Minuten fuellen
+                //der erste Intake ist per Default sichtbar
                 var today = new Date();
-                var pickerInline = app.picker.create({
-                    // containerEl: '#demo-picker-date-container',
-                    inputEl: '#demo-picker-date',
+                allIntakes[0] = app.picker.create({
+                    inputEl: '#demo-picker-date1',
                     toolbar: true,
                     rotateEffect: true,
                     closeByOutsideClick: true,
@@ -245,6 +212,159 @@
                         },
                     }
                 });
+
+                intakeAmounts[0] = app.picker.create({
+                    inputEl: '#demo-picker-device1',
+                    cols: [
+                        {
+                            textAlign: 'center',
+                            values: ['1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7']
+                        }
+                    ]
+                });
+
+                //for adding a new intake
+                var intakeCounter = 1;
+                $$('#add_intake').click(function () {
+                    // TO DO: erstelle flex grid dynamisch (HTML).
+
+
+                    //Wichtig: id muss der von inputEl unten entsprechen, also: #demo-picker-date' +intakeCounter
+
+                    //Zeitpicker
+                    var today = new Date();
+                    allIntakes[intakeCounter] = app.picker.create({
+                        inputEl: '#demo-picker-date' + intakeCounter, //TO DO: +intakeCounter
+                        toolbar: true,
+                        rotateEffect: true,
+                        closeByOutsideClick: true,
+                        toolbarCloseText: 'Set time',
+                        openIn: 'popover',
+                        value: [
+                            today.getHours(),
+                            today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
+                        ],
+                        formatValue: function (values, displayValues) {
+                            return values[0] + ':' + values[1];
+                        },
+                        cols: [
+                            // Hours
+                            {
+                                values: (function () {
+                                    var arr = [];
+                                    for (var i = 0; i <= 23; i++) {
+                                        arr.push(i);
+                                    }
+                                    return arr;
+                                })(),
+                            },
+                            // Divider
+                            {
+                                divider: true,
+                                content: ':'
+                            },
+                            // Minutes
+                            {
+                                values: (function () {
+                                    var arr = [];
+                                    for (var i = 0; i <= 59; i++) {
+                                        arr.push(i < 10 ? '0' + i : i);
+                                    }
+                                    return arr;
+                                })(),
+                            }
+                        ],
+                        on: {
+                            change: function (picker, values) {
+                                var daysInMonth = new Date(picker.value[2], picker.value[0] * 1 + 1, 0).getDate();
+                                if (values[1] > daysInMonth) {
+                                    picker.cols[1].setValue(daysInMonth);
+                                }
+                            },
+                        }
+                    });
+
+                    //Amount picker
+                    intakeAmounts[intakeCounter] = app.picker.create({
+                        inputEl: '#demo-picker-device' + intakeCounter,
+                        cols: [
+                            {
+                                textAlign: 'center',
+                                values: ['1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7']
+                            }
+                        ]
+                    });
+
+                    intakeCounter++;
+                });
+
+                //List items are deletable
+                $$('.col0').click(function (event) {
+                    var target = event.target;
+                    app.dialog.confirm('Do you want to delete this intake?', 'Remindy', () => {
+                        $$(target).parent().parent().remove();
+                    });
+                });
+
+
+                //Medication information
+                //TO BE DONE HERE: currently it always adds ciprofloxacin. If we have time we could arrange that it adds the medication that was entered
+                //image
+                var img = $$('<img class="medi_image" alt="Medicament"/>');
+                var my_src = ciprofloxacin.img; //from database meds.js
+                img.attr("src",my_src);
+                $$('#image-container').append(img);
+                //title
+                $$('#med_name h2').text(ciprofloxacin.name); //from database meds.js
+
+                // Click on add intake
+                // TO BE DONE HERE: Replace this content so that we can actually add a medication
+                $$('.open-alert').on('click', function () {
+                    app.dialog.alert('Currently not working.', 'Remindy');
+                });
+
+                //Amount: schreibe Eingabe "Pillen pro Tag" in entsprechendes Objekt unter per_day
+                //Problem aktuell noch: wir koennen nur Ciprofloxacin hinzufuegen, denn wir haben nur hierfuer einen Eintrag in meds.js. Was machen wir mit anderen Medikamenten? An sich sollte es dynamisch gehen, in diesem Fall muss man aber alle Information zu einem Medikament (siehe meds.js) irgendwie aus dem Internet ziehen
+                var pickerDevice = app.picker.create({
+                    inputEl: '#demo-picker-device',
+                    cols: [
+                        {
+                            textAlign: 'center',
+                            values: ['1', '1.5', '2', '2.5', '3', '3.5', '4', '4.5', '5', '5.5', '6', '6.5', '7']
+                        }
+                    ]
+                });
+
+
+
+                // TO DO HERE:Change intake ampunt and time
+                //Wichtig dabei: über Ciprofloxacin.intakte.push
+                // Das Datum Dabei immer: new Date(2019, 1, 9, XX, YY, 0, 0) - XX und YY mit Stunden und Minuten fuellen
+
+
+
+
+                $$('#add_button').click(function () {
+
+                    ciprofloxacin.intake = [];
+                    var self = this;
+                    var app = self.$app;
+                    for(var i=0; i<intakeCounter; i++) {
+                        var zeit = allIntakes[i].getValue();
+                        console.log(zeit);
+                        var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
+                        var menge = intakeAmounts[i].getValue();
+                        ciprofloxacin.intake[i] = {time: datum, amount:menge, taken:false};
+                    }
+
+                    app.data.medicationList.push(ciprofloxacin);
+                });
+
+
+
+
+
+
             }
         }
     }
