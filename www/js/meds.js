@@ -23,14 +23,12 @@ var thyroxin = {
         moderateInteractions: ["THYROID PREPARATIONS/BILE ACID SEQUESTRANTS; SEVELAMER", "LEVOTHYROXINE/ORAL CALCIUM " +
         "ACETATE; CARBONATE; CITRATE", "THYROID/IRON SALTS, ORAL", "ORAL THYROID AGENTS/ALUMINUM;MAGNESIUM;LANTHANUM;SIMETHICONE"]
     },
-    pills_left: 10,
+    pills_left: 6,
     per_day: 1,
     intake: [
         {
-
             //note: we have to define a whole new date - we will later simply extract the time
             time: new Date(2019, 1, 9, 9, 30, 0, 0),
-
             amount: 1,
             taken: true
         }
@@ -87,9 +85,8 @@ var aristelle = {
     per_day: (1/21),
     intake: [
         {
-
             time: new Date(2019, 1, 9, 18, 0, 0, 0),
-            amount: 1,
+            amount: (1/21),
             taken: false
         }
     ]

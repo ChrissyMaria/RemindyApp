@@ -146,7 +146,6 @@
             </div>
 
 
-
             <a class="col button button-big button-raised button-fill link"
                id="add_button" href="/">Finish</a>
         </div>
@@ -159,6 +158,9 @@
     return {
         on: {
             pageMounted: function () {
+                var self = this;
+                var app = self.$app;
+
                 var self = this;
                 var app = self.$app;
 
@@ -427,7 +429,7 @@
                         var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
                         var menge = intakeAmounts[i].getValue();
                         if(menge == undefined)
-                            menge =1;
+                            menge=1;
                         ciprofloxacin.intake[i] = {time: datum, amount:menge, taken:false};
                     }
 

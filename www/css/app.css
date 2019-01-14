@@ -13,6 +13,10 @@ body {
     color: var(--light-shades);
 }
 
+.md .dialog-button {
+    color: var(--primary-color);
+}
+
 /* ####################################################################################### */
 /* ----------------------------------------- Index --------------------------------------- */
 /* ####################################################################################### */
@@ -88,6 +92,37 @@ a#signWithout{
     background-position: center;
     color: white;
 }
+/* Icons */
+.primaryColor {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.greyColor {
+    color: #373737;
+    font-size: 20px;
+    font-weight: 100;
+}
+/* make icon wibble when we have to restock */
+.wibble{
+    animation-name: keyframes1;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transform-origin: 50% 10%;
+}
+
+@keyframes keyframes1 {
+    0% {
+        transform: rotate(-4deg);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: rotate(4deg);
+        animation-timing-function: ease-out;
+    }
+}
+
 /* text color of date */
 .demo-card-header-pic .card-content-padding .date{
     color: #A4A4A4;
