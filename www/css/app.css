@@ -334,6 +334,8 @@ a.item-content.item-link {
 .tabs {
     height: 40%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 div#tab-1 {
@@ -348,20 +350,61 @@ div#tab-1 {
     list-style: none;
 }
 
+#intake-list{
+    padding: 0px;
+    flex-direction: column;
+}
+
 /* One intake: includes time and amount container (see below) */
 .flex-grid {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     height: 33%;
     width: 100%;
 }
 
 /* col1 = time container, col2 = amount container */
-.col1, .col2 {
-    width: 45%;
+.col0,.col1,.col2,.col3,.col4,.col5{
     height: 100%;
     color: black;
+    margin: 0px;
+}
+.col0{
+    width: 15%;
+}
+
+.col1{
+    width: 22%;
+}
+
+.col2, col5 {
+    width: 15%;
+    padding-top: 1.5%;
+
+}
+
+
+.col4{
+    width: 13%;
+
+
+}
+
+.col3{
+    width: 10%;
+
+}
+
+.demo-picker-date{
+    text-align: center;
+}
+
+.md .item-input .item-inner{
+    padding-right: 0px;
+    margin:0px;
+
+
 }
 
 /* ******************* Time ******************* */
