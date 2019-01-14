@@ -404,11 +404,251 @@ div#tab-1 {
 }
 
 
+/*---------------------- Notification Overlay --------------------------------------*/
+
+#notification {
+    position: absolute;
+    top: 350px; /* Sit 350px under top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    max-width: 412px;
+    height: auto; /* Notification height taken from Framework7 height*/
+    max-height: 500px;
+    background-color: white; /* White background with no opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    /*cursor: pointer; Add a pointer on hover */
+    box-shadow: 0 2px 4px rgba(0,0,0,.22), 0 1px 2px rgba(0,0,0,.24);
+    border-radius: 4px 4px 0 0;
+    animation-duration: 1s;
+    animation-name: none;
+}
+
+/* The animation code */
+@keyframes left {
+    0%   {transform: translateX(0px);}
+    50% {transform: translateX(-30px);}
+    100% {transform: translateX(0px);}
+}
+
+@keyframes right {
+    0%   {transform: translateX(0px);}
+    100%  {transform: translateX(450px);display: none;}
+
+}
+
+@keyframes resize {
+    0%   {transform: translateY(0px);}
+    100% {transform: translateY(0px);}
+}
 
 
 
+#noti-header {
+    display:flex;
+    align-items:center;    
+    margin-left:16px;
+    margin-top:16px;
+    height:16px;
+}
+
+#noti-img {
+    line-height:16px;
+
+}
+
+#noti-appName {
+    color: #2196f3;
+    font-size: 12px;
+    margin: 0px 6px;
+}
+
+#noti-time::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 4px;
+    background: #757575;
+}
+
+#noti-time {
+    color: #757575;
+    font-size: 12px;
+
+}
+
+#noti-expand, #noti-less{
+    font-size:16px; 
+    color: #757575;
+}
+
+#noti-subtitle p {
+    margin-left: 16px;
+    margin-bottom:0px;
+}
+
+#noti-text p {
+    margin-left: 16px;
+    margin-top: 0px;
+    color: dimgrey;
+}
+
+#noti-text a.button {
+     margin-right: 16px;
+    margin-bottom: 6px;
+     border-color: #212121;
+    line-height: 30px;
+ }
+
+#noti-text a i.material-icons {
+    font-size: 26px;
+    vertical-align: middle;
+    margin: auto;
+    margin-right: 5px;
+}
+
+.card-footer {
+    background: #fafafa;
+    margin-left: 0px;
+}
+
+#noti-default-btn {
+    display:none;
+    justify-content:flex-start;
+    /*set lightgrey as background color*/
+}
+
+#noti-default-btn i.material-icons {
+    vertical-align: middle;
+    margin-right: 5px;
+    /*set lightgrey as background color*/
+}
+
+.noti-btn {
+    margin-right:10px;
+}
+
+.inactive-btn {
+    color:lightgrey !important;
+}
+
+/*pushes all the items on the right hand side of the child to the right including the one this is applied to*/
+.noti-btn-middle {
+    margin-right:10px;
+    flex-grow: 1;
+}
+
+#downText {
+    display:none;
+}
+
+/*---------------------------------------GOOGLE MAPS--------------------------------------*/
+
+#googleMaps {
+    display: none;
+}
 
 
+#map {
+    position: relative;
+    width: 400px !important;
+    padding: 0px 6px 0px 6px;
 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 350px !important;
+
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+#pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+}
+
+.pac-container {
+    z-index: 100000;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+.pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 100%;
+    -webkit-appearance: textfield;
+}
+
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+#title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+#mapholder {
+    padding: 0px 6px 6px 6px;
+}
 
 
