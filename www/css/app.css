@@ -358,10 +358,10 @@ div#tab-1 {
 /* One intake: includes time and amount container (see below) */
 .flex-grid {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 33%;
     width: 100%;
+    border-bottom: 0.5px solid lightgrey;
 }
 
 /* col1 = time container, col2 = amount container */
@@ -404,6 +404,23 @@ div#tab-1 {
     padding-right: 0px;
     margin:0px;
 
+
+}
+
+/*******************Add Intake Button**********/
+#addIntakebutton{
+    display: flex;
+    text-align: left;
+    justify-content: flex-start;
+    color: darkgrey;
+}
+
+#addIntakebutton .col0{
+    color: darkgrey;
+}
+
+#add_intake #addIntake_Titel{
+    padding-left: 10%;
 
 }
 
