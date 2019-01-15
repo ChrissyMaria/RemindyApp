@@ -332,7 +332,7 @@ a.item-content.item-link {
 
 /* Time and Amount content*/
 .tabs {
-    height: 40%; /* so it is under FAB, may be replaced with new design */
+    height: 55%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
     padding-left: 5%;
     padding-right: 5%;
@@ -348,11 +348,13 @@ div#tab-1 {
     margin: 0;
     padding: 0;
     list-style: none;
+
 }
 
 #intake-list{
     padding: 0px;
     flex-direction: column;
+
 }
 
 /* One intake: includes time and amount container (see below) */
@@ -361,17 +363,24 @@ div#tab-1 {
     align-items: center;
     height: 33%;
     width: 100%;
-    border-bottom: 0.5px solid lightgrey;
+    border-bottom: 0.5px solid #F2F4EF;
+    border-top: 0.5px solid #F2F4EF;
+    /*background-color: #F2F4EF;*/
 }
 
-/* col1 = time container, col2 = amount container */
+.list.no-hairlines-md{
+    margin: 0px;
+}
+
+/* col1 = time container, col2 = expand time, col3 = amount of pills, col4 = "pill(s)", col5 = expand amount, col0 = delete icon */
 .col0,.col1,.col2,.col3,.col4,.col5{
-    height: 100%;
+    /*height: 100%;*/
     color: black;
     margin: 0px;
 }
 .col0{
-    width: 15%;
+    width: 30%;
+    text-align: right;
 }
 
 .col1{
@@ -392,11 +401,11 @@ div#tab-1 {
 }
 
 .col3{
-    width: 10%;
+    width: 15%;
 
 }
 
-.demo-picker-date{
+.demo-picker{
     text-align: center;
 }
 
@@ -407,20 +416,21 @@ div#tab-1 {
 
 }
 
-/*******************Add Intake Button**********/
+/* ******************Add Intake Button********* */
 #addIntakebutton{
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    color: darkgrey;
+    background-color: white;
+    border-color: white;
+    color: var(--primary-color);
+
 }
 
-#addIntakebutton .col0{
-    color: darkgrey;
-}
 
-#add_intake #addIntake_Titel{
-    padding-left: 10%;
+
+#addIntake_Titel{
+    padding-left: 5%;
 
 }
 
@@ -446,6 +456,7 @@ div#tab-1 {
     height: 0px;
     margin-bottom: 0 !important;
 }
+
 
 /* ***************** Amount ****************** */
 /* container within the amount container */
@@ -479,16 +490,6 @@ div#tab-1 {
     height: 200px;
 }
 
-/* ************* Add another intake ************** */
-/* FAB */
-.md .fab-buttons a, .md .fab > a {
-    background: var(--secondary-color);
-    color: var(--primary-color);
-}
-
-.fab.fab-extended.fab-center-bottom {
-    bottom: 70px;
-}
 
 /* --------------------- Finish process: button on bottom ------------------------- */
 #add_button {
