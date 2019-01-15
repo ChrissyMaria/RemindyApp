@@ -103,7 +103,7 @@ function givenotification(position) {
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
+        center: {lat: 48.264846, lng: 11.671344},
         zoom: 13,
         disableDefaultUI: true
     });
@@ -125,6 +125,35 @@ function initMap() {
     autocomplete.setFields(
         ['address_components', 'geometry', 'icon', 'name']);
 
+
+    if (navigator.geolocation) {
+
+        var location_timeout = setTimeout("handleLocationError(true)", 10000);
+        navigator.geolocation.getCurrentPosition(function(position) {
+            clearTimeout(location_timeout);
+            console.log('location found');
+            var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            map.setCenter(pos);
+        }, function() {
+            clearTimeout(location_timeout);
+            console.log('location not found');
+            handleLocationError(true);
+
+        });
+    }
+
+
+    else {
+        // Browser doesn't support Geolocation
+        console.log('Browser doesnt handle Geolocation');
+        handleLocationError(false);
+    }
+
+
     var infowindow = new google.maps.InfoWindow();
     var infowindowContent = document.getElementById('infowindow-content');
     infowindow.setContent(infowindowContent);
@@ -133,25 +162,6 @@ function initMap() {
         anchorPoint: new google.maps.Point(0, -29)
     });
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            map.setCenter(pos);
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-
-    /*if(!document.getElementById('pac-input') != ""){
-        console.log("Da steht was drin");
-    }*/
 
 
 /*-----------------------CREATE MAP BUTTONS----------------------*/
@@ -263,12 +273,10 @@ function initMap() {
 
 }
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
+function handleLocationError(browserHasGeolocation, infoWindow) {
+    console.log(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
 }
 
 
