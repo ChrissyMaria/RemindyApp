@@ -16,7 +16,7 @@ var app = new Framework7({
                 lastName: 'Doe',
             },
 
-            medicationList: [thyroxin, aristelle],
+            medicationList: [thyroxin, aristelle, ibu],
             medication_times: []
 
         };
@@ -72,7 +72,7 @@ var app = new Framework7({
                 // ###### link: read more
                 var link_container = $$('<div class="card-footer">');
 
-                var restock = $$('<a class="external"><i class="material-icons primaryColor open-preloader-custom">add_shopping_cart</i></a>');
+                var restock = $$('<a class="external" id='+this.data.medicationList[i].link+'><i class="material-icons primaryColor open-preloader-custom">add_shopping_cart</i></a>');
                 var link = $$('<a href="#" class="link">Read more</a>');
                 link_container.append(link, restock);
 
@@ -86,25 +86,28 @@ var app = new Framework7({
                 $$('#test').append(container);
             }
 
-            //Create delete function
+            //######################### Delete Function #########################
             $$('.greyColor').click(function (event) {
                 var target = event.target;
-                app.dialog.confirm('Do you want to delete this pill?', 'Remindy', () => {
+                app.dialog.confirm('Do you want to delete this medication?', 'Remindy', () => {
                     $$(target).parent().parent().remove();
                 });
             });
 
-            //Buy medication
+            // ######################### Buy medication #########################
             $$('.open-preloader-custom').on('click', function () {
                 app.dialog.preloader('You will be redirected to: www.blinkhealth.com');
                 setTimeout(function () {
                     app.dialog.close();
                 }, 3000);
             });
-
+            //Open the right link with time delay of 1 second
             $$('.external').click(function(evt){
                 setTimeout(function() {
-                    window.open("https://www.blinkhealth.com/l-thyroxine-sodium", "_self");
+                    var target = evt.target;
+                    var href = $$(target).parent().attr('id');
+                    console.log(href);
+                    window.open(href, "_self");
                 }, 1000);
             });
 
@@ -123,10 +126,6 @@ var app = new Framework7({
                 }
             }
 
-            for(var i=0; i<this.data.medication_times.length; i++) {
-                console.log(this.data.medication_times[i]);
-            }
-
             //Sortieren
             this.data.medication_times.sort(function(a,b){
                 // Turn your strings into dates, and then subtract them
@@ -134,13 +133,7 @@ var app = new Framework7({
                 return new Date(a.time_to_take) - new Date(b.time_to_take);
             });
 
-
-            console.log("Sortiert");
-            for(var i=0; i<this.data.medication_times.length; i++) {
-                console.log(this.data.medication_times[i]);
-            }
-
-          
+            //2. Erstelle HTML
             var ul = $$('<ul/>');
             for (var i = 0; i < this.data.medication_times.length; i++) {
                 var li = $$('<li/>');
@@ -157,8 +150,7 @@ var app = new Framework7({
                     //still to be taken: empty checkbox
                         icon = $$('<i class="material-icons">radio_button_unchecked</i>');
                 }
-                    //set time
-
+                //set time
                 var hours = (this.data.medication_times[i].time_to_take.getHours() < 10 ? '0' : '') + this.data.medication_times[i].time_to_take.getHours();
                 var minutes = (this.data.medication_times[i].time_to_take.getMinutes() < 10 ? '0' : '') + this.data.medication_times[i].time_to_take.getMinutes();
                 item_after.text(hours + ":" + minutes);
@@ -182,6 +174,7 @@ var app = new Framework7({
 });
 
 
+// --------------------------- LOGIN ------------------------------
 
 var login = app.loginScreen.create({
     el: '#my-login-screen'
