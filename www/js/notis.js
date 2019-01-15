@@ -1,3 +1,9 @@
+var pills_amount = 0;
+for(var j=0; j<ciprofloxacin.intake.length; j++) {
+    pills_amount += ciprofloxacin.intake[j].amount;
+}
+var pills_left = ciprofloxacin.pills_left/pills_amount;
+
 //header of notifications should always be the same
 var notificationHeader = {
     icon: 'images/notify_logo.png',
@@ -9,10 +15,11 @@ var notificationHeader = {
 
 var notificationBuyCall = {
     subtitle: 'Restock your ' + ciprofloxacin.name + '!',
-    text: 'You only have ' + ciprofloxacin.pills_left/ciprofloxacin.per_day + ' days of medication left!',
+    text: 'You only have ' + pills_left + ' days of medication left!',
     downText: 'Buy some more or call your doctor.',
     //buttons: [buyMed, calDoc],
 }
+
 
 /*var buyMed = {
     link: 'https://www.blinkhealth.com/l-thyroxine-sodium',

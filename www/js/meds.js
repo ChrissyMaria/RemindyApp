@@ -97,8 +97,8 @@ var ibu = {
     name: "Ibuprofen",
     img: "./images/cipro.png",
     shortInfo: "Ibuprofen is used to relieve pain from various conditions such as headache, dental pain, menstrual cramps, " +
-        "muscle aches, or arthritis. It works by blocking your body's production " +
-        "of certain natural substances that cause inflammation. This effect helps to decrease swelling, pain, or fever.",
+        "muscle aches, or arthritis. It blocks your body's production " +
+        "of certain natural substances that cause inflammation.",
     //there are much more
     sideEffects: ["Upset stomach", "nausea", "vomiting", "headache", "diarrhea", "constipation", "dizziness,"],
     //there are much more...
