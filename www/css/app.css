@@ -354,6 +354,7 @@ div#tab-1 {
 #intake-list{
     padding: 0px;
     flex-direction: column;
+    border-top: 0.5px solid #F2F4EF;
 
 }
 
@@ -364,8 +365,8 @@ div#tab-1 {
     height: 33%;
     width: 100%;
     border-bottom: 0.5px solid #F2F4EF;
-    border-top: 0.5px solid #F2F4EF;
-    /*background-color: #F2F4EF;*/
+
+
 }
 
 .list.no-hairlines-md{
