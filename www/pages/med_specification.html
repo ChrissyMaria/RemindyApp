@@ -41,7 +41,7 @@
             <div id="set-reminder">
                 <h3>Reminder Settings</h3>
                 <p>These values are taken from the package insert. Please customize them according to your doctors
-                    recommendations and your personal preferences </p>
+                    recommendations and your personal preferences. </p>
                 <div class="toolbar tabbar">
                     <div class="toolbar-inner">
                         <a href="#tab-1" class="tab-link tab-link-active">daily</a>
@@ -57,11 +57,7 @@
                             <li> <!-- to make it deletable by swiping -->
                                 <div class="item-content" id="intake-list">
                                     <div class="flex-grid">
-                                        <div class="col0">
-                                           <i class="material-icons">
-                                                    delete
-                                           </i>
-                                        </div>
+
                                         <!--  -------- set time -------- -->
                                         <div class="col1">
                                             <div class="list no-margin" id="timer">
@@ -72,7 +68,7 @@
                                                                 <div class="item-input-wrap">
                                                                     <input type="text" placeholder="Time"
                                                                            readonly="readonly"
-                                                                           id="demo-picker-date1" class="demo-picker-date"/>
+                                                                           id="demo-picker-date1" class="demo-picker"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -97,7 +93,7 @@
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
                                                                 <div class="item-input-wrap">
-                                                                    <input type="text" value="1" readonly="readonly" id="demo-picker-device1"/>
+                                                                    <input type="text" value="1" readonly="readonly" class="demo-picker" id="demo-picker-device1"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -113,18 +109,26 @@
                                                 expand_more
                                             </i>
                                         </div>
+
+                                        <div class="col0">
+                                            <i class="material-icons">
+                                                delete
+                                            </i>
+                                        </div>
+
                                     </div>
                                 </div>
 
                                 <!--add intake button-->
                                 <div class="flex-grid" id="addIntakebutton">
                                     <div class="2_col0">
-                                        <i class="material-icons" id="add_intake">
+                                        <i class="material-icons" class="add_intake">
                                             add_circle_outline
                                         </i>
                                     </div>
-                                    <p id="addIntake_Titel">Add Intake</p>
+                                    <p id="addIntake_Titel" class="add_intake">Add Intake</p>
                                 </div>
+
 
 
                             </li>
@@ -153,7 +157,7 @@
 
 
             <a class="col button button-big button-raised button-fill link"
-               id="add_button" href="/">Finish</a>
+               id="add_button" href="/">Save</a>
         </div>
     </div>
 </template>
@@ -237,17 +241,10 @@
 
                 //for adding a new intake
                 var intakeCounter = 1;
-                $$('#add_intake').click(function () {
+                $$('.add_intake').click(function () {
                     // TO DO: erstelle flex grid dynamisch (HTML).
                     //Wichtig: id muss der von inputEl unten entsprechen, also: #demo-picker-date' +intakeCounter
-
                     var flex_grid = $$('<div class="flex-grid"/>');
-                    var col0 = $$('<div class="col0"/>');
-                    var trashcan = $$('<i class="material-icons">delete</i>');
-
-                    //Column0
-                    col0.append(trashcan);
-                    flex_grid.append(col0);
 
                     //Column1
                     var col1 = $$('<div class="col1"/>');
@@ -257,7 +254,7 @@
                     var item_input= $$('<div class="item-content item-input"/>');
                     var item_inner = $$('<div class="item-inner"/>');
                     var item_input_wrap= $$('<div class="item-input-wrap"/>');
-                    var input= $$('<input type="text" placeholder="Time" readonly="readonly" id="demo-picker-date'+intakeCounter+'" />');
+                    var input= $$('<input type="text" placeholder="Time" readonly class="demo-picker input-with-value"  class="demo-picker" id="demo-picker-date'+intakeCounter+'" />');
 
                     item_input_wrap.append(input);
                     item_inner.append (item_input_wrap);
@@ -287,7 +284,7 @@
                     var item_input_amount = $$('<div class="item-content item-input"/>');
                     var item_inner_amount = $$('<div class="item-inner"/>');
                     var item_wrap_amount = $$('<div class="item-input-wrap"/>');
-                    var input_amount = $$('<input type="text" value="1" readonly="readonly" id="demo-picker-device'+intakeCounter+'"/>');
+                    var input_amount = $$('<input type="text" value="1" readonly class="demo-picker input-with-value"  id="demo-picker-device'+intakeCounter+'"/>');
 
                     item_wrap_amount.append(input_amount);
                     item_inner_amount.append(item_wrap_amount);
@@ -307,7 +304,15 @@
 
                     col5.append(expand_amount);
 
-                    flex_grid.append(col0,col1,col2,col3,col4,col5);
+                    //Column0
+                    var col0 = $$('<div class="col0"/>');
+                    var trashcan = $$('<i class="material-icons">delete</i>');
+
+
+                    col0.append(trashcan);
+
+
+                    flex_grid.append(col1,col2,col3,col4,col5,col0);
                     $$('#intake-list').append(flex_grid);
 
 
@@ -320,7 +325,7 @@
                         toolbar: true,
                         rotateEffect: true,
                         closeByOutsideClick: true,
-                        toolbarCloseText: 'Set time',
+                        toolbarCloseText: 'Done',
                         //openIn: 'popover',
                         value: [
                             today.getHours(),
