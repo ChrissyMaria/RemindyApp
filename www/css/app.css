@@ -653,14 +653,13 @@ div#tab-1 {
 
 #map {
     position: relative;
-    width: 400px !important;
     padding: 0px 6px 0px 6px;
 
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
-    height: 350px !important;
+    width: 90% !important;;
+    height: 450px !important;
 
 }
 /* Optional: Makes the sample page fill the window. */
@@ -750,5 +749,87 @@ html, body {
 #mapholder {
     padding: 0px 6px 6px 6px;
 }
+
+
+
+/*Favourite Cards*/
+
+#containerForFavourites{
+
+    margin: 30px 30px 30px 30px;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+}
+
+#favourite_cards {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.placecard__container {
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+    border: grey;
+    max-width: 110px;
+    width: 100%;
+    background: white none repeat scroll 0% 0%/auto padding-box border-box;
+    border-radius: 2px 2px 2px 2px;
+    font: normal normal normal normal 11px / normal Roboto, Arial, sans-serif;
+    margin: 1px;
+    padding: 9px 4px 9px 11px;
+    overflow: hidden;
+}
+.placecard__left {
+
+    float: left;
+    width: 25%;
+
+}
+.placecard__right {
+
+    float: right;
+    height: 1px;
+    position: relative;
+    width: 1px;
+    right: 30px;
+}
+.placecard__business-name {
+    cursor: default;
+    height: 19px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+    perspective-origin: 100px 9.5px;
+    transform-origin: 100px 9.5px;
+    font: normal normal 500 normal 14px / normal Roboto, Arial;
+    overflow: hidden;
+    margin: 0;
+}
+.placecard__info {
+    color: #5b5b5b;
+    cursor: default;
+    height: 32px;
+    width: 200px;
+    column-rule-color: #5b5b5b;
+    perspective-origin: 100px 16px;
+    transform-origin: 100px 16px;
+    border: 0px none #5b5b5b;
+    font: normal normal normal normal 12px / normal Roboto, Arial;
+    margin: 6px 0px 0px;
+    outline: #5b5b5b none 0px;
+}
+
+.material-icons.md-18 { font-size: 20px; }
+
 
 

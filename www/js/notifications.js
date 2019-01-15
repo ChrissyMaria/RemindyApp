@@ -229,6 +229,15 @@ function delayMedicineIntakeLocation(location) {
             document.getElementById("confirm-btn").classList.remove("inactive-btn");
 
         })
+        $$('.pac-container').on('touchstart', function(){
+            document.getElementById("confirm-btn").classList.remove("inactive-btn");
+
+        })
+
+        $$('#containerForFavourites').on('touchstart', function(){
+            document.getElementById("confirm-btn").classList.remove("inactive-btn");
+
+        })
 
         /*if ( document.styleSheet.href == "framework7/css/framework7.min.css") {
             var stylesheet = document.styleSheet.href("href=\"framework7/css/framework7.min.css\")

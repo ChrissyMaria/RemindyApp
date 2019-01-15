@@ -29,7 +29,10 @@
     <link rel="stylesheet" href="framework7/css/framework7.min.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/app.css">
-    
+    <!--Include materialdesign icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
@@ -51,9 +54,15 @@
                     <a href="#" onclick="notiHeightCalculator()">Get Height of Notification!</a>
                 </div>
 
+
+
+                <!--google maps div starts -> at first not shown-->
                 <div id="notification">
                     <div id="noti-header"></div>
+
+
                     <div id="googleMaps">
+                        <!--Container for the autocomplete search-->
                         <div class="pac-card" id="pac-card">
                             <div>
                                 <div id="title">
@@ -67,13 +76,78 @@
                             </div>
                         </div>
                         <div id="map"></div>
+                        <!--Container for infowindows-->
                         <div id="infowindow-content">
                             <img src="" width="16" height="16" id="place-icon">
                             <span id="place-name"  class="title"></span><br>
                             <span id="place-address"></span>
                             <span id ="showcoordinates"></span>
                         </div>
+                        <!--Container for the favourite cards-->
+                        <div id = "containerForFavourites">
+                        <div id = "favourite_cards" class=" favourite_cards">
+
+                            <!-- card1-->
+                            <div class="placecard__container" id ="placecard1">
+
+                                <div class="placecard__left">
+                                    <p class="placecard__business-name">Home</p>
+                                    <p class="placecard__info">Arcisstr. 21 <br> München </p>
+                                </div> <!-- placecard__left -->
+
+                                <div class="placecard__right">
+                                    <i class="material-icons md-18">
+                                        home
+                                    </i>
+                                </div> <!-- placecard__right -->
+
+                            </div> <!-- placecard__container -->
+
+
+                            <!-- card2-->
+
+                            <div class="placecard__container" id ="placecard2">
+
+                                <div class="placecard__left">
+                                    <p class="placecard__business-name">Work</p>
+                                    <p class="placecard__info">Forschungszentrum <br> Garching</p>
+                                    <!--<a class="placecard__view-large" target="_blank" href="https://maps.google.com/maps?ll=18.416035,-66.162618&amp;z=18&amp;t=m&amp;hl=en-US&amp;gl=AR&amp;mapclient=embed&amp;cid=2947398168469204860" id="A_41">View larger map</a>-->
+                                </div> <!-- placecard__left -->
+
+                                <div class="placecard__right">
+                                    <i class="material-icons md-18">
+                                        work
+                                    </i>
+                                </div> <!-- placecard__right -->
+
+                            </div> <!-- placecard__container -->
+
+
+                            <!-- card3-->
+                            <div class="placecard__container" id ="placecard3">
+
+                                <div class="placecard__left">
+                                    <p class="placecard__business-name">Friend</p>
+                                    <p class="placecard__info">Wenkerstraße 17 <br> Dortmund </p>
+                                    <!--<a class="placecard__view-large" target="_blank" href="https://maps.google.com/maps?ll=18.416035,-66.162618&amp;z=18&amp;t=m&amp;hl=en-US&amp;gl=AR&amp;mapclient=embed&amp;cid=2947398168469204860" id="A_41">View larger map</a>-->
+                                </div> <!-- placecard__left -->
+
+                                <div class="placecard__right">
+                                    <i class="material-icons md-18">
+                                       face
+                                    </i>
+                                    <!-- <a class="placecard__direction-link" target="_blank" href="https://maps.google.com/maps?ll=18.416035,-66.162618&amp;z=18&amp;t=m&amp;hl=en-US&amp;gl=AR&amp;mapclient=embed&amp;daddr=Roberto%20Perez%20Obregon%20Law%20Office%209%20Avenida%20Ram%C3%B3n%20Luis%20Rivera%20Bayam%C3%B3n%2C%2000961%20Puerto%20Rico@18.4160349,-66.1626177"
+                                        id="A_9">
+                                         <div class="placecard__direction-icon"></div>
+                                         Directions
+                                     </a>-->
+                                </div> <!-- placecard__right -->
+
+                            </div> <!-- placecard__container -->
+                        </div>
                     </div>
+                </div>
+
                 </div>
 
                 <!--POPUP TRIGGER-->
@@ -97,7 +171,12 @@
     <!-- App routes -->
     <script src="js/routes.js"></script>
 
-    <!-- Your custom app scripts -->
+     <!--Google Maps api-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
+             async defer></script>
+
+
+     <!-- Your custom app scripts -->
     <script src="js/meds.js"></script>
     <script src="js/app.js"></script>
     <script src="js/notis.js"></script>
@@ -105,8 +184,6 @@
     <script src="js/notificationsOld.js"></script>
      <script src="js/geolocation.js"></script>
 
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
-             async defer></script>
 
 </body>
 </html>
