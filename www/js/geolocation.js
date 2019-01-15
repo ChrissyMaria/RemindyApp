@@ -7,6 +7,8 @@
 // this code gets the place variable from the map and is comparing the set location (by map oder directly via button) with actual position
 
 var demo = document.getElementById("demo");
+
+
 function getLocation(x = [], y= [], nameoflocation = '') {
     setlat = x;
     setlong = y;
@@ -55,9 +57,27 @@ function givenotification(position) {
     // this method compares your actual position (actualLatLng) with the setPosition for Reminder (givenLatLng).
     // If you are less than 100 m away, the notification fires
 
-    // fires if acutal position is less than 100m away from given location
 
+
+
+    // this is a backupt timer which fires if person does not reach location in 5 hours
+    var backuptimer = setTimeout(backupNoti, 18000000);
+
+    function backupNoti() {
+        $$('#noti-header').empty();
+        $$('#noti-subtitle').remove();
+        $$('#noti-text').remove();
+        $$('#noti-default-btn').remove();
+        window.clearTimeout(backuptimer);
+        takeNotification();
+        navigator.geolocation.clearWatch(id);
+        console.log('Backup timeout');
+
+    }
+
+// fires if acutal position is less than 100m away from given location
     if(google.maps.geometry.spherical.computeDistanceBetween(actualLatLng,givenLatLng)<100){
+        window.clearTimeout(backuptimer);
         $$('#noti-header').empty();
         $$('#noti-subtitle').remove();
         $$('#noti-text').remove();
@@ -68,7 +88,6 @@ function givenotification(position) {
         navigator.geolocation.clearWatch(id);
         console.log("stopped watching");
     }
-
 
 
 
