@@ -23,7 +23,7 @@ var thyroxin = {
         moderateInteractions: ["THYROID PREPARATIONS/BILE ACID SEQUESTRANTS; SEVELAMER", "LEVOTHYROXINE/ORAL CALCIUM " +
         "ACETATE; CARBONATE; CITRATE", "THYROID/IRON SALTS, ORAL", "ORAL THYROID AGENTS/ALUMINUM;MAGNESIUM;LANTHANUM;SIMETHICONE"]
     },
-    pills_left: 6,
+    pills_left: 10,
     per_day: 1,
     intake: [
         {
@@ -32,7 +32,8 @@ var thyroxin = {
             amount: 1,
             taken: true
         }
-    ]
+    ],
+    link: 'https://www.blinkhealth.com/l-thyroxine-sodium'
 }
 
 
@@ -40,9 +41,9 @@ var thyroxin = {
 //Ich musste hier die Yasmin 28 nehmen weil es von Aristelle keinen englischen Beipackzettel gibt und ich nicht alles übersetzen wollte :D
 // also entweder wir übersetzen Aristelle oder sagen einfach pauschal wir nehmen Yasmin28 als Pille?
 var aristelle = {
-    name: "Aristelle",
+    name: "Yasmin-28",
     img: "./images/packshot_Aristelle-0-03-mg-2-mg-Filmtabletten.png.jpeg",
-    shortInfo: "Aristelle is used to prevent pregnancy. It is a combination of 2 hormones: an estrogen (ethinyl estradiol) and a progestin.",
+    shortInfo: "Yasmin-28 is used to prevent pregnancy. It is a combination of 2 hormones: an estrogen (ethinyl estradiol) and a progestin.",
     generalInfo: "This medication is a combination of 2 hormones: an estrogen (ethinyl estradiol) and a progestin " +
         "(drospirenone). It is used to prevent pregnancy. It works mainly by preventing the release of an egg " +
         "(ovulation) during your menstrual cycle. It also makes vaginal fluid thicker to help prevent sperm from " +
@@ -89,9 +90,58 @@ var aristelle = {
             amount: (1/21),
             taken: false
         }
-    ]
+    ],
+    link: 'https://www.blinkhealth.com/yasmin-28'
 }
-
+var ibu = {
+    name: "Ibuprofen",
+    img: "./images/cipro.png",
+    shortInfo: "Ibuprofen is used to relieve pain from various conditions such as headache, dental pain, menstrual cramps, " +
+        "muscle aches, or arthritis. It works by blocking your body's production " +
+        "of certain natural substances that cause inflammation. This effect helps to decrease swelling, pain, or fever.",
+    //there are much more
+    sideEffects: ["Upset stomach", "nausea", "vomiting", "headache", "diarrhea", "constipation", "dizziness,"],
+    //there are much more...
+    precaution: {
+        allergicReactions: "This product may contain inactive ingredients, which can cause allergic reactions or other problems. " +
+            "Tell your doctor or pharmacist if you are allergic to it; or to aspirin or other NSAIDs (such as naproxen, celecoxib); " +
+            "or if you have any other allergies. ",
+        medicalHistory: ["Caution with medical history, especially with: ", "asthma", "blood disorder",
+            "growths in the nose", "heart problems", "high blood pressure"],
+        further: ["Kidney problems can sometimes occur with the use of NSAID medications, including ibuprofen. " +
+        "Problems are more likely to occur if you are dehydrated, have heart failure or kidney disease, are an older adult, " +
+        "or if you take certain medications (see also Drug Interactions section). " +
+        "Drink plenty of fluids as directed by your doctor to prevent dehydration and tell your doctor right " +
+        "away if you have a change in the amount of urine. This drug may make you dizzy or drowsy. " +
+        "Alcohol or marijuana can make you more dizzy or drowsy. Do not drive, use machinery, " +
+        "or do anything that needs alertness until you can do it safely. Limit alcoholic beverages. " +
+        "Talk to your doctor if you are using marijuana."
+        ]
+    },
+    //there are much more...
+    interactions: {
+        severeInteractions: ["SELECTED NEPHROTOXIC AGENTS/CIDOFOVIR NSAIDS", "ASPIRIN (> 81 MG)/KETOROLAC (INJECTABLE) NSAID",
+            "ASPIRIN (> 81 MG)/KETOROLAC (NON-INJECTION)"],
+        seriousInteractions: ["SELECTED NEPHROTOXIC AGENTS/FOSCARNET", "AGENTS AFFECTING GROWTH HORMONE/MACIMORELIN",
+        "NSAIDS/APIXABAN; BETRIXABAN; EDOXABAN; RIVAROXABAN", "NSAIDS/DABIGATRAN", "NSAIDS/MIFAMURTIDE"],
+        moderateInteractions: ["NSAIDS/CORTICOSTEROIDS", "NSAIDS/LOOP DIURETICS", "NSAIDS/LITHIUM", "NONSTEROIDAL ANTI-INFLAMMATORY DRUGS/BETA-BLOCKERS"]
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [
+        {
+            time: new Date(2019, 1, 9, 7, 0, 0, 0),
+            amount: 1,
+            taken: true
+        },
+        {
+            time: new Date(2019, 1, 9, 17, 0, 0, 0),
+            amount: 1,
+            taken: false
+        }
+    ],
+    link: 'https://www.blinkhealth.com/ibu'
+}
 //https://www.webmd.com/drugs/2/drug-7748/ciprofloxacin-oral/details
 var ciprofloxacin = {
     name: "Ciprofloxacin",
@@ -149,12 +199,9 @@ var ciprofloxacin = {
             amount: 1,
             taken: false
         }
-    ]
+    ],
+    link: 'https://www.blinkhealth.com/ciprofloxacin'
 }
 
-//TO DO: Wir muessen die intake hour eigentlich als Datum definieren
 
-// IBU hinzufuegen: Notification "buy" laeuft hiermi
-// per day: ist intake, also wie viele Eintraege pro Pille
-//verfuegbare Pillen: errechnet sich aus:
 
