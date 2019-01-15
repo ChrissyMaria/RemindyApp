@@ -242,8 +242,8 @@
                 //for adding a new intake
                 var intakeCounter = 1;
                 $$('.add_intake').click(function () {
-                    // TO DO: erstelle flex grid dynamisch (HTML).
-                    //Wichtig: id muss der von inputEl unten entsprechen, also: #demo-picker-date' +intakeCounter
+                    // erstelle flex grid dynamisch (HTML).
+                    console.log("add intake")
                     var flex_grid = $$('<div class="flex-grid"/>');
 
                     //Column1
@@ -251,7 +251,7 @@
                     var timepicker = $$('<div class="list no-margin" id="timer"/>');
                     var list = $$('<ul/>');
                     var listelement= $$('<li/>');
-                    var item_input= $$('<div class="item-content item-input"/>');
+                    var item_input= $$('<div class="item-content item-input item-input-with-value"/>');
                     var item_inner = $$('<div class="item-inner"/>');
                     var item_input_wrap= $$('<div class="item-input-wrap"/>');
                     var input= $$('<input type="text" placeholder="Time" readonly class="demo-picker input-with-value"  class="demo-picker" id="demo-picker-date'+intakeCounter+'" />');
@@ -321,12 +321,11 @@
                     //Zeitpicker
                     var today = new Date();
                     allIntakes[intakeCounter] = app.picker.create({
-                        inputEl: '#demo-picker-date' + intakeCounter, //TO DO: +intakeCounter
+                        inputEl: '#demo-picker-date'+intakeCounter,
                         toolbar: true,
                         rotateEffect: true,
                         closeByOutsideClick: true,
                         toolbarCloseText: 'Done',
-                        //openIn: 'popover',
                         value: [
                             today.getHours(),
                             today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes()
