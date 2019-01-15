@@ -27,7 +27,12 @@ function notiTime() {
 
 //TODO: DELETE THIS FUNCTION AFTERWARDS
 function clearNotification(){
-    //$$('#notification').empty();
+    $$('#noti-header').empty();
+    $$('#noti-subtitle').remove();
+    $$('#noti-text').remove();
+    $$('#downText').remove();
+    $$('#noti-default-btn').remove();
+    $$('#googleMaps').hide();
 }
 
 // --------------------------- Notification Default Header ------------------------------
@@ -96,7 +101,6 @@ function buyCallNotification() {
     document.getElementById("notification").style.display = "block";
 
     //Empties notification div and fills it with new content
-    clearNotification();
     createNotification();
 
     var subtitle = $$('<p></p>');
@@ -115,7 +119,7 @@ function buyCallNotification() {
     //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
     var button = $$('<span class="noti-btn">');
     var button2 = $$('<span class="noti-btn">');
-    var link = $$('<a class="link external" href="https://www.blinkhealth.com/l-thyroxine-sodium"><i class="material-icons">add_shopping_cart</i>BUY</a>');
+    var link = $$('<a onclick="buyMedNotiScreen()"><i class="material-icons">add_shopping_cart</i>BUY</a>');
     var link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
     button.append(link);
     button2.append(link2);
@@ -127,13 +131,73 @@ function buyCallNotification() {
     notiHeightCalculator();
 }
 
+function buyMedNotiScreen() {
+    clearNotification();
+    createNotification();
+
+    var subtitle = $$('<p></p>');
+    subtitle.text(notificationBuyCall.subtitle);
+    $$('#noti-subtitle').append(subtitle);
+
+    var text = $$('<p></p>');
+    text.text(notificationBuyCall.sub_buy);
+    $$('#noti-text').append(text);
+
+    var divBuy = $$('<div id="purchaseField"/>');
+    $$('#noti-text').append(divBuy);
+        var imgBuy = $$('<img src="images/medNear_logo.jpg" id="purchaseImg"/>');
+        $$('#purchaseField').append(imgBuy);
+        var buySpan = $$('<span id="purchaseSpan"/>');
+        $$('#purchaseField').append(buySpan);
+            var buyName = $$('<p/>');
+            buyName.text(ciprofloxacin.name);
+            $$('#purchaseSpan').append(buyName);
+            var buyPrice = $$('<p><strong></strong></p>');
+            buyPrice.text("€10,50");
+            $$('#purchaseSpan').append(buyPrice);
+            var buyLink = $$('</p>');
+            buyLink.html('<a href="' + notificationBuyCall.link + '" >Link to Pharmacy</a>');
+            $$('#purchaseSpan').append(buyLink);
+
+    //Buttons
+    var button = $$('<span class="noti-btn-middle">');
+    var button2 = $$('<span class="noti-btn">');
+    var link = $$('<a onclick="confirmOrder()"><i class="material-icons">add_shopping_cart</i>CONFIRM ORDER</a>');
+    var link2 = $$('<a onclick="cancelPurchase()">CANCEL</a>');
+    button.append(link);
+    button2.append(link2);
+    //downText.text(notificationBuyCall.downText);
+    $$('#noti-default-btn').append(button);
+    $$('#noti-default-btn').append(button2);
+    document.getElementById("noti-default-btn").style.display = "flex";
+
+    notiTime();
+    notiHeightCalculator();
+}
+
+function confirmOrder() {
+    clearNotification();
+    createNotification();
+
+    var subtitle = $$('<p></p>');
+    subtitle.text(notificationBuyCall.buy_confirmation_title);
+    $$('#noti-subtitle').append(subtitle);
+
+    var text = $$('<p></p>');
+    text.text(notificationBuyCall.confirmation);
+    $$('#noti-text').append(text);
+
+    $$('#noti-default-btn').hide();
+    $$('#downText').remove();
+    $$('#noti-expand').hide();
+}
+
 // --------------------------- INTAKE REMINDER NOTIFICATION ------------------------------
 
 function takeNotification() {
     console.log("Notification here.");
     document.getElementById("notification").style.display = "block";
 
-    clearNotification();
     createNotification();
 
     const subtitle = $$('<p id="sub"></p>');
@@ -225,6 +289,8 @@ function delayMedicineIntakeLocation(location) {
         notiHeightCalculator();
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
+
+        //As soon as user clicks on a location the confirmation-link becomes blue
         $$('.pac-container').on('touchstart', function(){
             document.getElementById("confirm-btn").classList.remove("inactive-btn");
 
@@ -242,15 +308,27 @@ function delayMedicineIntakeLocation(location) {
 }
 
 function cancelLocationReminder() {
-    $$('#noti-header').empty();
+    /*$$('#noti-header').empty();
     $$('#noti-subtitle').remove();
     $$('#noti-text').remove();
     $$('#downText').remove();
     $$('#noti-default-btn').remove();
-    $$('#googleMaps').hide();
+    $$('#googleMaps').hide();*/
 
+    clearNotification();
     takeNotification();
     $$('#downText').show();
+    $$('#noti-expand').hide();
+    $$('#noti-less').show();
+    document.getElementById("noti-default-btn").style.display = "flex";
+
+    notiHeightCalculator();
+}
+
+function cancelPurchase() {
+
+    clearNotification();
+    buyCallNotification();
     $$('#noti-expand').hide();
     $$('#noti-less').show();
     document.getElementById("noti-default-btn").style.display = "flex";
