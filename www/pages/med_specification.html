@@ -158,6 +158,8 @@
 
             <a class="col button button-big button-raised button-fill link"
                id="add_button" href="/">Save</a>
+            <a class="link"
+               id="notification_trigger" href="/index2/"></a>
         </div>
     </div>
 </template>
@@ -444,6 +446,11 @@
                     }
 
                     app.data.medicationList.push(ciprofloxacin);
+
+                    // for open the notifications
+                    setTimeout(function () {
+                        $$('#notification_trigger').trigger('click');
+                    }, 10000);
                 });
 
 

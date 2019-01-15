@@ -500,6 +500,9 @@ div#tab-1 {
     background-color: var(--primary-color);
 }
 
+#notification_trigger{
+    display: none;
+}
 
 /*---------------------- Notification Overlay --------------------------------------*/
 
