@@ -80,7 +80,7 @@ function givenotification(position) {
 // here same callback function for service.findPlaceFromQuery and navigator.geolocation.getCurrentPosition --> errorhandling
 
 
-function handleLocationError(browserHasGeolocation, infoWindow) {
+function handleLocationError(browserHasGeolocation) {
     console.log(browserHasGeolocation ?
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.');
