@@ -1,5 +1,10 @@
+//
+//script for geolocation --> here all java.script regarding getting the location and working with map is stored
+//
 
-//script for geolocation//
+/*-----------------------COMPARING LOCATION----------------------*/
+
+// this code gets the place variable from the map and is comparing the set location (by map oder directly via button) with actual position
 
 var demo = document.getElementById("demo");
 function getLocation(x = [], y= [], nameoflocation = '') {
@@ -9,6 +14,8 @@ function getLocation(x = [], y= [], nameoflocation = '') {
         console.log('You have set your destination to '+  nameoflocation);
         console.log("Latitude is " + setlat);
         console.log("Longitude is " + setlong);
+
+        // confirmation page when location reminder is set
         $$('#sub').html('Take your medication when you arrive at <br> <strong>'+ nameoflocation + '</strong> !');
         $$('#txt').html('New reminder set.');
 
@@ -18,40 +25,24 @@ function getLocation(x = [], y= [], nameoflocation = '') {
         // variable for the given location data
         var latlon = setlat + "," + setlong;
 
-
+        // including static map
         var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x150&&markers=color:red%7C"+setlat+","+setlong+"&sensor=false&key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU";
 
         document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
         disappearingButtons();
     }
 
-
+    // watchPosition is watching the currentPosition and is giving this value to showPosition which has the set Location as well
     if (navigator.geolocation) {
-        id = navigator.geolocation.watchPosition(showPosition);
+        id = navigator.geolocation.watchPosition(givenotification);
     } else {
         demo.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
-function showPosition(position) {
-    //show the latitude and longitude
-    /*demo.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;*/
 
-    //show location in map
-    /*var latlon = position.coords.latitude + "," + position.coords.longitude;
-
-    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU";
-
-    document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";*/
-
-
-
-    //give a notification when set location is reached
-
-    givenotification(position);
-}
 
 function givenotification(position) {
+    //this function gets the actual position from watchPOsition and compares it with set position -> fires if they differ not more than 100
 
     //variable for actual position
     var actualLatLng = new google.maps.LatLng({lat: position.coords.latitude, lng: position.coords.longitude});
@@ -63,6 +54,8 @@ function givenotification(position) {
 
     // this method compares your actual position (actualLatLng) with the setPosition for Reminder (givenLatLng).
     // If you are less than 100 m away, the notification fires
+
+    // fires if acutal position is less than 100m away from given location
 
     if(google.maps.geometry.spherical.computeDistanceBetween(actualLatLng,givenLatLng)<100){
         $$('#noti-header').empty();
@@ -77,24 +70,14 @@ function givenotification(position) {
     }
 
 
-    /*if (position.coords.latitude == setlat && position.coords.longitude == setlong) {
-        console.log(position.coords);
-        $$('#sub').remove();
-        $$('#txt').remove();
-        $$('#noti-text').remove();
-        takeNotification();
-        console.log('arrived in location');
-        //alert('You have arrived!');
-        navigator.geolocation.clearWatch(id);
-        console.log("stopped watching");
-    }*/
-
 
 
 }
 
 
 //script for maps//
+
+// here same callback function for service.findPlaceFromQuery and navigator.geolocation.getCurrentPosition --> errorhandling
 
 
 function handleLocationError(browserHasGeolocation, infoWindow) {
@@ -113,10 +96,9 @@ function callback(results, status) {
     }
 }
 
+/*-----------------------INIT MAP----------------------*/
 
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+//here the google map is initialized. This function is called by the google maps api script in html
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -128,11 +110,14 @@ function initMap() {
     var input = document.getElementById('pac-input');
     var types = document.getElementById('type-selector');
     var strictBounds = document.getElementById('strict-bounds-selector');
-    var favouriteCards = document.getElementById('favourite_cards');
+    var favouriteCards = document.getElementById('containerForFavourites');
+
+    //autocomplete field and favourite cards pushed to map
 
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(card);
     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(favouriteCards);
 
+    //autocomplete defined
 
     var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -146,34 +131,27 @@ function initMap() {
         ['address_components', 'geometry', 'icon', 'name']);
 
 
-    if (navigator.geolocation) {
+    //gets the current location and centers map or throws errors if not possible
+    //notice: this only works for https pages in chrome, otherwise getting current position is not possible
+    var location_timeout = setTimeout("handleLocationError(true)", 10000);
+    navigator.geolocation.getCurrentPosition(function(position) {
+        clearTimeout(location_timeout);
+        console.log('location found');
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
 
-        var location_timeout = setTimeout("handleLocationError(true)", 10000);
-        navigator.geolocation.getCurrentPosition(function(position) {
-            clearTimeout(location_timeout);
-            console.log('location found');
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+        map.setCenter(pos);
+    }, function() {
+        clearTimeout(location_timeout);
+        console.log('location not found');
+        handleLocationError(true);
 
-            map.setCenter(pos);
-        }, function() {
-            clearTimeout(location_timeout);
-            console.log('location not found');
-            handleLocationError(true);
-
-        });
-    }
-
-
-    else {
-        // Browser doesn't support Geolocation
-        console.log('Browser doesnt handle Geolocation');
-        handleLocationError(false);
-    }
+    });
 
 
+    //info Window is created for searched location
     var infowindow = new google.maps.InfoWindow();
     var infowindowContent = document.getElementById('infowindow-content');
     infowindow.setContent(infowindowContent);
@@ -181,6 +159,10 @@ function initMap() {
         map: map,
         anchorPoint: new google.maps.Point(0, -29)
     });
+
+    // header is styled
+    var mapDiv = document.getElementById('title');
+    title.style.fontSize="16px";
 
 
     /*-----------------------CREATE MAP BUTTONS----------------------*/
@@ -196,8 +178,13 @@ function initMap() {
     buttonSetLoc.appendTo('#noti-map-btn');
     btnCancel.appendTo('#noti-map-btn');
 
+    /*-----------------------SHOW PLACE----------------------*/
+
+    //this function is core function of search process and is called by autocompleted field and when favourite card is clicked
     function showplace (place) {
         console.log('showplace called')
+
+        //test if place is a real google maps place
         if (!place.geometry) {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
@@ -214,13 +201,12 @@ function initMap() {
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.
         }
+
+        // set a marker to the searched position
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
 
-        /*var showcoordinates = document.getElementById("showcoordinates");
-        showcoordinates.innerHTML = "Latitude: " + place.geometry.location.lat() +
-        "<br>Longitude: " + place.geometry.location.lng();*/
-
+        // formatting the address for the info window
         var address = '';
         if (place.address_components) {
             address = [
@@ -232,6 +218,8 @@ function initMap() {
             console.log("Longitude is " + place.geometry.location.lng());
             //getLocation(x=place.geometry.location.lat(), y=place.geometry.location.lng(), nameoflocation = place.name)
         }
+
+        // jquery places do not support address_components but formatted_address (when clicked on favourite button)
         else if (place.formatted_address) {
             address = [place.formatted_address].join(' ');
         }
@@ -244,16 +232,13 @@ function initMap() {
         infowindowContent.children['place-name'].textContent = place.name;
         infowindowContent.children['place-address'].textContent = address;
 
-        //infowindowContent.children['place-position'].textContent = place.geometry.location;
-
-
         //create Button to click
-
-
+        // button gets the information of searched place now and is changing its color to blue
         buttonSetLoc
             .attr("destination", place.name)
             .attr("lat", place.geometry.location.lat())
             .attr("long", place.geometry.location.lng())
+            .removeClass("inactive-btn")
             .click(function () {
                 this.lat = $(this).attr('lat');
                 this.long = $(this).attr('long');
@@ -264,6 +249,8 @@ function initMap() {
                 console.log(this.name);
                 this.lat = Number(this.lat);
                 this.long = Number(this.long);
+
+                // here the function from beginning is called which gets all the information about set place and is comparing it with current location
                 getLocation(x = this.lat, y = this.long, nameoflocation = this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
@@ -274,16 +261,14 @@ function initMap() {
         infowindow.open(map, marker);
     }
 
+    /*-----------------------defining favourite buttons----------------------*/
 
-
-
-
-    var mapDiv = document.getElementById('title');
-    title.innerHTML="Type in location below to set a new reminder";
-    title.style.fontSize="16px";
+    // when clicked on the card, the function showPosition() is called, which gets the place that is set to query
 
     google.maps.event.addDomListener(placecard1, 'click', function() {
         console.log('1 was clicked!');
+
+        // request defines which address should be passed and what fields of it
         var request = {
             query: 'Arcisstraße 21 München',
             fields: ['photos', 'formatted_address', 'name', 'rating', 'opening_hours', 'geometry', 'icon'],
@@ -295,6 +280,8 @@ function initMap() {
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];
                     // createMarker(results[i]);
+
+                    //here show place is called and gets all the information
                     showplace(place);
                 }
             }
@@ -343,7 +330,7 @@ function initMap() {
         }));
     });
 
-
+    /*-----------------------AUTOCOMPLETE SEARCH----------------------*/
     autocomplete.addListener('place_changed', function() {
         infowindow.close();
         marker.setVisible(false);
@@ -353,7 +340,7 @@ function initMap() {
 
     });
 
-
+// just a function which helps the google maps api to accept touch in  autocomplete window -> there is some interference with framework7 which creates a lot of bugs
     $$('.pac-container').on('touchend', function(e) {
         console.log('touchend');
         e.stopPropagation();
