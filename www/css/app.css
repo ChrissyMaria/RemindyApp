@@ -544,6 +544,25 @@ div#tab-1 {
     display:none;
 }
 
+#purchaseField {
+    display:flex;
+}
+
+#purchaseImg {
+    height: 150px;
+    justify-content:flex-start;
+
+}
+
+#purchaseSpan {
+    height: auto;
+    justify-content:flex-end;
+    font-weight: bold;
+    margin: auto;
+    margin-left: 10px;
+
+}
+
 /*---------------------------------------GOOGLE MAPS--------------------------------------*/
 
 #googleMaps {

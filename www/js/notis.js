@@ -11,6 +11,12 @@ var notificationBuyCall = {
     subtitle: 'Restock your ' + ciprofloxacin.name + '!',
     text: 'You only have ' + ciprofloxacin.pills_left/ciprofloxacin.per_day + ' days of medication left!',
     downText: 'Buy some more or call your doctor.',
+
+    sub_buy: 'Do you really want to buy ' + ciprofloxacin.name + '?',
+    link: 'https://www.dealsfactory.net/store/pharmacy-online-discount-code/',
+
+    buy_confirmation_title: 'New ' + ciprofloxacin.name + ' ordered!',
+    confirmation: 'Check out for your order confirmation in your mailbox. Your ' + ciprofloxacin.name + ' will be sent home.'
     //buttons: [buyMed, calDoc],
 }
 
