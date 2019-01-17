@@ -68,7 +68,7 @@
                                                                 <div class="item-input-wrap">
                                                                     <input type="text" placeholder="Time"
                                                                            readonly="readonly"
-                                                                           id="demo-picker-date1" class="demo-picker"/>
+                                                                           id="demo-picker-date0" class="demo-picker"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -93,7 +93,7 @@
                                                         <div class="item-content item-input">
                                                             <div class="item-inner">
                                                                 <div class="item-input-wrap">
-                                                                    <input type="text" value="1" readonly="readonly" class="demo-picker" id="demo-picker-device1"/>
+                                                                    <input type="text" value="1" readonly="readonly" class="demo-picker" id="demo-picker-device0"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -170,15 +170,15 @@
     return {
         on: {
             pageMounted: function () {
-                var self = this;
-                var app = self.$app;
+                var self = this; //current page
+                var app = self.$app; //whole app
 
                 var allIntakes = [];
                 var intakeAmounts = [];
 
                 var today = new Date();
                 allIntakes[0] = app.picker.create({
-                    inputEl: '#demo-picker-date1',
+                    inputEl: '#demo-picker-date0',
                     //toolbar: true,
                     rotateEffect: true,
                     closeByOutsideClick: true,
@@ -239,7 +239,7 @@
                 });
 
                 //for adding a new intake
-                var intakeCounter = 2;
+                var intakeCounter = 1;
                 $$('.add_intake').click(function () {
                     // erstelle flex grid dynamisch (HTML).
                     console.log("add intake")
@@ -439,14 +439,24 @@
                 $$('#add_button').click(function () {
 
                     ciprofloxacin.intake = [];
+                    var zeit;
+                    var menge;
+                    // we have to do -1 since the counter is always one bigger
                     for(var i=0; i<intakeCounter; i++) {
-                        var zeit = allIntakes[i].getValue();
-                        console.log(zeit);
+                        console.log(allIntakes[i]);
+                        if(allIntakes[i] != undefined) {
+                            zeit = allIntakes[i].getValue();
+                        }
                         var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
-                        var menge = intakeAmounts[i].getValue();
-                        if(menge == undefined)
-                            menge=1;
+
+                        if(intakeAmounts[i] != undefined) {
+                            menge = intakeAmounts[i].getValue();
+                        }else {
+                            menge = 1;
+                        }
+
                         ciprofloxacin.intake[i] = {time: datum, amount:menge, taken:false};
+                        console.log(ciprofloxacin.intake[i]);
                     }
 
                     app.data.medicationList.push(ciprofloxacin);
