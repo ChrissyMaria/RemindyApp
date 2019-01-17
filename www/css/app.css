@@ -135,7 +135,7 @@ a#signWithout{
 
 /* Overwrite block class: we need a height of 65% since we have the today's view on bottom */
 .block {
-    height: 65%;
+    height: 52.5%;
     overflow: scroll;
 }
 
@@ -154,7 +154,7 @@ a#signWithout{
     margin-bottom: 0px;
     background-color: var(--primary-color);
     color: var(--light-shades);
-    height: 22.5%;
+    height: 35.5%;
     overflow: scroll;
     position: fixed;
     bottom: 0px;
@@ -186,7 +186,7 @@ div#meds_today {
 
 /* ------------------------ FAB ------------------------ */
 #ownFab {
-    bottom: 20%;
+    bottom: 33%;
 }
 
 a.item-content.item-link {
@@ -201,7 +201,7 @@ a.item-content.item-link {
 
 #fabBackground {
     position: absolute;
-    bottom: calc(20% - 11px);
+    bottom: calc(33% - 11px);
     right: 4px;
     background: white;
     width: 80px;
