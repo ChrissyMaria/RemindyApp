@@ -211,7 +211,7 @@ function takeNotification() {
     $$('#noti-text').append(text);
 
     const downText = $$('<p id="downText"></p>');
-    const btnLink1 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
+    const btnLink1 = $$('<a class="col button button-outline color-black" onclick="showRadioButtons();">' +
         '<i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a>');
     const btnLink2 = $$('<a class="col button button-outline color-black" ' +
         'onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)">' +
@@ -226,7 +226,7 @@ function takeNotification() {
     const button2 = $$('<span class="noti-btn">');
     const button3 = $$('<span class="noti-btn">');
     const link = $$('<a onclick="takenMedicationNotification()">TAKEN!</a>');
-    const link2 = $$('<a onclick="delayMedicineIntakeTime(3600000,1)">IN 1 HOUR</a>');    //1 is the hour
+    const link2 = $$('<a onclick="delayMedicineIntakeTime(1)">IN 1 HOUR</a>');    //1 is the hour
     const link3 = $$('<a onclick="delayMedicineIntakeLocation(&quot;home&quot;)">AT HOME</a>');  //1 is home
     button.append(link);
     button2.append(link2);
@@ -261,17 +261,79 @@ function takenMedicationNotification() {
 
 }
 
-function delayMedicineIntakeTime(timer,hour) {
+function showRadioButtons() {
+    clearNotification();
+    createNotification();
+
+    //$$('#noti-text').hide();
+    $$('#noti-default-btn').remove();
+    $$('#radioBtnList').show();
+    const notiBtn = $$('<div id="noti-default-btn" class="card-footer"/>');
+    $$('#notification').append(notiBtn);
+
+    //Buttons
+    var button = $$('<span class="noti-btn">');
+    var button2 = $$('<span class="noti-btn-middle">');
+    var link = $$('<a onclick="delayMedicineIntakeTime(radiobuttons())">DELAY INTAKE</a>');
+    var link2 = $$('<a onclick="cancelDelay()">CANCEL</a>');
+    button.append(link);
+    button2.append(link2);
+    //downText.text(notificationBuyCall.downText);
+    $$('#noti-default-btn').append(button2);
+    $$('#noti-default-btn').append(button);
+    document.getElementById("noti-default-btn").style.display = "flex";
+}
+
+function delayMedicineIntakeTime(hour) {
     console.log("NOT NOW!");
 
-    var delayTimeout = setTimeout(delayTime, timer);
+    clearNotification();
+    createNotification();
+/*    const notiSubtitle = $$('<div id="noti-subtitle"/>');
+    $$('#notification').append(notiSubtitle);
+
+    const notiText = $$('<div id="noti-text"/>');
+    $$('#notification').append(notiText);*/
+
+    const subtitle = $$('<p id="sub"></p>');
+    subtitle.text(notificationTake.subtitle);
+    $$('#noti-subtitle').append(subtitle);
+
+    const text = $$('<p id="txt"></p>');
+    text.text(notificationTake.text);
+    $$('#noti-text').append(text);
 
     $$('#sub').html('New reminder set.');
-    $$('#txt').html('You have delayed your intake by ' + hour + ' hour!');
+    switch(hour) {
+        case "0,5":
+            $$('#txt').html('You have delayed your intake by half an hour!');
+            break;
+        case 1:
+            $$('#txt').html('You have delayed your intake by ' + hour + ' hour!');
+            break;
+        case "2":
+        case "6":
+            $$('#txt').html('You have delayed your intake by ' + hour + ' hours!');
+            break;
+        default:
+            $$('#txt').html('You have delayed your intake!');
+    }
+
+
     $$('#noti-default-btn').remove();
     $$('#noti-less').remove();
     $$('#noti-expand').remove();
+    $$('#radioBtnList').hide();
+    //$$('#noti-text').show();
+    //$$('#noti-subtitle').show();
 
+    //timer = hour * 3600000;
+    timer = hour * 2000;
+    var delayTimeout = setTimeout(delayTime, timer);
+
+
+    console.log(hour);
+    console.log(timer);
     disappearingButtons();
 
     function delayTime() {
@@ -281,6 +343,20 @@ function delayMedicineIntakeTime(timer,hour) {
         takeNotification();
         console.log('Time delay set');
     }
+}
+
+function radiobuttons() {
+    var delayOptions = document.forms[0];
+    var hourRadioBtn = 0;
+    var i;
+    for (i = 0; i < delayOptions.length; i++) {
+        if (delayOptions[i].checked) {
+            hourRadioBtn = delayOptions[i].value;
+        }
+    }
+
+    return hourRadioBtn;
+    //document.getElementById("order").value = "You delayed your noti by" + txt;
 }
 
 function delayMedicineIntakeLocation(location) {
@@ -328,7 +404,7 @@ function delayMedicineIntakeLocation(location) {
     }
 }
 
-function cancelLocationReminder() {
+function cancelDelay() {
     /*$$('#noti-header').empty();
     $$('#noti-subtitle').remove();
     $$('#noti-text').remove();
@@ -340,6 +416,7 @@ function cancelLocationReminder() {
     takeNotification();
     $$('#downText').show();
     $$('#noti-expand').hide();
+    $$('#radioBtnList').hide();
     $$('#noti-less').show();
     document.getElementById("noti-default-btn").style.display = "flex";
 

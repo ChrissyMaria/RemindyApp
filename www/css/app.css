@@ -652,7 +652,10 @@ div#tab-1 {
 #purchaseImg {
     height: 150px;
     justify-content:flex-start;
+}
 
+#radioBtnList {
+    display: none;
 }
 
 #purchaseSpan {
