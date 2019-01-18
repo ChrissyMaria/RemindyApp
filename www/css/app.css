@@ -876,6 +876,10 @@ html, body {
     margin-left: -640px;
 }
 
+.controls {
+    display:none;
+}
+
 .controls fieldset {
     border: none;
     margin: 0;
@@ -913,8 +917,8 @@ html, body {
 
 #result_strip {
     margin: 10px 0;
-    border-top: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
+    border-top: 1px solid #EED630;
+    border-bottom: 1px solid #EED630;
     padding: 10px 0;
 }
 
@@ -937,7 +941,7 @@ html, body {
 #result_strip > ul > li .thumbnail {
     padding: 5px;
     margin: 4px;
-    border: 1px dashed #CCC;
+    border: 1px dashed #EED630;
 }
 
 #result_strip > ul > li .thumbnail img {
@@ -1016,14 +1020,15 @@ i.icon-24-scan {
     vertical-align: text-top;
 }
 
-@media (max-width: 603px) {
+@media  {
 
     #container {
-        width: 300px;
+        width: 1000px;
+        height: 800px;
         margin: 10px auto;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
-        box-shadow: none;
+        box-shadow: none
     }
 
     #container form.voucher-form input.voucher-code {
