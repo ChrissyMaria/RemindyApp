@@ -859,6 +859,9 @@ html, body {
     margin: 20px auto;
     padding: 10px;
 }
+#notScroll{
+    overflow: hidden;
+}
 
 #interactive.viewport {
     width: 640px;
