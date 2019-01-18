@@ -539,7 +539,7 @@ function off() {
                  notiHeightCalculator()
                  // --------------------------- Slow swiping ------------------------------
                  // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
-                 if (diffY <= -10 && diffTime > 350) {
+                 if ((document.getElementById('noti-default-btn').style.display = "flex") && diffY < -10 && diffTime > 300){
                      console.log("DOOOOWN we go!");
                      console.log(diffY + " , " + diffTime);
 
