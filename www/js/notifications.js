@@ -453,7 +453,7 @@ function off() {
     document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
 
      // Swipe Up / Down / Left / Right
-     var initialX = null;
+    var initialX = null;
     var initialY = null;
     var d = null;
     var initialTime = null;
@@ -529,6 +529,7 @@ function off() {
              } else {
                  // swiped down
                  console.log("swiped down");
+                 console.log(diffY + " , " + diffTime);
 
                  // --------------------------- Swiping down actions ------------------------------
 
@@ -538,11 +539,12 @@ function off() {
                  notiHeightCalculator()
                  // --------------------------- Slow swiping ------------------------------
                  // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
-                 if (diffY <= 90 && diffTime > 300) {
-                     console.log("DOOOOWN we go!")
+                 if (diffY <= -10 && diffTime > 350) {
+                     console.log("DOOOOWN we go!");
+                     console.log(diffY + " , " + diffTime);
 
                      document.getElementById("downText").style.display = "block";
-                     notiHeightCalculator()
+                     notiHeightCalculator();
 
                  }
              }
