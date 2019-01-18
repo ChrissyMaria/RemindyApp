@@ -253,7 +253,10 @@ function takenMedicationNotification() {
     console.log("TAKE IT IN!");
 
     $$('#sub').html('You have taken your ' + ibu.name + '!');
-    $$('#txt').html('Future-You says "Thank you!"');
+    // adds a random message to the notification
+    var myArray = ['There you go!', 'Good Job!', 'Better health than wealth!', 'Future-You says "Thank you!"', 'Be proud!', 'It is health that is real wealth', 'Who is awesome? You are!'];
+    var rand = myArray[Math.floor(Math.random() * myArray.length)];
+    $$('#txt').html(rand);
     $$('#downText').hide();
     disappearingButtons();
 
