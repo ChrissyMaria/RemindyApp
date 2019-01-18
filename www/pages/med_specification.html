@@ -81,7 +81,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col2">
+                                        <div class="col2" id="openDate0">
                                             <i class="material-icons">
                                                 expand_more
                                             </i>
@@ -104,10 +104,11 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col4">
+                                        <div class="col4"  id="openAmount0">
+
                                             pill(s)
                                         </div>
-                                        <div class="col5">
+                                        <div class="col5" id="openAmount0">
                                             <i class="material-icons">
                                                 expand_more
                                             </i>
@@ -183,13 +184,14 @@
             var allIntakes = [];
             var intakeAmounts = [];
 
+            /* *********default time picker ********* */
             var today = new Date();
             allIntakes[0] = app.picker.create({
                 inputEl: '#demo-picker-date0',
                 //toolbar: true,
                 rotateEffect: true,
                 closeByOutsideClick: true,
-                toolbarCloseText: 'Set time',
+                toolbarCloseText: 'Done',
                 //openIn: 'popover',
                 value: [
                     today.getHours(),
@@ -235,8 +237,18 @@
                 }
             });
 
+            $$('#openDate0').click(function()
+                {
+
+                    allIntakes[0].open();
+                    console.log('open picker');
+                }
+            )
+
+
+            /* *********default amount picker ********* */
             intakeAmounts[0] = app.picker.create({
-                inputEl: '#demo-picker-device1',
+                inputEl: '#demo-picker-device0',
                 cols: [
                     {
                         textAlign: 'center',
@@ -244,6 +256,15 @@
                     }
                 ]
             });
+
+            $$('#openAmount0').click(function()
+                {
+
+                    intakeAmounts[0].open();
+                    console.log('open picker');
+                }
+            )
+
 
             //for adding a new intake
             var intakeCounter = 1;
@@ -277,7 +298,7 @@
                 col1.append(pickerblock);
 
                 //Column2
-                var col2 = $$('<div class="col2"/>');
+                var col2 = $$('<div class="col2" id="openDate'+ intakeCounter +'"/>');
                 var expand_time = $$('<i class="material-icons">expand_more</i>');
 
                 col2.append(expand_time);
@@ -301,11 +322,11 @@
                 col3.append(list_amount);
 
                 //Column4
-                var col4 = $$('<div class="col4"/>');
+                var col4 = $$('<div class="col4" id="openAmount'+ intakeCounter+'"/>');
                 col4.text("pill(s)");
 
                 //Column5
-                var col5 = $$('<div class="col5"/>');
+                var col5 = $$('<div class="col5" id="openAmount'+ intakeCounter+'"/>');
                 var expand_amount = $$('<i class="material-icons">expand_more</i>');
 
                 col5.append(expand_amount);
@@ -374,6 +395,7 @@
                     }
                 });
 
+
                 //Amount picker
                 intakeAmounts[intakeCounter] = app.picker.create({
                     inputEl: '#demo-picker-device' + intakeCounter,
@@ -403,7 +425,55 @@
                     });
 
                 });
+
+                $$('.col2').click(function(event)
+                    {
+                        console.log($$(this).attr('id'));
+                        var inputId = $$(this).attr('id');
+
+                        var numb = inputId.match(/\d/g);
+                        console.log('open picker'+ inputId);
+                        allIntakes[parseInt(numb)].open();
+                    }
+                );
+
+                $$('.col4').click(function(event)
+                    {
+                        console.log($$(this).attr('id'));
+                        var inputId = $$(this).attr('id');
+
+                        var numb = inputId.match(/\d/g);
+                        console.log('open picker'+ inputId);
+                        intakeAmounts[parseInt(numb)].open();
+                    }
+                );
+
+                $$('.col5').click(function(event)
+                    {
+                        console.log($$(this).attr('id'));
+                        var inputId = $$(this).attr('id');
+
+                        var numb = inputId.match(/\d/g);
+                        console.log('open picker'+ inputId);
+                        intakeAmounts[parseInt(numb)].open();
+                    }
+                );
+
             });
+
+
+
+
+
+
+            /*$$('#openDate'+ intakeCounter).click(function()
+                {
+                    console.log('open picker');
+                    allIntakes[intakeCounter].open();
+
+                }
+            )*/
+
 
             //List items are deletable
             $$('.col0').click(function (event) {
