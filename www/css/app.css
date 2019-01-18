@@ -628,6 +628,7 @@ div#tab-1 {
 
 .noti-btn {
     margin-right:10px;
+    margin-left:20px;
 }
 
 .inactive-btn {
@@ -717,7 +718,7 @@ html, body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 98%;
 }
 
 #pac-container {

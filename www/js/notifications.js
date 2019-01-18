@@ -8,6 +8,8 @@ function notiHeightCalculator() {
     const newHeight = (732 - notiHeight) / 2;
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
+
+
 }
 
 //Sets time of notification +1 after every 60 seconds - just an idea
@@ -160,15 +162,15 @@ function buyMedNotiScreen() {
             $$('#purchaseSpan').append(buyLink);
 
     //Buttons
-    var button = $$('<span class="noti-btn-middle">');
-    var button2 = $$('<span class="noti-btn">');
+    var button = $$('<span class="noti-btn">');
+    var button2 = $$('<span class="noti-btn-middle">');
     var link = $$('<a onclick="confirmOrder()"><i class="material-icons">add_shopping_cart</i>CONFIRM ORDER</a>');
     var link2 = $$('<a onclick="cancelPurchase()">CANCEL</a>');
     button.append(link);
     button2.append(link2);
     //downText.text(notificationBuyCall.downText);
-    $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
+    $$('#noti-default-btn').append(button);
     document.getElementById("noti-default-btn").style.display = "flex";
 
     notiTime();
@@ -224,7 +226,7 @@ function takeNotification() {
     const button2 = $$('<span class="noti-btn">');
     const button3 = $$('<span class="noti-btn">');
     const link = $$('<a onclick="takenMedicationNotification()">TAKEN!</a>');
-    const link2 = $$('<a onclick="delayMedicineIntakeTime(1)">IN 1 HOUR</a>');    //1 is the hour
+    const link2 = $$('<a onclick="delayMedicineIntakeTime(3600000,1)">IN 1 HOUR</a>');    //1 is the hour
     const link3 = $$('<a onclick="delayMedicineIntakeLocation(&quot;home&quot;)">AT HOME</a>');  //1 is home
     button.append(link);
     button2.append(link2);
@@ -259,15 +261,25 @@ function takenMedicationNotification() {
 
 }
 
-function delayMedicineIntakeTime(hour) {
+function delayMedicineIntakeTime(timer,hour) {
     console.log("NOT NOW!");
 
-    if (hour == 1){
-        console.log("Delay for 1 hour!")
+    var delayTimeout = setTimeout(delayTime, timer);
 
-        $$('#sub').html('You have delayed your intake by ' + hour + ' hour!');
-        $$('#txt').html('New reminder set.');
-        disappearingButtons();
+    $$('#sub').html('New reminder set.');
+    $$('#txt').html('You have delayed your intake by ' + hour + ' hour!');
+    $$('#noti-default-btn').remove();
+    $$('#noti-less').remove();
+    $$('#noti-expand').remove();
+
+    disappearingButtons();
+
+    function delayTime() {
+        clearNotification();
+
+        window.clearTimeout(delayTimeout);
+        takeNotification();
+        console.log('Time delay set');
     }
 }
 
