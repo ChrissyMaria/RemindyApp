@@ -152,7 +152,7 @@ function buyMedNotiScreen() {
         var buySpan = $$('<span id="purchaseSpan"/>');
         $$('#purchaseField').append(buySpan);
             var buyName = $$('<p/>');
-            buyName.text(ciprofloxacin.name);
+            buyName.text(ibu.name);
             $$('#purchaseSpan').append(buyName);
             var buyPrice = $$('<p><strong></strong></p>');
             buyPrice.text("€10,50");
@@ -211,13 +211,14 @@ function takeNotification() {
     $$('#noti-text').append(text);
 
     const downText = $$('<p id="downText"></p>');
-    const btnLink1 = $$('<a class="col button button-outline color-black" onclick="showRadioButtons();">' +
-        '<i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a>');
-    const btnLink2 = $$('<a class="col button button-outline color-black" ' +
-        'onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)">' +
-        '<i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
-    downText.append(btnLink1);
-    downText.append(btnLink2);
+    const btnTime = $$('<span></span>');
+    const btnLoc = $$('<span></span>');
+    const linkTime = $$('<a onclick="showRadioButtons();"><i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a><p> </p>');
+    const linkLoc = $$('<a onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)"><i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
+    btnTime.append(linkTime);
+    btnLoc.append(linkLoc);
+    downText.append(btnTime);
+    downText.append(btnLoc);
     $$('#noti-text').append(downText);
 
     //Buttons
@@ -251,13 +252,14 @@ function disappearingButtons() {     //let the buttons disappear
 function takenMedicationNotification() {
     console.log("TAKE IT IN!");
 
-    $$('#sub').html('You have taken your ' + ciprofloxacin.name + '!');
+    $$('#sub').html('You have taken your ' + ibu.name + '!');
     $$('#txt').html('Future-You says "Thank you!"');
+    $$('#downText').hide();
     disappearingButtons();
 
 
     //TODO SET COUNT -1 OF PILLS
-    //ciprofloxacin.pills_left - 1; or something like this
+    //ibu.pills_left - 1; or something like this
 
 }
 
@@ -369,7 +371,7 @@ function delayMedicineIntakeLocation(location) {
     } else if (location == "openmaps") {
         console.log("Insert Google Maps");
         $$('#downText').remove();
-        $$('#noti-subtitle').remove();
+        $$('#noti-subtitle').hide();
         $$('#noti-default-btn').hide();
         $$('#txt').hide();
         //$$('#noti-text').empty();

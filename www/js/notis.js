@@ -1,8 +1,8 @@
 var pills_amount = 0;
-for(var j=0; j<ciprofloxacin.intake.length; j++) {
-    pills_amount += ciprofloxacin.intake[j].amount;
+for(var j=0; j<ibu.intake.length; j++) {
+    pills_amount += ibu.intake[j].amount;
 }
-var pills_left = ciprofloxacin.pills_left/pills_amount;
+var pills_left = ibu.pills_left/pills_amount;
 
 //header of notifications should always be the same
 var notificationHeader = {
@@ -14,15 +14,15 @@ var notificationHeader = {
 }
 
 var notificationBuyCall = {
-    subtitle: 'Restock your ' + ciprofloxacin.name + '!',
+    subtitle: 'Restock your ' + ibu.name + '!',
     text: 'You only have ' + pills_left + ' days of medication left!',
     downText: 'Buy some more or call your doctor.',
 
-    sub_buy: 'Do you really want to buy ' + ciprofloxacin.name + '?',
-    link: 'https://www.dealsfactory.net/store/pharmacy-online-discount-code/',
+    sub_buy: 'Do you really want to buy ' + ibu.name + '?',
+    link: ibu.link,
 
-    buy_confirmation_title: 'New ' + ciprofloxacin.name + ' ordered!',
-    confirmation: 'Check out for your order confirmation in your mailbox. Your ' + ciprofloxacin.name + ' will be sent home.'
+    buy_confirmation_title: 'New ' + ibu.name + ' ordered!',
+    confirmation: 'Check out for your order confirmation in your mailbox. Your ' + ibu.name + ' will be sent home.'
     //buttons: [buyMed, calDoc],
 }
 
@@ -40,7 +40,7 @@ var calDoc = {
 }*/
 
 const notificationTake = {
-    subtitle: 'Take your ' + ciprofloxacin.name + ' now!',
+    subtitle: 'Take your ' + ibu.name + ' now!',
     text: 'Swipe down slowly for more  delay options.',
     downText: 'Here should two further buttons appear.',
 }

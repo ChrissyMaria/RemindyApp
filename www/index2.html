@@ -59,15 +59,20 @@
                 <!--google maps div starts -> at first not shown-->
                 <div id="notification">
                     <div id="noti-header"></div>
-                    <div id="radioBtnList">
+                    <div id="radioBtnList" >
                         <form action="/action_page.php">
-                            <input type="radio" name="delayHour" value="0,5">1/2 hour<br>
-                            <input type="radio" name="delayHour" value="2">2 hours<br>
-                            <input type="radio" name="delayHour" value="6">6 hours<br>
-                            <br>
-
-                            <input type="text" id="order" size="50">
-
+                            <label class="container">1/2 hour
+                                <input type="radio" name="delayHour" value="0,5" checked="true"><br>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">2 hours
+                                <input type="radio" name="delayHour" value="2"><br>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">6 hours
+                                <input type="radio" name="delayHour" value="6"><br>
+                                <span class="checkmark"></span>
+                            </label>
                         </form>
                     </div>
 
@@ -160,9 +165,7 @@
 
                 </div>
 
-                <!--POPUP TRIGGER-->
-                <a href="#" onclick="showNotificationCallbackOnClose()"><img src="images/background_notify.png" style="width:411px;" /></a>
-                <!--END POPUP TRIGGER -->
+                <img src="images/background_notify.png" style="width:411px;" />
 
             </div>
         </div>

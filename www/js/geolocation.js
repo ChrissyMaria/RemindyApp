@@ -273,6 +273,8 @@ function initMap() {
                 getLocation(x = this.lat, y = this.long, nameoflocation = this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
+                $$('#noti-subtitle').show();
+                $$('#sub').show();
                 $$('#txt').show();
                 notiHeightCalculator();
             })
