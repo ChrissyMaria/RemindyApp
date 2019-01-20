@@ -29392,7 +29392,6 @@
         notification.$el.addClass('notification-transitioning');
         notification.$el.transform('');
 
-        /* Try to solve the closing within the notificationsOld.js DID NOT WORK OUT*/
           if (
           (touchesDiff < -10 && timeDiff < 300)
           || (-touchesDiff >= notificationHeight / 1)
