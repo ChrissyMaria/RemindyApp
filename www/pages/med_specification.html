@@ -142,16 +142,14 @@
                     <!-- -------------------- WEEKLY --------------------- -->
                     <div id="tab-2" class="page-content tab">
                         <div class="block">
-                            <p>weekly</p>
-                            ...
+                            <p>weekly intake option has not been implemented yet. It will work analogously to the daily intake option.</p>
                         </div>
                     </div>
 
                     <!-- -------------------- MONTHLY --------------------- -->
                     <div id="tab-3" class="page-content tab">
                         <div class="block">
-                            <p>monthly</p>
-                            ...
+                            <p>monthly intake option has not been implemented yet. It will work analogously to the daily intake option</p>
                         </div>
                     </div>
                 </div>
@@ -534,9 +532,15 @@
                     }
                     var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
 
-                    if (intakeAmounts[i] != undefined) {
+                    /*if (intakeAmounts[i] != undefined) {
                         menge = intakeAmounts[i].getValue();
                     } else {
+                        menge = 1;
+                    }*/
+
+                    menge = intakeAmounts[i].getValue();
+                    if (menge == undefined)
+                    {
                         menge = 1;
                     }
 
