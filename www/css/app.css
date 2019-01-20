@@ -285,6 +285,7 @@ a.item-content.item-link {
 
 .sheet-modal-inner {
     margin: 5px 0;
+    line-height: 80px;
 }
 
 /* image in popover */
@@ -302,13 +303,14 @@ a.item-content.item-link {
     width: 60%;
     right: 16px;
     font-weight: normal;
-    text-align: right;
+
+    text-align: center;
 }
 
 /* little arrow on bottom: link to next page */
 #linkToSpecification {
     position: fixed;
-    bottom: 16px;
+    bottom: 32%;
     right: 16px;
 }
 
@@ -332,14 +334,14 @@ a.item-content.item-link {
 
 /* image container */
 #image-container {
-    width: 60%;
+    width: 50%;
     height: auto;
     float: left;
 }
 
 /* image within this container */
 .medi_image {
-    width: 70%;
+    width: 100%;
     height: auto;
 }
 
@@ -348,13 +350,16 @@ a.item-content.item-link {
     height: 100%;
     margin: auto;
     box-sizing: border-box;
-    width: 40%;
+    width: 50%;
     float: right;
+    padding: 40px 0px 40px 0px;
 }
 
 /* name within this container */
 #med_name h2 {
     margin: 16px 8px 0px 0px;
+    display: inline;
+    margin: 4px;
 }
 
 /* no idea where this belongs to */
@@ -371,7 +376,8 @@ a.item-content.item-link {
     position: relative;
 }
 
-/* Time and Amount content*/
+
+    /* Time and Amount content*/
 .tabs {
     height: 55%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
