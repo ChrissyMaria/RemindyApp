@@ -73,13 +73,13 @@ var app = new Framework7({
                 var link_container = $$('<div class="card-footer">');
 
                 var restock = $$('<a class="external" id='+this.data.medicationList[i].link+'><i class="material-icons primaryColor open-preloader-custom">add_shopping_cart</i></a>');
-                var link = $$('<a href="#" class="link">Read more</a>');
+                var link = $$('<a href="#" class="link open-alert">Read more</a>');
                 link_container.append(link, restock);
 
                 //reminder for restocking
                 if(days <=7 ) {
                     $$(p_last_until).css({'color': '#005FAC', 'font-weight': 'bold'});
-                    $$(restock).addClass('wibble').css({'animation-delay':'1s', 'animation-duration': '.5s'});
+                    $$(restock).addClass('wibble').css({'animation-delay':'1s', 'animation-duration': '.25s'});
                 }
                 // ###### fill container and append to index
                 container.append(container_header, card_content, link_container);
@@ -89,7 +89,7 @@ var app = new Framework7({
             //######################### Delete Function #########################
             $$('.greyColor').click(function (event) {
                 var target = event.target;
-                app.dialog.confirm('Do you want to delete this medication?', 'Remindy', () => {
+                app.dialog.confirm('Are you sure you want to delete this medication', 'Remindy', () => {
                     $$(target).parent().parent().remove();
                 });
             });
@@ -168,6 +168,11 @@ var app = new Framework7({
                 ul.append(li);
             }
             $$('#meds_today').append(ul);
+
+
+            $$('.open-alert').on('click', function () {
+                app.dialog.alert("Sorry, this function is not working yet. But we'll work on it :)", "Remindy");
+            });
 
         },
     }

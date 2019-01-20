@@ -26,18 +26,19 @@ body {
     background-color: var(--primary-color);
     padding-top: 2.5%;
 }
+/* Image: Logo */
+#logo_login{
+    margin-left: 37.5%;
+    margin-top: 25%;
+    width: 25%;
+}
+
 /* Title: Remindy */
 #login_page .login-screen-title{
     font-size: 44px;
     color: var(--secondary-color);
-    font-weight: 700;
-}
-/* App Description*/
-.page-content.login-screen-content p {
-    font-size: 24px;
-    text-align: center;
-    color: white;
-    margin: 12.5% 0;
+    font-weight: 100;
+    margin: 0px;
 }
 /* to prevent that other paragraphs have the same setting */
 .page-content.login-screen-content form p{
@@ -46,13 +47,26 @@ body {
     margin: initial;
 }
 /* Input */
+#login_page .item-content {
+    background-color: #004075;
+    width: 95% !important;
+    padding: 0% 2%;
+    margin-left: 2.5%;
+    margin-top: 8px !important;
+    border-radius: 10px;
+}
+#login_page i {
+    margin: 0 16px;
+    color: white;
+}
+
+#login_page .item-input-wrap{
+    width: 80%;
+}
 /* Text in Login*/
 #login_page .item-title.item-label, #login_page input::placeholder, #login_page input, #login_page .block-footer{
     color: white;
     font-weight: 500;
-}
-#login_page .item-label{
-    font-size: 16px;
 }
 #login_page input::placeholder{
     font-size: 14px;
@@ -114,11 +128,11 @@ a#signWithout{
 
 @keyframes keyframes1 {
     0% {
-        transform: rotate(-4deg);
+        transform: rotate(-10deg);
         animation-timing-function: ease-in;
     }
     50% {
-        transform: rotate(4deg);
+        transform: rotate(10deg);
         animation-timing-function: ease-out;
     }
 }
@@ -211,15 +225,29 @@ a.item-content.item-link {
 }
 
 /* ####################################################################################### */
-/* ----------------------------------------- Profil -------------------------------------- */
+/* ----------------------------------------- Profile -------------------------------------- */
 /* ####################################################################################### */
 
 #ProfileHeader{
-    background-color: var(--light-shades);
+    background-color: var(--primary-color);
+    position: fixed;
+    height: 25%;
 }
 #userProfile{
     width: 45%;
     margin-left: 27.5%;
+}
+#ProfileHeader h4{
+    background-color: white;
+    text-align: center;
+    font-weight: 400;
+    margin: 0px;
+    font-size: 25px;
+}
+#my-form{
+    margin: 15% 0;
+    position: absolute;
+    top: 35%;
 }
 
 
