@@ -128,11 +128,11 @@ a#signWithout{
 
 @keyframes keyframes1 {
     0% {
-        transform: rotate(-10deg);
+        transform: rotate(-8deg);
         animation-timing-function: ease-in;
     }
     50% {
-        transform: rotate(10deg);
+        transform: rotate(8deg);
         animation-timing-function: ease-out;
     }
 }
