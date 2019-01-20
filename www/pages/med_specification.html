@@ -267,7 +267,10 @@
             )
 
 
-            //for adding a new intake
+            /* ****************************************************************************************************** */
+            /* **************************dynamically adding new intake*********************************************** */
+            /* ****************************************************************************************************** */
+
             var intakeCounter = 1;
             $$('.add_intake').click(function () {
                 // erstelle flex grid dynamisch (HTML).
@@ -427,6 +430,7 @@
 
                 });
 
+                /* make all colums clickable to expand picker*/
                 $$('.col2').click(function(event)
                     {
                         console.log($$(this).attr('id'));
