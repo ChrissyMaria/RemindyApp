@@ -1,6 +1,14 @@
 // --------------------------- Change Notification Height ------------------------------
 /*idea: Function which receives the height of the notification div and
 calculates the css 'top' attribute new - depending on size of notification*/
+
+// Create center toast
+const toastCenter = app.toast.create({
+    text: 'Intake delayed by 1 hour.',
+    position: 'center',
+    closeTimeout: 2000,
+});
+
 function notiHeightCalculator() {
 
     const notiHeight = document.getElementById('notification').clientHeight; //get #myDiv
@@ -8,8 +16,6 @@ function notiHeightCalculator() {
     const newHeight = (732 - notiHeight) / 2;
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
-
-
 }
 
 //Sets time of notification +1 after every 60 seconds - just an idea
@@ -27,7 +33,6 @@ function notiTime() {
         }, 60000);
 }
 
-//TODO: DELETE THIS FUNCTION AFTERWARDS
 function clearNotification(){
     $$('#noti-header').empty();
     $$('#noti-subtitle').remove();
@@ -40,14 +45,8 @@ function clearNotification(){
 // --------------------------- Notification Default Header ------------------------------
 //builds the standard header of a notification (which is always the same) and controls the expand button
 function createNotification() {
-    /*var icon = $$('<img id="noti-img" />');
-    icon.src(notificationHeader.icon);
-    $$('#noti-header').append(subtitle);*/
 
-/*    const notiHeader = $$('<div id="noti-header"/>');
-    $$('#notification').append(notiHeader);*/
-
-        const notiImg = $$('<img src="images/notify_logo.png" />');
+        const notiImg = $$('<img src="../www/images/notify_logo.png" alt="notify_logo"/>');
         $$('#noti-header').append(notiImg);
 
         const appName = $$('<span id="noti-appName"></span>');
@@ -105,24 +104,23 @@ function buyCallNotification() {
     //Empties notification div and fills it with new content
     createNotification();
 
-    var subtitle = $$('<p></p>');
+    let subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.subtitle);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p></p>');
+    let text = $$('<p></p>');
     text.text(notificationBuyCall.text);
     $$('#noti-text').append(text);
 
-    var downText = $$('<p id="downText"></p>');
+    let downText = $$('<p id="downText"></p>');
     downText.text(notificationBuyCall.downText);
     $$('#noti-text').append(downText);
 
-    //Buttons
-    //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
-    var button = $$('<span class="noti-btn">');
-    var button2 = $$('<span class="noti-btn">');
-    var link = $$('<a onclick="buyMedNotiScreen()"><i class="material-icons">add_shopping_cart</i>BUY</a>');
-    var link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
+    //Append buttons needed for purchase to notification
+    const button = $$('<span class="noti-btn">');
+    const button2 = $$('<span class="noti-btn">');
+    const link = $$('<a onclick="buyMedNotiScreen()"><i class="material-icons">add_shopping_cart</i>BUY</a>');
+    const link2 = $$('<a class="link external" href="tel:+436643755739"><i class="material-icons">call</i>CALL DOCTOR</a>');
     button.append(link);
     button2.append(link2);
     //downText.text(notificationBuyCall.downText);
@@ -137,35 +135,35 @@ function buyMedNotiScreen() {
     clearNotification();
     createNotification();
 
-    var subtitle = $$('<p></p>');
+    let subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.subtitle);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p></p>');
+    let text = $$('<p></p>');
     text.text(notificationBuyCall.sub_buy);
     $$('#noti-text').append(text);
 
-    var divBuy = $$('<div id="purchaseField"/>');
-    $$('#noti-text').append(divBuy);
-        var imgBuy = $$('<img src="images/medNear_logo.jpg" id="purchaseImg"/>');
+        const divBuy = $$('<div id="purchaseField"/>');
+        $$('#noti-text').append(divBuy);
+        const imgBuy = $$('<img src="images/medNear_logo.jpg" alt="Pharmacy Logo" id="purchaseImg"/>');
         $$('#purchaseField').append(imgBuy);
-        var buySpan = $$('<span id="purchaseSpan"/>');
+        const buySpan = $$('<span id="purchaseSpan"/>');
         $$('#purchaseField').append(buySpan);
-            var buyName = $$('<p/>');
+            const buyName = $$('<p/>');
             buyName.text(ibu.name);
             $$('#purchaseSpan').append(buyName);
-            var buyPrice = $$('<p><strong></strong></p>');
+            const buyPrice = $$('<p><strong></strong></p>');
             buyPrice.text("€10,50");
             $$('#purchaseSpan').append(buyPrice);
-            var buyLink = $$('</p>');
+            const buyLink = $$('</p>');
             buyLink.html('<a href="' + notificationBuyCall.link + '" >Link to Pharmacy</a>');
             $$('#purchaseSpan').append(buyLink);
 
     //Buttons
-    var button = $$('<span class="noti-btn">');
-    var button2 = $$('<span class="noti-btn-middle">');
-    var link = $$('<a onclick="confirmOrder()"><i class="material-icons">add_shopping_cart</i>CONFIRM ORDER</a>');
-    var link2 = $$('<a onclick="cancelPurchase()">CANCEL</a>');
+    let button = $$('<span class="noti-btn">');
+    let button2 = $$('<span class="noti-btn-middle">');
+    let link = $$('<a onclick="confirmOrder()"><i class="material-icons">add_shopping_cart</i>CONFIRM ORDER</a>');
+    let link2 = $$('<a onclick="cancelPurchase()">CANCEL</a>');
     button.append(link);
     button2.append(link2);
     //downText.text(notificationBuyCall.downText);
@@ -181,11 +179,11 @@ function confirmOrder() {
     clearNotification();
     createNotification();
 
-    var subtitle = $$('<p></p>');
+    let subtitle = $$('<p></p>');
     subtitle.text(notificationBuyCall.buy_confirmation_title);
     $$('#noti-subtitle').append(subtitle);
 
-    var text = $$('<p></p>');
+    let text = $$('<p></p>');
     text.text(notificationBuyCall.confirmation);
     $$('#noti-text').append(text);
 
@@ -287,15 +285,9 @@ function showRadioButtons() {
 }
 
 function delayMedicineIntakeTime(hour) {
-    console.log("NOT NOW!");
 
     clearNotification();
     createNotification();
-/*    const notiSubtitle = $$('<div id="noti-subtitle"/>');
-    $$('#notification').append(notiSubtitle);
-
-    const notiText = $$('<div id="noti-text"/>');
-    $$('#notification').append(notiText);*/
 
     const subtitle = $$('<p id="sub"></p>');
     subtitle.text(notificationTake.subtitle);
@@ -329,9 +321,9 @@ function delayMedicineIntakeTime(hour) {
     //$$('#noti-text').show();
     //$$('#noti-subtitle').show();
 
-    //timer = hour * 3600000;
-    timer = hour * 2000;
-    var delayTimeout = setTimeout(delayTime, timer);
+    //let timer = hour * 3600000;
+    let timer = hour * 2000;
+    let delayTimeout = setTimeout(delayTime, timer);
 
 
     console.log(hour);
@@ -449,6 +441,7 @@ function off() {
 // --------------------------- SWIPE LISTENERS ------------------------------
     /*SOURCE: https://www.kirupa.com/html5/detecting_touch_swipe_gestures.htm */
 
+
     document.getElementById("notification").addEventListener("touchstart", startTouch, false);
     document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
 
@@ -463,7 +456,7 @@ function off() {
          initialX = e.touches[0].clientX;
          initialY = e.touches[0].clientY;
          initialTime = + new Date();
-     };
+     }
 
      function moveTouch(e) {
          if (initialX === null) {
@@ -479,27 +472,29 @@ function off() {
              return; //stop the execution of function
          }*/
 
-         var currentX = e.touches[0].clientX;
-         var currentY = e.touches[0].clientY;
+         let currentX = e.touches[0].clientX;
+         let currentY = e.touches[0].clientY;
 
-         var diffX = initialX - currentX;
-         var diffY = initialY - currentY;
+         const diffX = initialX - currentX;
+         const diffY = initialY - currentY;
          nowTime = + new Date();
-         diffTime = nowTime - initialTime;
+         const diffTime = nowTime - initialTime;
 
          if (Math.abs(diffX) > Math.abs(diffY)) {
              // sliding horizontally
              if (diffX > 0) {
                  // swiped left
-                 var noti = document.getElementById('notification');
-                console.log(diffTime + "swiped left");
-                 noti.style.animationName = "left";
+                 let noti = document.getElementById('notification');
+                    console.log(diffTime + "swiped left");
+                    noti.style.animationName = "left";
 
-             } else if (diffX <0){
-                 // swiped right
-                 console.log("swiped right");
-                 var noti = document.getElementById('notification');
-                 noti.style.animationName = "right";
+                 //toast appears after 1/2 second
+                 if(document.getElementById('sub').innerHTML == "Take your Ibuprofen now!") {
+                     setTimeout(() => {
+                         toastCenter.open();
+                     }, 500);
+                     delayMedicineIntakeTime(1);
+                 }
 
                  setTimeout(() => {
                      $$('#noti-header').empty();
@@ -511,9 +506,36 @@ function off() {
 
                      noti.style.display="none";
                      noti.style.animationName = "none";
-                 }, 1000);
+                 }, 990);
+
+             } else if (diffX <0){
+                 // swiped right
+                 console.log("swiped right");
+                 let noti = document.getElementById('notification');
+                 noti.style.animationName = "right";
+
+                 //toast appears after 1/2 second and only if the intake reminder is open
+                if (document.getElementById('sub') != null) {
+                    if(document.getElementById('sub').innerHTML == "Take your Ibuprofen now!") {
+                        setTimeout(() => {
+                            toastCenter.open();
+                        }, 500);
+                        delayMedicineIntakeTime(1);
+                    }
+                 }
 
 
+                 setTimeout(() => {
+                     $$('#noti-header').empty();
+                     $$('#noti-subtitle').remove();
+                     $$('#noti-text').remove();
+                     $$('#downText').remove();
+                     $$('#noti-default-btn').remove();
+                     $$('#googleMaps').hide();
+
+                     noti.style.display="none";
+                     noti.style.animationName = "none";
+                 }, 990);
 
              }
          } else {
@@ -559,6 +581,7 @@ function off() {
     // Open Notification
     //self.notificationCallbackOnClose.open();
 //}
+
 
 
 $("noti-expand").click(function () {

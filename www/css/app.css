@@ -575,10 +575,16 @@ div#tab-1 {
 }
 
 /* The animation code */
-@keyframes left {
+/*@keyframes left {
     0%   {transform: translateX(0px);}
     50% {transform: translateX(-30px);}
     100% {transform: translateX(0px);}
+}*/
+
+@keyframes left {
+    0%   {transform: translateX(0px);}
+    100%  {transform: translateX(-450px);display: none;}
+
 }
 
 @keyframes right {
