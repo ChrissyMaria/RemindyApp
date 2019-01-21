@@ -273,9 +273,15 @@ a.item-content.item-link {
     z-index: 5;
 }
 
+#myScan{
+    padding: 0% 9%;
+    color: grey
+}
+
 /* ---------------------- Popover ----------------------- */
 
 .sheet-modal.my-sheet.modal-in {
+    position:absolute;
     height: 30%;
 }
 
@@ -288,11 +294,22 @@ a.item-content.item-link {
     line-height: 80px;
 }
 
+#popover_flexgrid{
+    height: 100%;
+    width: 100%;
+}
+
+
+#popover_col1, #popover_col2, #popover_col3{
+    width: 33%;
+    height: 100%;
+}
+
 /* image in popover */
 .sheet-modal-inner img {
-    width: 40%;
+    width: 100%;
     height: auto;
-    margin: 16px;
+    margin: 20%;
 }
 
 /* medication name in popover */
@@ -312,6 +329,11 @@ a.item-content.item-link {
     position: fixed;
     bottom: 32%;
     right: 16px;
+
+}
+
+#popover_icon{
+    line-height: 0.5;
 }
 
 
