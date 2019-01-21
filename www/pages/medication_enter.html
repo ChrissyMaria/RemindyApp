@@ -145,19 +145,32 @@
 
                         </div>
                     </div>
-                    <div class="sheet-modal-inner"  >
-                       <a class="link icon-only sheet-close" href="/med_spec/">
-                        <h4 id="popoverMedicationName" ></h4>
-                        <!-- here actual medication name will be added dynamically -->
-                        <img src="./images/cipro.png" alt="Medicament" >
-                        <!-- here actual medication img will be added dynamically -->
-                        <!-- little arrow on bottom: link to next page-->
-                        <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/"> <i
-                                class="material-icons md-48">
-                            navigate_next
-                        </i>
-                        </a>
-                        </a>
+                    <div class="sheet-modal-inner" >
+
+
+                                <div class = "flex-grid" id="popover_flexgrid">
+                                    <div id="popover_col1">
+
+                                        <img src="./images/cipro.png" alt="Medicament" >
+                                        <!-- here actual medication img will be added dynamically -->
+                                    </div>
+
+                                    <div id="popover_col2">
+                                         <h4 id="popoverMedicationName" ></h4>
+                                         <!-- here actual medication name will be added dynamically -->
+                                    </div>
+
+                                    <div id="popover_col3">
+                                        <!-- little arrow on bottom: link to next page-->
+                                        <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/">
+                                            <i class="material-icons md-48" id="popover_icon">navigate_next</i>
+                                         </a>
+                                    </div>
+                                </div>
+                            
+
+
+
                     </div>
                 </div>
             </div>
