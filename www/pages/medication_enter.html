@@ -34,8 +34,11 @@
         </div>
 
 
+
+
+
         <!-- ############################# Scrollable page content ########################## -->
-        <div class="page-content">
+        <div class="page-content" id="notScroll">
             <div class="list no-hairlines-md">
                 <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet"></a>
                 <!-- --------------------------- Scan --------------------------------- -->
@@ -43,13 +46,13 @@
                 <!-- <div id="scan">
                       <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet">Scan</a>
                   </div>-->
+
+
+                <p id="myScan" @click="defaultscan">Scan barcode below or search manually</p>
+
                 <section id="container" class="container">
-                    <h3>The user's camera</h3>
-                    <p>If your platform supports the <strong>getUserMedia</strong> API call, you can try the real-time locating and decoding features.
-                        Simply allow the page to access your web-cam and point it to a barcode. You can switch between <strong>Code128</strong>
-                        and <strong>EAN</strong> to test different scenarios.
-                        It works best if your camera has built-in auto-focus.
-                    </p>
+
+
                     <div class="controls">
                         <fieldset class="input-group">
                             <button class="stop">Stop</button>
@@ -122,10 +125,10 @@
                             </label>
                         </fieldset>
                     </div>
-                    <div id="result_strip">
-                        <ul class="thumbnails"></ul>
-                        <ul class="collector"></ul>
-                    </div>
+                   <!-- <div id="result_strip">
+                        &lt;!&ndash;<ul class="thumbnails"></ul>
+                        <ul class="collector"></ul>&ndash;&gt;
+                    </div>-->
                     <div id="interactive" class="viewport"></div>
                 </section>
 
@@ -135,21 +138,25 @@
                     <div class="toolbar">
                         <div class="toolbar-inner">
                             <div class="left"></div>
+
                             <div class="right"><a class="link sheet-close" href="#" id="closePopover"><i class="material-icons">
                                 clear
                             </i></a></div>
+
                         </div>
                     </div>
-                    <div class="sheet-modal-inner">
-                        <h4 id="popoverMedicationName"></h4>
+                    <div class="sheet-modal-inner"  >
+                       <a class="link icon-only sheet-close" href="/med_spec/">
+                        <h4 id="popoverMedicationName" ></h4>
                         <!-- here actual medication name will be added dynamically -->
-                        <img src="./images/cipro.png" alt="Medicament">
+                        <img src="./images/cipro.png" alt="Medicament" >
                         <!-- here actual medication img will be added dynamically -->
                         <!-- little arrow on bottom: link to next page-->
                         <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/"> <i
-                                class="material-icons">
+                                class="material-icons md-48">
                             navigate_next
                         </i>
+                        </a>
                         </a>
                     </div>
                 </div>
@@ -160,7 +167,14 @@
 
 <!-- ADD CODE HERE -->
 <script>
+
     return {
+        methods: {
+            defaultscan: function() {
+                console.log("test");
+                $$('#sheetOpenLink').trigger('click');
+            }
+        },
         data: function () {
             return {
                 // Array with medication names. Relevant in manual search.
@@ -445,7 +459,7 @@
                             result.boxes.filter(function (box) {
                                 return box !== result.box;
                             }).forEach(function (box) {
-                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "#005FAC", lineWidth: 2});
                             });
                         }
 
@@ -461,8 +475,11 @@
 
                 Quagga.onDetected(function(result) {
                     var code = result.codeResult.code;
+                    console.log('scanned');
+                    $$('#sheetOpenLink').trigger('click');
 
-                    if (App.lastResult !== code) {
+
+/*                    if (App.lastResult !== code) {
                         App.lastResult = code;
                         var $node = null, canvas = Quagga.canvas.dom.image;
 
@@ -470,7 +487,7 @@
                         $node.find("img").attr("src", canvas.toDataURL());
                         $node.find("h4.code").html(code);
                         $("#result_strip ul.thumbnails").prepend($node);
-                    }
+                    }*/
                 });
 
 
@@ -548,5 +565,6 @@
             },
         }
     }
+
 
 </script>
