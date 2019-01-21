@@ -324,8 +324,9 @@ function delayMedicineIntakeTime(hour) {
     //$$('#noti-text').show();
     //$$('#noti-subtitle').show();
 
-    //let timer = hour * 3600000;
-    let timer = hour * 2000;
+    let timer = hour * 3600000;
+    //let timer = hour * 2000;
+    console.log(timer);
     let delayTimeout = setTimeout(delayTime, timer);
 
 
@@ -375,7 +376,7 @@ function delayMedicineIntakeLocation(location) {
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
 
-        //As soon as user clicks on a location the confirmation-link becomes blue
+        //As soon as user clicks on a location the confirmation-link becomes blues
         $$('.pac-container').on('touchstart', function(){
             document.getElementById("confirm-btn").classList.remove("inactive-btn");
 

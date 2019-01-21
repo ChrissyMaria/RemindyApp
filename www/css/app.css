@@ -273,9 +273,18 @@ a.item-content.item-link {
     z-index: 5;
 }
 
-#myScan{
-    padding: 0% 9%;
-    color: grey
+#myScan {
+
+    background-color: #005FAC;
+    color: white;
+    height:20px;
+    width: 100%;
+    padding: 20px;
+    margin: -20px;
+    font-size: large;
+    text-align: center;
+
+
 }
 
 /* ---------------------- Popover ----------------------- */
@@ -943,7 +952,7 @@ html, body {
 
 
 #container {
-    width: 603px;
+    width: 600px;
     margin: 20px auto;
     padding: 10px;
 }
@@ -953,15 +962,16 @@ html, body {
 
 
 #interactive.viewport {
-    width: 603px;
-    height: 480px;
+    width: 580px;
+    height: 500px;
+    left: 0px;
 }
 
 
 #interactive.viewport canvas, video {
-    float: left;
-    width: 603px;
-    height: 480px;
+    height: 495px;
+    float: none;
+    margin-left: -10px;
 }
 
 #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
@@ -1090,17 +1100,22 @@ i.icon-24-scan {
         max-width: calc(50% - 2px);
     }
 
+
+
     #interactive.viewport {
-        width: 300px;
-        height: 300px;
-        overflow: hidden;
+        margin-top: 0px;
+        float: none;
+        width: 590px;
+        height: 800px;
+        display: block;
+        margin-left: 0px;
+        margin-right: 0px;
+        right: 0px;
+        left: 0px;
+        float: left;
+        position: relative;;
+
     }
-
-
-    #interactive.viewport canvas, video {
-        margin-top: -100px;
-        width: 300px;
-        height: 400px;
     }
 
     #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
@@ -1128,8 +1143,8 @@ i.icon-24-scan {
         width: 130px;
         height: 180px;
     }
-}
-@media (max-width: 603px) {
+
+@media {
 
     .overlay.scanner {
         width: 480px;
