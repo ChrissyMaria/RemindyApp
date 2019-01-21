@@ -316,15 +316,14 @@ a.item-content.item-link {
 #popoverMedicationName {
     background-color: transparent;
     font-size: 16px;
-    padding: 16px;
+    padding: 12% 12% 12% 30%;
     width: 60%;
     right: 16px;
     font-weight: normal;
-
     text-align: center;
 }
 
-/* little arrow on bottom: link to next page */
+/* little arrow on bottom: link to next page*/
 #linkToSpecification {
     position: fixed;
     bottom: 32%;
@@ -334,6 +333,7 @@ a.item-content.item-link {
 
 #popover_icon{
     line-height: 0.5;
+
 }
 
 
