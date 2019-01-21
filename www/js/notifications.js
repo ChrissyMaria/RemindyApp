@@ -488,12 +488,14 @@ function off() {
                     console.log(diffTime + "swiped left");
                     noti.style.animationName = "left";
 
-                 //toast appears after 1/2 second
-                 if(document.getElementById('sub').innerHTML == "Take your Ibuprofen now!") {
-                     setTimeout(() => {
-                         toastCenter.open();
-                     }, 500);
-                     delayMedicineIntakeTime(1);
+                 //toast appears after 1/2 second and only if the intake reminder is open
+                 if (document.getElementById('sub') != null) {
+                     if(document.getElementById('sub').innerHTML == "Take your Ibuprofen now!") {
+                         setTimeout(() => {
+                             toastCenter.open();
+                         }, 500);
+                         delayMedicineIntakeTime(1);
+                     }
                  }
 
                  setTimeout(() => {
