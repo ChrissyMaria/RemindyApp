@@ -26,18 +26,19 @@ body {
     background-color: var(--primary-color);
     padding-top: 2.5%;
 }
+/* Image: Logo */
+#logo_login{
+    margin-left: 37.5%;
+    margin-top: 25%;
+    width: 25%;
+}
+
 /* Title: Remindy */
 #login_page .login-screen-title{
     font-size: 44px;
     color: var(--secondary-color);
-    font-weight: 700;
-}
-/* App Description*/
-.page-content.login-screen-content p {
-    font-size: 24px;
-    text-align: center;
-    color: white;
-    margin: 12.5% 0;
+    font-weight: 100;
+    margin: 0px;
 }
 /* to prevent that other paragraphs have the same setting */
 .page-content.login-screen-content form p{
@@ -46,13 +47,26 @@ body {
     margin: initial;
 }
 /* Input */
+#login_page .item-content {
+    background-color: #004075;
+    width: 95% !important;
+    padding: 0% 2%;
+    margin-left: 2.5%;
+    margin-top: 8px !important;
+    border-radius: 10px;
+}
+#login_page i {
+    margin: 0 16px;
+    color: white;
+}
+
+#login_page .item-input-wrap{
+    width: 80%;
+}
 /* Text in Login*/
 #login_page .item-title.item-label, #login_page input::placeholder, #login_page input, #login_page .block-footer{
     color: white;
     font-weight: 500;
-}
-#login_page .item-label{
-    font-size: 16px;
 }
 #login_page input::placeholder{
     font-size: 14px;
@@ -114,11 +128,11 @@ a#signWithout{
 
 @keyframes keyframes1 {
     0% {
-        transform: rotate(-4deg);
+        transform: rotate(-8deg);
         animation-timing-function: ease-in;
     }
     50% {
-        transform: rotate(4deg);
+        transform: rotate(8deg);
         animation-timing-function: ease-out;
     }
 }
@@ -211,6 +225,33 @@ a.item-content.item-link {
 }
 
 /* ####################################################################################### */
+/* ----------------------------------------- Profile -------------------------------------- */
+/* ####################################################################################### */
+
+#ProfileHeader{
+    background-color: var(--primary-color);
+    position: fixed;
+    height: 25%;
+}
+#userProfile{
+    width: 45%;
+    margin-left: 27.5%;
+}
+#ProfileHeader h4{
+    background-color: white;
+    text-align: center;
+    font-weight: 400;
+    margin: 0px;
+    font-size: 25px;
+}
+#my-form{
+    margin: 15% 0;
+    position: absolute;
+    top: 35%;
+}
+
+
+/* ####################################################################################### */
 /* ----------------------------------- Medication_enter ---------------------------------- */
 /* ####################################################################################### */
 
@@ -244,6 +285,7 @@ a.item-content.item-link {
 
 .sheet-modal-inner {
     margin: 5px 0;
+    line-height: 80px;
 }
 
 /* image in popover */
@@ -261,13 +303,14 @@ a.item-content.item-link {
     width: 60%;
     right: 16px;
     font-weight: normal;
-    text-align: right;
+
+    text-align: center;
 }
 
 /* little arrow on bottom: link to next page */
 #linkToSpecification {
     position: fixed;
-    bottom: 16px;
+    bottom: 32%;
     right: 16px;
 }
 
@@ -291,14 +334,14 @@ a.item-content.item-link {
 
 /* image container */
 #image-container {
-    width: 60%;
+    width: 50%;
     height: auto;
     float: left;
 }
 
 /* image within this container */
 .medi_image {
-    width: 70%;
+    width: 100%;
     height: auto;
 }
 
@@ -307,13 +350,16 @@ a.item-content.item-link {
     height: 100%;
     margin: auto;
     box-sizing: border-box;
-    width: 40%;
+    width: 50%;
     float: right;
+    padding: 40px 0px 40px 0px;
 }
 
 /* name within this container */
 #med_name h2 {
     margin: 16px 8px 0px 0px;
+    display: inline;
+    margin: 4px;
 }
 
 /* no idea where this belongs to */
@@ -330,7 +376,8 @@ a.item-content.item-link {
     position: relative;
 }
 
-/* Time and Amount content*/
+
+    /* Time and Amount content*/
 .tabs {
     height: 55%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
@@ -523,6 +570,10 @@ div#tab-1 {
     animation-name: none;
 }
 
+#notification a{
+    color: var(--primary-color);;
+}
+
 /* The animation code */
 @keyframes left {
     0%   {transform: translateX(0px);}
@@ -557,7 +608,7 @@ div#tab-1 {
 }
 
 #noti-appName {
-    color: #2196f3;
+    color: var(--primary-color);
     font-size: 12px;
     margin: 0px 6px;
 }
@@ -607,6 +658,7 @@ div#tab-1 {
     vertical-align: middle;
     margin: auto;
     margin-right: 5px;
+    padding: 2px;
 }
 
 .card-footer {
@@ -628,6 +680,7 @@ div#tab-1 {
 
 .noti-btn {
     margin-right:10px;
+    margin-left:20px;
 }
 
 .inactive-btn {
@@ -651,7 +704,10 @@ div#tab-1 {
 #purchaseImg {
     height: 150px;
     justify-content:flex-start;
+}
 
+#radioBtnList {
+    display: none;
 }
 
 #purchaseSpan {
@@ -660,7 +716,6 @@ div#tab-1 {
     font-weight: bold;
     margin: auto;
     margin-left: 10px;
-
 }
 
 /*---------------------------------------GOOGLE MAPS--------------------------------------*/
@@ -717,7 +772,7 @@ html, body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 98%;
 }
 
 #pac-container {
@@ -754,12 +809,12 @@ html, body {
 
 
 #pac-input:focus {
-    border-color: #4d90fe;
+    border-color: var(--primary-color);
 }
 
 #title {
     color: #fff;
-    background-color: #4d90fe;
+    background-color: var(--primary-color);
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
@@ -853,7 +908,10 @@ html, body {
 
 
 
-/*Barcode Scan Quagga-JS Css*/
+
+/*---------------------------SCANNER-------------------------*/
+/*Quagga-JS Css*/
+
 
 
 #container {
@@ -1072,5 +1130,68 @@ i.icon-24-scan {
 }
 
 
+/*--------------------------------RADIO BUTTONS---------------------------*/
+
+/* Customize the label (the container) */
+.container {
+    font-family: Roboto;
+    font-size: 15px;
+
+    display: block;
+    position: relative;
+    margin: 20px 20px 20px 40px;
+    padding-left: 35px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+}
 
 
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}

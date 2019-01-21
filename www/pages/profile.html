@@ -5,7 +5,7 @@
     <div class="page" data-name="about">
         <!-- --------------------------- Navigation Bar --------------------------------- -->
         <!-- Contains: Back button and page title ("New Medication") -->
-        <div class="navbar">
+        <div class="navbar no-shadow">
             <div class="navbar-inner sliding">
                 <div class="left">
                     <a href="#" class="link back">
@@ -21,12 +21,55 @@
         <div class="page-content">
 
 
-
-            <!-- ---------------------------- Set intake  ------------------------------ -->
-
-
-
+            <div id="ProfileHeader">
+                <!-- source: https://www.shareicon.net/user-profile-avatar-job-social-cooker-profession-professions-and-jobs-822716-->
+                <img src="./images/user.png" alt="User" id="userProfile">
+                <h4>Me</h4>
             </div>
+
+            <form class="list" id="my-form">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">E-mail</div>
+                                <div class="item-input-wrap">
+                                    <input type="email" name="email" value="me@gmx.de">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Gender</div>
+                                <div class="item-input-wrap">
+                                    <select name="gender">
+                                        <option value="female" selected>Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Paying method</div>
+                                <div class="item-input-wrap">
+                                    <select id="check_paying" name="paying">
+                                        <option value="paypal" selected>Paypal</option>
+                                        <option value="transfer">Transfer</option>
+                                    </select>
+                                    <input id="paypal_email" type="email" name="email" placeholder="Your Paypal address">
+                                    <input id="transfer_data" type="text" name="email" placeholder="Your IBAN">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
 
 
 
@@ -43,6 +86,21 @@
         on: {
             pageMounted: function () {
 
+                if($$('#check_paying').val() == "paypal") {
+                    $$('#transfer_data').hide();
+                } else {
+                    $$('#paypal_email').hide();
+                }
+
+                $$('#check_paying').change(function () {
+                    if($$(this).val() == "paypal"){
+                        $$('#transfer_data').hide();
+                        $$('#paypal_email').show();
+                    } else {
+                        $$('#paypal_email').hide();
+                        $$('#transfer_data').show();
+                    }
+                });
         }
         }
     }

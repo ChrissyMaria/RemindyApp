@@ -44,14 +44,11 @@
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main ios-edges">
             <!-- Page, data-name contains page name which can be used in callbacks -->
-            <div class="page" data-name="home">
+            <div class="page" data-name="home" style="background-color: #374d51">
 
                 <div>
-                    <a href="#" onclick="buyCallNotification()">Press here for buyCallNotification()!</a>
-                    <p></p>
-                    <a href="#" onclick="takeNotification()">Press here for takeNotification()!</a>
-                    <p></p>
-                    <a href="#" onclick="notiHeightCalculator()">Get Height of Notification!</a>
+                    <a href="#" onclick="buyCallNotification()">BUY! | </a>
+                    <a href="#" onclick="takeNotification()">TAKE!</a>
                 </div>
 
 
@@ -59,7 +56,22 @@
                 <!--google maps div starts -> at first not shown-->
                 <div id="notification">
                     <div id="noti-header"></div>
-
+                    <div id="radioBtnList" >
+                        <form action="/action_page.php">
+                            <label class="container">1/2 hour
+                                <input type="radio" name="delayHour" value="0,5" checked="true"><br>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">2 hours
+                                <input type="radio" name="delayHour" value="2"><br>
+                                <span class="checkmark"></span>
+                            </label>
+                            <label class="container">6 hours
+                                <input type="radio" name="delayHour" value="6"><br>
+                                <span class="checkmark"></span>
+                            </label>
+                        </form>
+                    </div>
 
                     <div id="googleMaps">
                         <!--Container for the autocomplete search-->
@@ -150,33 +162,53 @@
 
                 </div>
 
-                <!--POPUP TRIGGER-->
-                <a href="#" onclick="showNotificationCallbackOnClose()"><img src="images/background_notify.png" style="width:411px;" /></a>
-                <!--END POPUP TRIGGER -->
+                <img src="images/background_notify.png" style="width:411px;" />
 
             </div>
         </div>
 
+         <div id="timeList">
+             <li>
+                 <a class="item-link smart-select smart-select-init">
+                     <select name="fruits">
+                         <option value="thirtyminutes" selected>1/2 hour</option>
+                         <option value="twohours">2 hours</option>
+                         <option value="sixhours">6 hours</option>
+                     </select>
+                     <div class="item-content">
+                         <div class="item-inner">
+                             <div class="item-title">Fruit</div>
+                         </div>
+                     </div>
+                 </a>
+             </li>
+         </div>
+
     </div>
     <!-- Cordova -->
-    <!-- POPUP JAVASCRIPT CODE -->
-    <!--Copied to notificationsOld.js-->
-    <!-- END POPUP JAVASCRIPT CODE -->
+
     <!-- Framework7 library -->
     <script src="framework7/js/framework7.min.js"></script>
 
     <!--JQuery Script-->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-    <!-- App routes -->
-  <!--  <script src="js/routes.js"></script>-->
 
-     <!--Google Maps api-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
+     <!-- Your custom app scripts -->
+     <script src="js/meds.js"></script>
+     <script src="js/routes.js"></script>
+     <script src="js/app.js"></script>
+     <!-- Barcode -->
+     <script src="barcode/jquery-1.9.0.min.js" type="text/javascript"></script>
+     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+     <script src="barcode/quagga.js" type="text/javascript"></script>
+
+     <!-- Your custom app scripts -->
+     <script src="js/notis.js"></script>
+     <script src="js/notifications.js"></script>
+     <script src="js/geolocation.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
              async defer></script>
-
-
-
 
 
 </body>

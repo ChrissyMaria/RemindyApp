@@ -8,6 +8,8 @@ function notiHeightCalculator() {
     const newHeight = (732 - notiHeight) / 2;
     console.log(newHeight);
     notification.style.top = newHeight + 'px';
+
+
 }
 
 //Sets time of notification +1 after every 60 seconds - just an idea
@@ -150,7 +152,7 @@ function buyMedNotiScreen() {
         var buySpan = $$('<span id="purchaseSpan"/>');
         $$('#purchaseField').append(buySpan);
             var buyName = $$('<p/>');
-            buyName.text(ciprofloxacin.name);
+            buyName.text(ibu.name);
             $$('#purchaseSpan').append(buyName);
             var buyPrice = $$('<p><strong></strong></p>');
             buyPrice.text("€10,50");
@@ -160,15 +162,15 @@ function buyMedNotiScreen() {
             $$('#purchaseSpan').append(buyLink);
 
     //Buttons
-    var button = $$('<span class="noti-btn-middle">');
-    var button2 = $$('<span class="noti-btn">');
+    var button = $$('<span class="noti-btn">');
+    var button2 = $$('<span class="noti-btn-middle">');
     var link = $$('<a onclick="confirmOrder()"><i class="material-icons">add_shopping_cart</i>CONFIRM ORDER</a>');
     var link2 = $$('<a onclick="cancelPurchase()">CANCEL</a>');
     button.append(link);
     button2.append(link2);
     //downText.text(notificationBuyCall.downText);
-    $$('#noti-default-btn').append(button);
     $$('#noti-default-btn').append(button2);
+    $$('#noti-default-btn').append(button);
     document.getElementById("noti-default-btn").style.display = "flex";
 
     notiTime();
@@ -209,13 +211,14 @@ function takeNotification() {
     $$('#noti-text').append(text);
 
     const downText = $$('<p id="downText"></p>');
-    const btnLink1 = $$('<a class="col button button-outline color-black" onclick="delayMedicineIntakeTime(1)">' +
-        '<i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a>');
-    const btnLink2 = $$('<a class="col button button-outline color-black" ' +
-        'onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)">' +
-        '<i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
-    downText.append(btnLink1);
-    downText.append(btnLink2);
+    const btnTime = $$('<span></span>');
+    const btnLoc = $$('<span></span>');
+    const linkTime = $$('<a onclick="showRadioButtons();"><i class="material-icons">access_time</i>SET ANOTHER DEFAULT TIME</a><p> </p>');
+    const linkLoc = $$('<a onclick="delayMedicineIntakeLocation(&quot;openmaps&quot;)"><i class="material-icons">location_on</i>SET ANOTHER DEFAULT LOCATION</a>');
+    btnTime.append(linkTime);
+    btnLoc.append(linkLoc);
+    downText.append(btnTime);
+    downText.append(btnLoc);
     $$('#noti-text').append(downText);
 
     //Buttons
@@ -249,26 +252,113 @@ function disappearingButtons() {     //let the buttons disappear
 function takenMedicationNotification() {
     console.log("TAKE IT IN!");
 
-    $$('#sub').html('You have taken your ' + ciprofloxacin.name + '!');
+    $$('#sub').html('You have taken your ' + ibu.name + '!');
     $$('#txt').html('Future-You says "Thank you!"');
+    $$('#downText').hide();
     disappearingButtons();
 
 
     //TODO SET COUNT -1 OF PILLS
-    //ciprofloxacin.pills_left - 1; or something like this
+    //ibu.pills_left - 1; or something like this
 
+}
+
+function showRadioButtons() {
+    clearNotification();
+    createNotification();
+
+    //$$('#noti-text').hide();
+    $$('#noti-default-btn').remove();
+    $$('#radioBtnList').show();
+    const notiBtn = $$('<div id="noti-default-btn" class="card-footer"/>');
+    $$('#notification').append(notiBtn);
+
+    //Buttons
+    var button = $$('<span class="noti-btn">');
+    var button2 = $$('<span class="noti-btn-middle">');
+    var link = $$('<a onclick="delayMedicineIntakeTime(radiobuttons())">DELAY INTAKE</a>');
+    var link2 = $$('<a onclick="cancelDelay()">CANCEL</a>');
+    button.append(link);
+    button2.append(link2);
+    //downText.text(notificationBuyCall.downText);
+    $$('#noti-default-btn').append(button2);
+    $$('#noti-default-btn').append(button);
+    document.getElementById("noti-default-btn").style.display = "flex";
 }
 
 function delayMedicineIntakeTime(hour) {
     console.log("NOT NOW!");
 
-    if (hour == 1){
-        console.log("Delay for 1 hour!")
+    clearNotification();
+    createNotification();
+/*    const notiSubtitle = $$('<div id="noti-subtitle"/>');
+    $$('#notification').append(notiSubtitle);
 
-        $$('#sub').html('You have delayed your intake by ' + hour + ' hour!');
-        $$('#txt').html('New reminder set.');
-        disappearingButtons();
+    const notiText = $$('<div id="noti-text"/>');
+    $$('#notification').append(notiText);*/
+
+    const subtitle = $$('<p id="sub"></p>');
+    subtitle.text(notificationTake.subtitle);
+    $$('#noti-subtitle').append(subtitle);
+
+    const text = $$('<p id="txt"></p>');
+    text.text(notificationTake.text);
+    $$('#noti-text').append(text);
+
+    $$('#sub').html('New reminder set.');
+    switch(hour) {
+        case "0,5":
+            $$('#txt').html('You have delayed your intake by half an hour!');
+            break;
+        case 1:
+            $$('#txt').html('You have delayed your intake by ' + hour + ' hour!');
+            break;
+        case "2":
+        case "6":
+            $$('#txt').html('You have delayed your intake by ' + hour + ' hours!');
+            break;
+        default:
+            $$('#txt').html('You have delayed your intake!');
     }
+
+
+    $$('#noti-default-btn').remove();
+    $$('#noti-less').remove();
+    $$('#noti-expand').remove();
+    $$('#radioBtnList').hide();
+    //$$('#noti-text').show();
+    //$$('#noti-subtitle').show();
+
+    //timer = hour * 3600000;
+    timer = hour * 2000;
+    var delayTimeout = setTimeout(delayTime, timer);
+
+
+    console.log(hour);
+    console.log(timer);
+    disappearingButtons();
+
+    function delayTime() {
+        clearNotification();
+
+        window.clearTimeout(delayTimeout);
+        takeNotification();
+        console.log('Time delay set');
+    }
+}
+
+function radiobuttons() {
+    var delayOptions = document.forms[0];
+    var hourRadioBtn = 0;
+    var i;
+    for (i = 0; i < delayOptions.length; i++) {
+        if (delayOptions[i].checked) {
+            hourRadioBtn = delayOptions[i].value;
+        }
+    }
+
+    return hourRadioBtn;
+    //document.getElementById("order").value = "You delayed your noti by" + txt;
 }
 
 function delayMedicineIntakeLocation(location) {
@@ -281,7 +371,7 @@ function delayMedicineIntakeLocation(location) {
     } else if (location == "openmaps") {
         console.log("Insert Google Maps");
         $$('#downText').remove();
-        $$('#noti-subtitle').remove();
+        $$('#noti-subtitle').hide();
         $$('#noti-default-btn').hide();
         $$('#txt').hide();
         //$$('#noti-text').empty();
@@ -316,7 +406,7 @@ function delayMedicineIntakeLocation(location) {
     }
 }
 
-function cancelLocationReminder() {
+function cancelDelay() {
     /*$$('#noti-header').empty();
     $$('#noti-subtitle').remove();
     $$('#noti-text').remove();
@@ -328,6 +418,7 @@ function cancelLocationReminder() {
     takeNotification();
     $$('#downText').show();
     $$('#noti-expand').hide();
+    $$('#radioBtnList').hide();
     $$('#noti-less').show();
     document.getElementById("noti-default-btn").style.display = "flex";
 
@@ -362,7 +453,7 @@ function off() {
     document.getElementById("notification").addEventListener("touchmove", moveTouch, false);
 
      // Swipe Up / Down / Left / Right
-     var initialX = null;
+    var initialX = null;
     var initialY = null;
     var d = null;
     var initialTime = null;
@@ -438,6 +529,7 @@ function off() {
              } else {
                  // swiped down
                  console.log("swiped down");
+                 console.log(diffY + " , " + diffTime);
 
                  // --------------------------- Swiping down actions ------------------------------
 
@@ -447,11 +539,12 @@ function off() {
                  notiHeightCalculator()
                  // --------------------------- Slow swiping ------------------------------
                  // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
-                 if (diffY <= 90 && diffTime > 300) {
-                     console.log("DOOOOWN we go!")
+                 if (diffY <= -10 && diffTime > 350) {
+                     console.log("DOOOOWN we go!");
+                     console.log(diffY + " , " + diffTime);
 
                      document.getElementById("downText").style.display = "block";
-                     notiHeightCalculator()
+                     notiHeightCalculator();
 
                  }
              }

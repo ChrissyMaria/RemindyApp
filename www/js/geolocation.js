@@ -18,8 +18,9 @@ function getLocation(x = [], y= [], nameoflocation = '') {
         console.log("Longitude is " + setlong);
 
         // confirmation page when location reminder is set
-        $$('#sub').html('Take your medication when you arrive at <br> <strong>'+ nameoflocation + '</strong> !');
-        $$('#txt').html('New reminder set.');
+        $$('#sub').html('<strong> New reminder set!</strong><p> </p>');
+        $$('#txt').html('Take your medication when you arrive at <br> <strong>'+ nameoflocation + '</strong> .');
+
 
         var mapHolder = $$('<div id="mapholder"/>');
         $$('#noti-text').append(mapHolder);
@@ -28,7 +29,7 @@ function getLocation(x = [], y= [], nameoflocation = '') {
         var latlon = setlat + "," + setlong;
 
         // including static map
-        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x150&&markers=color:red%7C"+setlat+","+setlong+"&sensor=false&key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU";
+        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x200&&markers=color:red%7C"+setlat+","+setlong+"&sensor=false&key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU";
 
         document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
         disappearingButtons();
@@ -188,15 +189,14 @@ function initMap() {
 
     const mapBtn = $$('<div id="noti-map-btn" class="card-footer"/>');
     $$('#googleMaps').append(mapBtn);
-    var buttonSetLoc = $$('<span class="noti-btn-middle"/>');
+    var buttonSetLoc = $$('<span class="noti-btn"/>');
     const linkSetLoc = $$('<a onclick=" " id="confirm-btn" class="inactive-btn">CONFIRM NEW LOCATION REMINDER</a>');
     buttonSetLoc.append(linkSetLoc);
-    const btnCancel = $$('<span class="noti-btn">');
-    const linkCancel = $$('<a onclick="cancelLocationReminder()">CANCEL</a>');
+    const btnCancel = $$('<span class="noti-btn-middle">');
+    const linkCancel = $$('<a onclick="cancelDelay()">CANCEL</a>');
     btnCancel.append(linkCancel);
-    buttonSetLoc.appendTo('#noti-map-btn');
     btnCancel.appendTo('#noti-map-btn');
-
+    buttonSetLoc.appendTo('#noti-map-btn');
     /*-----------------------SHOW PLACE----------------------*/
 
     //this function is core function of search process and is called by autocompleted field and when favourite card is clicked
@@ -273,6 +273,8 @@ function initMap() {
                 getLocation(x = this.lat, y = this.long, nameoflocation = this.name);
                 console.log('Location Reminder set');
                 $$('#googleMaps').hide();
+                $$('#noti-subtitle').show();
+                $$('#sub').show();
                 $$('#txt').show();
                 notiHeightCalculator();
             })
