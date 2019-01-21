@@ -30,8 +30,11 @@
                     <h2>
                         <!-- title will be added dynamically in code below-->
                     </h2>
-                    <a href="(.*)" class="item-content item-link">
-                        more information
+
+                    <a href="#" class="item-content item-link open-alert">
+                        <i class="material-icons">
+                            info
+                        </i>
                     </a>
                 </div>
             </div>
@@ -142,16 +145,14 @@
                     <!-- -------------------- WEEKLY --------------------- -->
                     <div id="tab-2" class="page-content tab">
                         <div class="block">
-                            <p>weekly</p>
-                            ...
+                            <p>weekly intake option has not been implemented yet. It will work analogously to the daily intake option.</p>
                         </div>
                     </div>
 
                     <!-- -------------------- MONTHLY --------------------- -->
                     <div id="tab-3" class="page-content tab">
                         <div class="block">
-                            <p>monthly</p>
-                            ...
+                            <p>monthly intake option has not been implemented yet. It will work analogously to the daily intake option</p>
                         </div>
                     </div>
                 </div>
@@ -266,7 +267,10 @@
             )
 
 
-            //for adding a new intake
+            /* ****************************************************************************************************** */
+            /* **************************dynamically adding new intake*********************************************** */
+            /* ****************************************************************************************************** */
+
             var intakeCounter = 1;
             $$('.add_intake').click(function () {
                 // erstelle flex grid dynamisch (HTML).
@@ -426,6 +430,7 @@
 
                 });
 
+                /* make all colums clickable to expand picker*/
                 $$('.col2').click(function(event)
                     {
                         console.log($$(this).attr('id'));
@@ -463,18 +468,6 @@
 
 
 
-
-
-
-            /*$$('#openDate'+ intakeCounter).click(function()
-                {
-                    console.log('open picker');
-                    allIntakes[intakeCounter].open();
-
-                }
-            )*/
-
-
             //List items are deletable
             $$('.col0').click(function (event) {
                 var target = event.target;
@@ -488,7 +481,6 @@
 
 
             //Medication information
-            //TO BE DONE HERE: currently it always adds ciprofloxacin. If we have time we could arrange that it adds the medication that was entered
             //image
             var img = $$('<img class="medi_image" alt="Medicament"/>');
             var my_src = ciprofloxacin.img; //from database meds.js
@@ -497,14 +489,12 @@
             //title
             $$('#med_name h2').text(ciprofloxacin.name); //from database meds.js
 
-            // Click on add intake
-            // TO BE DONE HERE: Replace this content so that we can actually add a medication
+            //more information
             $$('.open-alert').on('click', function () {
-                app.dialog.alert('Currently not working.', 'Remindy');
+                app.dialog.alert("Sorry, this function is not working yet. But we'll work on it :)", "Remindy");
             });
 
             //Amount: schreibe Eingabe "Pillen pro Tag" in entsprechendes Objekt unter per_day
-            //Problem aktuell noch: wir koennen nur Ciprofloxacin hinzufuegen, denn wir haben nur hierfuer einen Eintrag in meds.js. Was machen wir mit anderen Medikamenten? An sich sollte es dynamisch gehen, in diesem Fall muss man aber alle Information zu einem Medikament (siehe meds.js) irgendwie aus dem Internet ziehen
             var pickerDevice = app.picker.create({
                 inputEl: '#demo-picker-device',
                 cols: [
@@ -516,11 +506,7 @@
             });
 
 
-            // TO DO HERE:Change intake ampunt and time
-            //Wichtig dabei: über Ciprofloxacin.intakte.push
-            // Das Datum Dabei immer: new Date(2019, 1, 9, XX, YY, 0, 0) - XX und YY mit Stunden und Minuten fuellen
-
-
+            // Change intake ampunt and time
             $$('#add_button').click(function () {
 
                 ciprofloxacin.intake = [];
@@ -534,9 +520,15 @@
                     }
                     var datum = new Date(2019, 1, 9, zeit[0], zeit[1], 0, 0);
 
-                    if (intakeAmounts[i] != undefined) {
+                    /*if (intakeAmounts[i] != undefined) {
                         menge = intakeAmounts[i].getValue();
                     } else {
+                        menge = 1;
+                    }*/
+
+                    menge = intakeAmounts[i].getValue();
+                    if (menge == undefined)
+                    {
                         menge = 1;
                     }
 

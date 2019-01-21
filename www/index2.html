@@ -44,14 +44,11 @@
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main ios-edges">
             <!-- Page, data-name contains page name which can be used in callbacks -->
-            <div class="page" data-name="home">
+            <div class="page" data-name="home" style="background-color: #374d51">
 
                 <div>
-                    <a href="#" onclick="buyCallNotification()">Press here for buyCallNotification()!</a>
-                    <p></p>
-                    <a href="#" onclick="takeNotification()">Press here for takeNotification()!</a>
-                    <p></p>
-                    <a href="#" onclick="notiHeightCalculator()">Get Height of Notification!</a>
+                    <a href="#" onclick="buyCallNotification()">BUY! | </a>
+                    <a href="#" onclick="takeNotification()">TAKE!</a>
                 </div>
 
 
@@ -189,21 +186,12 @@
 
     </div>
     <!-- Cordova -->
-    <!-- POPUP JAVASCRIPT CODE -->
-    <!--Copied to notificationsOld.js-->
-    <!-- END POPUP JAVASCRIPT CODE -->
+
     <!-- Framework7 library -->
     <script src="framework7/js/framework7.min.js"></script>
 
     <!--JQuery Script-->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
-    <!-- App routes -->
-  <!--  <script src="js/routes.js"></script>-->
-
-     <!--Google Maps api-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
-             async defer></script>
 
 
      <!-- Your custom app scripts -->
@@ -219,7 +207,8 @@
      <script src="js/notis.js"></script>
      <script src="js/notifications.js"></script>
      <script src="js/geolocation.js"></script>
-
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmnJZGP15lghfFG0JqHeH5EIQDjdSTncU&libraries=places,geometry&callback=initMap"
+             async defer></script>
 
 
 </body>

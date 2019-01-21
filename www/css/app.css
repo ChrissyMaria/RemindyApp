@@ -26,18 +26,19 @@ body {
     background-color: var(--primary-color);
     padding-top: 2.5%;
 }
+/* Image: Logo */
+#logo_login{
+    margin-left: 37.5%;
+    margin-top: 25%;
+    width: 25%;
+}
+
 /* Title: Remindy */
 #login_page .login-screen-title{
     font-size: 44px;
     color: var(--secondary-color);
-    font-weight: 700;
-}
-/* App Description*/
-.page-content.login-screen-content p {
-    font-size: 24px;
-    text-align: center;
-    color: white;
-    margin: 12.5% 0;
+    font-weight: 100;
+    margin: 0px;
 }
 /* to prevent that other paragraphs have the same setting */
 .page-content.login-screen-content form p{
@@ -46,13 +47,26 @@ body {
     margin: initial;
 }
 /* Input */
+#login_page .item-content {
+    background-color: #004075;
+    width: 95% !important;
+    padding: 0% 2%;
+    margin-left: 2.5%;
+    margin-top: 8px !important;
+    border-radius: 10px;
+}
+#login_page i {
+    margin: 0 16px;
+    color: white;
+}
+
+#login_page .item-input-wrap{
+    width: 80%;
+}
 /* Text in Login*/
 #login_page .item-title.item-label, #login_page input::placeholder, #login_page input, #login_page .block-footer{
     color: white;
     font-weight: 500;
-}
-#login_page .item-label{
-    font-size: 16px;
 }
 #login_page input::placeholder{
     font-size: 14px;
@@ -114,11 +128,11 @@ a#signWithout{
 
 @keyframes keyframes1 {
     0% {
-        transform: rotate(-4deg);
+        transform: rotate(-8deg);
         animation-timing-function: ease-in;
     }
     50% {
-        transform: rotate(4deg);
+        transform: rotate(8deg);
         animation-timing-function: ease-out;
     }
 }
@@ -211,15 +225,29 @@ a.item-content.item-link {
 }
 
 /* ####################################################################################### */
-/* ----------------------------------------- Profil -------------------------------------- */
+/* ----------------------------------------- Profile -------------------------------------- */
 /* ####################################################################################### */
 
 #ProfileHeader{
-    background-color: var(--light-shades);
+    background-color: var(--primary-color);
+    position: fixed;
+    height: 25%;
 }
 #userProfile{
     width: 45%;
     margin-left: 27.5%;
+}
+#ProfileHeader h4{
+    background-color: white;
+    text-align: center;
+    font-weight: 400;
+    margin: 0px;
+    font-size: 25px;
+}
+#my-form{
+    margin: 15% 0;
+    position: absolute;
+    top: 35%;
 }
 
 
@@ -245,9 +273,15 @@ a.item-content.item-link {
     z-index: 5;
 }
 
+#myScan{
+    padding: 0% 9%;
+    color: grey
+}
+
 /* ---------------------- Popover ----------------------- */
 
 .sheet-modal.my-sheet.modal-in {
+    position:absolute;
     height: 30%;
 }
 
@@ -257,13 +291,25 @@ a.item-content.item-link {
 
 .sheet-modal-inner {
     margin: 5px 0;
+    line-height: 80px;
+}
+
+#popover_flexgrid{
+    height: 100%;
+    width: 100%;
+}
+
+
+#popover_col1, #popover_col2, #popover_col3{
+    width: 33%;
+    height: 100%;
 }
 
 /* image in popover */
 .sheet-modal-inner img {
-    width: 40%;
+    width: 100%;
     height: auto;
-    margin: 16px;
+    margin: 20%;
 }
 
 /* medication name in popover */
@@ -274,14 +320,20 @@ a.item-content.item-link {
     width: 60%;
     right: 16px;
     font-weight: normal;
-    text-align: right;
+
+    text-align: center;
 }
 
 /* little arrow on bottom: link to next page */
 #linkToSpecification {
     position: fixed;
-    bottom: 16px;
+    bottom: 32%;
     right: 16px;
+
+}
+
+#popover_icon{
+    line-height: 0.5;
 }
 
 
@@ -304,14 +356,14 @@ a.item-content.item-link {
 
 /* image container */
 #image-container {
-    width: 60%;
+    width: 50%;
     height: auto;
     float: left;
 }
 
 /* image within this container */
 .medi_image {
-    width: 70%;
+    width: 100%;
     height: auto;
 }
 
@@ -320,13 +372,16 @@ a.item-content.item-link {
     height: 100%;
     margin: auto;
     box-sizing: border-box;
-    width: 40%;
+    width: 50%;
     float: right;
+    padding: 40px 0px 40px 0px;
 }
 
 /* name within this container */
 #med_name h2 {
     margin: 16px 8px 0px 0px;
+    display: inline;
+    margin: 4px;
 }
 
 /* no idea where this belongs to */
@@ -343,7 +398,8 @@ a.item-content.item-link {
     position: relative;
 }
 
-/* Time and Amount content*/
+
+    /* Time and Amount content*/
 .tabs {
     height: 55%; /* so it is under FAB, may be replaced with new design */
     overflow: scroll;
@@ -541,10 +597,16 @@ div#tab-1 {
 }
 
 /* The animation code */
-@keyframes left {
+/*@keyframes left {
     0%   {transform: translateX(0px);}
     50% {transform: translateX(-30px);}
     100% {transform: translateX(0px);}
+}*/
+
+@keyframes left {
+    0%   {transform: translateX(0px);}
+    100%  {transform: translateX(-450px);display: none;}
+
 }
 
 @keyframes right {
@@ -870,6 +932,7 @@ html, body {
 }
 
 .material-icons.md-18 { font-size: 20px; }
+.material-icons.md-48 {font-size: 48px; }
 
 
 
@@ -878,26 +941,35 @@ html, body {
 /*Quagga-JS Css*/
 
 
+
 #container {
-    width: 640px;
+    width: 603px;
     margin: 20px auto;
     padding: 10px;
 }
+#notScroll{
+    overflow: hidden;
+}
+
 
 #interactive.viewport {
-    width: 640px;
+    width: 603px;
     height: 480px;
 }
 
 
 #interactive.viewport canvas, video {
     float: left;
-    width: 640px;
+    width: 603px;
     height: 480px;
 }
 
 #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
-    margin-left: -640px;
+    margin-left: -603px;
+}
+
+.controls {
+    display:none;
 }
 
 .controls fieldset {
@@ -935,60 +1007,9 @@ html, body {
 }
 
 
-#result_strip {
-    margin: 10px 0;
-    border-top: 1px solid #EEE;
-    border-bottom: 1px solid #EEE;
-    padding: 10px 0;
-}
-
-#result_strip > ul {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    width: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-}
-
-#result_strip > ul > li {
-    display: inline-block;
-    vertical-align: middle;
-    width: 160px;
-}
-
-#result_strip > ul > li .thumbnail {
-    padding: 5px;
-    margin: 4px;
-    border: 1px dashed #CCC;
-}
-
-#result_strip > ul > li .thumbnail img {
-    max-width: 140px;
-}
-
-#result_strip > ul > li .thumbnail .caption {
-    white-space: normal;
-}
-
-#result_strip > ul > li .thumbnail .caption h4 {
-    text-align: center;
-    word-wrap: break-word;
-    height: 40px;
-    margin: 0px;
-}
-
-#result_strip > ul:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
 .scanner-overlay {
     display: none;
-    width: 640px;
+    width: 603px;
     height: 510px;
     position: absolute;
     padding: 20px;
@@ -1040,14 +1061,15 @@ i.icon-24-scan {
     vertical-align: text-top;
 }
 
-@media (max-width: 603px) {
+@media  {
 
     #container {
-        width: 300px;
+        width: 603px;
+        height: 480px;
         margin: 10px auto;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
-        box-shadow: none;
+        box-shadow: none
     }
 
     #container form.voucher-form input.voucher-code {
@@ -1076,13 +1098,13 @@ i.icon-24-scan {
 
 
     #interactive.viewport canvas, video {
-        margin-top: -50px;
+        margin-top: -100px;
         width: 300px;
         height: 400px;
     }
 
     #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
-        margin-left: -300px;
+        margin-left: -100px;
     }
 
 
@@ -1110,9 +1132,9 @@ i.icon-24-scan {
 @media (max-width: 603px) {
 
     .overlay.scanner {
-        width: 640px;
-        height: 510px;
-        padding: 20px;
+        width: 480px;
+        height: 640px;
+        padding: 100px;
         margin-top: -275px;
         margin-left: -340px;
         background-color: #FFF;
