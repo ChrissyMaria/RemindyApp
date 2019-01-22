@@ -323,8 +323,8 @@ function delayMedicineIntakeTime(hour) {
     //$$('#noti-text').show();
     //$$('#noti-subtitle').show();
 
-    let timer = hour * 3600000;
-    //let timer = hour * 2000;
+    // let timer = hour * 3600000;
+    let timer = hour * 2000;
     console.log(timer);
     let delayTimeout = setTimeout(delayTime, timer);
 
