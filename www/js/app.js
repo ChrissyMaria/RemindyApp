@@ -37,6 +37,7 @@ var app = new Framework7({
           //clear content
           $$('#test').empty();
           $$('#meds_today').empty();
+          var open_link = false;
 
 
 
@@ -72,14 +73,14 @@ var app = new Framework7({
                 // ###### link: read more
                 var link_container = $$('<div class="card-footer">');
 
-                var restock = $$('<a class="external" id='+this.data.medicationList[i].link+'><i class="material-icons primaryColor open-preloader-custom">add_shopping_cart</i></a>');
+                var restock = $$('<a class="external" id='+this.data.medicationList[i].link+'><i class="material-icons primaryColor shopping">add_shopping_cart</i></a>');
                 var link = $$('<a href="#" class="link open-alert">Read more</a>');
                 link_container.append(link, restock);
 
                 //reminder for restocking
                 if(days <=7 ) {
                     $$(p_last_until).css({'color': '#005FAC', 'font-weight': 'bold'});
-                    $$(restock).addClass('wibble').css({'animation-delay':'1s', 'animation-duration': '.25s'});
+                    $$(restock).addClass('wibble').css({'animation-delay':'1s', 'animation-duration': '.5s'});
                 }
                 // ###### fill container and append to index
                 container.append(container_header, card_content, link_container);
@@ -95,20 +96,29 @@ var app = new Framework7({
             });
 
             // ######################### Buy medication #########################
-            $$('.open-preloader-custom').on('click', function () {
-                app.dialog.preloader('You will be redirected to: www.blinkhealth.com');
-                setTimeout(function () {
-                    app.dialog.close();
-                }, 3000);
-            });
+            $$('.shopping').on('click', function () {
+                app.dialog.confirm('Do you want to restock this medication?', 'Remindy', function () {
+                    app.dialog.preloader('You will be redirected to: www.blinkhealth.com');
+                    setTimeout(function () {
+                        app.dialog.close();
+                    }, 2000);
+                    open_link = true;
+                    console.log("dialog: " + open_link);
+                });
+                });
             //Open the right link with time delay of 1 second
             $$('.external').click(function(evt){
+                console.log("external1: " + open_link);
                 setTimeout(function() {
-                    var target = evt.target;
-                    var href = $$(target).parent().attr('id');
-                    console.log(href);
-                    window.open(href, "_self");
-                }, 1000);
+                    if(open_link) {
+                        var target = evt.target;
+                        var href = $$(target).parent().attr('id');
+                        console.log(href);
+                        window.open(href, "_self");
+                        open_link = false;
+                        console.log("external2: " + open_link);
+                    }
+                }, 4000);
             });
 
             // --------------------------- Today's View ------------------------------
