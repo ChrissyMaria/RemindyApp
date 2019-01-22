@@ -22,7 +22,7 @@
                     <form class="searchbar" id="searchbar-autocomplete">
                         <div class="searchbar-inner">
                             <div class="searchbar-input-wrap">
-                                <input type="search" placeholder="Search manually" id="SearchInput"/>
+                                <input type="search" placeholder="Search manually" id="SearchInput" />
                                 <i class="searchbar-icon"></i>
                                 <span class="input-clear-button"></span>
                             </div>
@@ -475,7 +475,8 @@
                             result.boxes.filter(function (box) {
                                 return box !== result.box;
                             }).forEach(function (box) {
-                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "#005FAC", lineWidth: 2});
+                                console.log('drawing');
+                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "black", lineWidth: 3});
                             });
                         }
 

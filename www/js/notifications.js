@@ -220,7 +220,6 @@ function takeNotification() {
     $$('#noti-text').append(downText);
 
     //Buttons
-    //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
     const button = $$('<span class="noti-btn-middle">');
     const button2 = $$('<span class="noti-btn">');
     const button3 = $$('<span class="noti-btn">');
@@ -251,7 +250,10 @@ function takenMedicationNotification() {
     console.log("TAKE IT IN!");
 
     $$('#sub').html('You have taken your ' + ibu.name + '!');
-    $$('#txt').html('Future-You says "Thank you!"');
+    // adds a random message to the notification
+    var myArray = ['There you go!', 'Good Job!', 'Better health than wealth!', 'Future-You says "Thank you!"', 'Be proud!', 'It is health that is real wealth', 'Who is awesome? You are!'];
+    var rand = myArray[Math.floor(Math.random() * myArray.length)];
+    $$('#txt').html(rand);
     $$('#downText').hide();
     disappearingButtons();
 
@@ -321,8 +323,9 @@ function delayMedicineIntakeTime(hour) {
     //$$('#noti-text').show();
     //$$('#noti-subtitle').show();
 
-    //let timer = hour * 3600000;
+    // let timer = hour * 3600000;
     let timer = hour * 2000;
+    console.log(timer);
     let delayTimeout = setTimeout(delayTime, timer);
 
 
@@ -372,7 +375,7 @@ function delayMedicineIntakeLocation(location) {
         //$$('body').on('touchstart','.pac-container',function(e){e.stopImmediatePropagation();})
         $$('.pac-container').on('touchstart', function(e){e.stopPropagation();})
 
-        //As soon as user clicks on a location the confirmation-link becomes blue
+        //As soon as user clicks on a location the confirmation-link becomes blues
         $$('.pac-container').on('touchstart', function(){
             document.getElementById("confirm-btn").classList.remove("inactive-btn");
 
@@ -563,7 +566,8 @@ function off() {
                  notiHeightCalculator()
                  // --------------------------- Slow swiping ------------------------------
                  // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
-                 if (diffY <= -10 && diffTime > 350) {
+                 if (diffY <= 90 && diffTime > 300) {
+                 //if (diffY <= -10 && diffTime > 350) {
                      console.log("DOOOOWN we go!");
                      console.log(diffY + " , " + diffTime);
 
