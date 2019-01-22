@@ -220,7 +220,6 @@ function takeNotification() {
     $$('#noti-text').append(downText);
 
     //Buttons
-    //TODO I'd like to save buttons in arrays but I'm not sure if it makes sense
     const button = $$('<span class="noti-btn-middle">');
     const button2 = $$('<span class="noti-btn">');
     const button3 = $$('<span class="noti-btn">');
@@ -563,7 +562,8 @@ function off() {
                  notiHeightCalculator()
                  // --------------------------- Slow swiping ------------------------------
                  // idea: this should represent a slow down scrolling --> if a certain time is exceeded (300ms) && the position (-50) is reached
-                 if (diffY <= -10 && diffTime > 350) {
+                 if (diffY <= 90 && diffTime > 300) {
+                 //if (diffY <= -10 && diffTime > 350) {
                      console.log("DOOOOWN we go!");
                      console.log(diffY + " , " + diffTime);
 
