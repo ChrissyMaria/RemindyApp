@@ -273,11 +273,7 @@ a.item-content.item-link {
     z-index: 5;
 }
 
-<<<<<<< HEAD
-#myScan{
-    padding: 0% 13%;
-    color: grey
-=======
+
 #myScan {
 
     background-color: #005FAC;
@@ -290,7 +286,6 @@ a.item-content.item-link {
     text-align: center;
 
 
->>>>>>> Carmen_13
 }
 
 /* ---------------------- Popover ----------------------- */
