@@ -89,7 +89,7 @@ var app = new Framework7({
             //######################### Delete Function #########################
             $$('.greyColor').click(function (event) {
                 var target = event.target;
-                app.dialog.confirm('Are you sure you want to delete this medication', 'Remindy', () => {
+                app.dialog.confirm('Are you sure you want to delete this medication?', 'Remindy', () => {
                     $$(target).parent().parent().remove();
                 });
             });
