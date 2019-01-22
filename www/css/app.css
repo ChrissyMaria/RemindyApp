@@ -974,6 +974,13 @@ html, body {
     margin-left: -10px;
 }
 
+.drawingBuffer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 40000000;
+}
+
 #interactive.viewport canvas.drawingBuffer, video.drawingBuffer {
     margin-left: -603px;
 }
@@ -1170,6 +1177,8 @@ i.icon-24-scan {
         height: 16px;
         width: 16px;
     }
+
+
 }
 
 
