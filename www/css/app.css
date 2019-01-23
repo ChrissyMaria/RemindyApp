@@ -1083,7 +1083,7 @@ i.icon-24-scan {
 @media  {
 
     #container {
-        width: 100%;
+        width: 800px;
         height: 480px;
         margin: 10px auto;
         margin-left: -10px;
