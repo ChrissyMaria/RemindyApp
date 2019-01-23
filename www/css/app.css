@@ -1091,6 +1091,7 @@ i.icon-24-scan {
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none*/
+        position: relative;
         width: 650px;
         height: 500px;
         margin: 10px auto;
