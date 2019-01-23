@@ -1083,15 +1083,15 @@ i.icon-24-scan {
 @media  {
 
     #container {
-   /*     width: 800px;
+        width: 624px;
         height: 480px;
         margin: 10px auto;
         margin-left: -10px;
         margin-right: -10px;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
-        box-shadow: none*/
-        width: 100%;
+        box-shadow: none
+/*        width: 100%;
         margin: 10px auto;
         margin-left: -10px;
         margin-right: -10px;
@@ -1100,7 +1100,7 @@ i.icon-24-scan {
         box-shadow: none;
         display: flex;
         align-content: center;
-        justify-content: center;
+        justify-content: center;*/
 
     }
 
