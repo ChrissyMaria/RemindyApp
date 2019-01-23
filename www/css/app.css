@@ -1083,14 +1083,25 @@ i.icon-24-scan {
 @media  {
 
     #container {
-        width: 800px;
+   /*     width: 800px;
         height: 480px;
         margin: 10px auto;
         margin-left: -10px;
         margin-right: -10px;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
-        box-shadow: none
+        box-shadow: none*/
+
+        margin: 10px auto;
+        margin-left: -10px;
+        margin-right: -10px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+
     }
 
     #container form.voucher-form input.voucher-code {
