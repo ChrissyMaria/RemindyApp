@@ -1095,7 +1095,7 @@ i.icon-24-scan {
         height: 500px;
         margin: 10px auto;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 10px;
         -moz-box-shadow: none;
         -webkit-box-shadow: none;
         box-shadow: none;
