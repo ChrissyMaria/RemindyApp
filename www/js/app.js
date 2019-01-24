@@ -180,6 +180,7 @@ var app = new Framework7({
             $$('#meds_today').append(ul);
 
 
+            // dead end pages
             $$('.open-alert').on('click', function () {
                 app.dialog.alert("Sorry, this function is not working yet. But we'll work on it :)", "Remindy");
             });

@@ -92,13 +92,12 @@ a#signWithout{
 
 
 
-
 /* ----------------- Navigation bar ----------------- */
 .navbar-inner {
     background-color: var(--primary-color);
 }
 
-/* -------------------- 'Cabinet' --------------------- */
+/* -------------------- 'Medication Cards' --------------------- */
 /* Cards*/
 .demo-card-header-pic .card-header {
     height: 15vw;
@@ -113,6 +112,7 @@ a#signWithout{
     font-weight: 100;
 }
 
+/* Trash icon */
 .greyColor {
     color: #373737;
     font-size: 20px;
@@ -201,6 +201,10 @@ div#meds_today {
 /* ------------------------ FAB ------------------------ */
 #ownFab {
     bottom: 33%;
+}
+
+#ownFab i {
+    font-weight: 900;
 }
 
 a.item-content.item-link {

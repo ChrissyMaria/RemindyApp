@@ -95,7 +95,7 @@ var aristelle = {
 }
 var ibu = {
     name: "Ibuprofen",
-    img: "./images/cipro.png",
+    img: "./images/Ibu.jpg",
     shortInfo: "Ibuprofen is used to relieve pain from various conditions such as headache, dental pain, menstrual cramps, " +
         "muscle aches, or arthritis. It blocks your body's production " +
         "of certain natural substances that cause inflammation.",
@@ -202,6 +202,109 @@ var ciprofloxacin = {
     ],
     link: 'https://www.blinkhealth.com/ciprofloxacin'
 }
+
+
+var aar_or = {
+    name: "AAR OS N Dragees",
+    img: "./images/AAR_OS.jpg",
+    shortInfo: "",
+    generalInfo: "",
+    //there are much more
+    sideEffects: [],
+    //there are much more...
+    precaution: {
+        allergicReactions: "",
+        medicalHistory: [],
+        further: []
+    },
+    //there are much more...
+    interactions: {
+        severeInteractions: [],
+        seriousInteractions: [],
+        moderateInteractions: []
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [],
+    link: ''
+}
+
+
+var abasaglar = {
+    name: "ABASAGLAR 100 E/ml Injektionslösung KwikPen",
+    img: "./images/abasaglar_packshot.jpg",
+    shortInfo: "",
+    generalInfo: "",
+    //there are much more
+    sideEffects: [],
+    //there are much more...
+    precaution: {
+        allergicReactions: "",
+        medicalHistory: [],
+        further: []
+    },
+    //there are much more...
+    interactions: {
+        severeInteractions: [],
+        seriousInteractions: [],
+        moderateInteractions: []
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [],
+    link: ''
+}
+
+var abno = {
+    name: "ABNOBAVISCUM Pini 20 mg",
+    img: "./images/Abnobaviscum-Abiet-0.2Mg-von-ABNOBA-GmbH-2437015.jpg",
+    shortInfo: "",
+    generalInfo: "",
+    //there are much more
+    sideEffects: [],
+    //there are much more...
+    precaution: {
+        allergicReactions: "",
+        medicalHistory: [],
+        further: []
+    },
+    //there are much more...
+    interactions: {
+        severeInteractions: [],
+        seriousInteractions: [],
+        moderateInteractions: []
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [],
+    link: ''
+}
+
+var coaprovel = {
+    name: "Coaprovel",
+    img: "./images/Coaprovel.jpg",
+    shortInfo: "",
+    generalInfo: "",
+    //there are much more
+    sideEffects: [],
+    //there are much more...
+    precaution: {
+        allergicReactions: "",
+        medicalHistory: [],
+        further: []
+    },
+    //there are much more...
+    interactions: {
+        severeInteractions: [],
+        seriousInteractions: [],
+        moderateInteractions: []
+    },
+    pills_left: 6,
+    per_day: 2,
+    intake: [],
+    link: ''
+}
+
 
 
 
