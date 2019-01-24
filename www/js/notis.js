@@ -1,17 +1,34 @@
+
+// HEADER of notifications is always the same and those are the values for it
+
+var notificationHeader = {
+    icon: 'images/notify_logo.png',
+    title: 'Remindy',
+    timeSinceNoti: ' ', // Minutes since notification appeared are handled in notifications.js in notiTime()
+    expand: 'expand_more',
+    less: 'expand_less',
+};
+///////////////////////////////////////////////////////
+
+//// Values for both notifications (INTAKE & BUY):////
+
+//-----------------INTAKE REMINDER------------------//
+
+const notificationTake = {
+    subtitle: 'Take your ' + ibu.name + ' now!',
+    text: 'Drag down the notification for more delay options.',
+};
+
+//-------------------BUY REMINDER------------------//
+
+// calculation of pills taken = needed in notificationBuyCall
+
 var pills_amount = 0;
 for(var j=0; j<ibu.intake.length; j++) {
     pills_amount += ibu.intake[j].amount;
 }
-var pills_left = ibu.pills_left/pills_amount;
 
-//header of notifications should always be the same
-var notificationHeader = {
-    icon: 'images/notify_logo.png',
-    title: 'Remindy',
-    timeSinceNoti: ' ', //specify notification time  nowTime = + new Date(); diffTime = nowTime - initialTime;*/
-    expand: 'expand_more',
-    less: 'expand_less',
-}
+var pills_left = ibu.pills_left/pills_amount;
 
 var notificationBuyCall = {
     subtitle: 'Restock your ' + ibu.name + '!',
@@ -22,34 +39,10 @@ var notificationBuyCall = {
     link: ibu.link,
 
     buy_confirmation_title: 'New ' + ibu.name + ' ordered!',
-    confirmation: 'Check out for your order confirmation in your mailbox. Your ' + ibu.name + ' will be sent home.'
-    //buttons: [buyMed, calDoc],
-}
+    confirmation: 'Your \' + ibu.name + \' will be sent home. Find your order confirmation in your mailbox.'
+};
 
 
-/*var buyMed = {
-    link: 'https://www.blinkhealth.com/l-thyroxine-sodium',
-    icon: 'add_shopping_cart',
-    text: 'BUY',
-}
 
-var calDoc = {
-    link: 'http://www.google.com',
-    icon: 'call',
-    text: 'CALL DOCTOR',
-}*/
 
-const notificationTake = {
-    subtitle: 'Take your ' + ibu.name + ' now!',
-    text: 'Swipe down slowly for more  delay options.',
-    downText: 'Here should two further buttons appear.',
-}
 
-        /* FRAMEWORK7 notification input
-
-        + '<div style="    position: relative;\n' +
-        '    margin-top: 10px;\n' +
-        '    display: flex;\n' +
-        '    justify-content: flex-end;"><span><a class="link popup-open" style="margin-right:10px;">' +
-        '<i class="material-icons">add_shopping_cart</i>BUY</a></span>' + '<span><a class="link popup-open">' +
-        '<i class="material-icons">call</i>CALL DOCTOR</a></span></div>',*/
