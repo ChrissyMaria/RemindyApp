@@ -22,7 +22,7 @@
                     <form class="searchbar" id="searchbar-autocomplete">
                         <div class="searchbar-inner">
                             <div class="searchbar-input-wrap">
-                                <input type="search" placeholder="Search manually" id="SearchInput" />
+                                <input type="search" placeholder="Search manually" id="SearchInput"/>
                                 <i class="searchbar-icon"></i>
                                 <span class="input-clear-button"></span>
                             </div>
@@ -34,25 +34,13 @@
         </div>
 
 
-
-
-
         <!-- ############################# Scrollable page content ########################## -->
         <div class="page-content" id="notScroll">
             <div class="list no-hairlines-md">
                 <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet"></a>
                 <!-- --------------------------- Scan --------------------------------- -->
-                <!-- TO BE DONE HERE: Replace this placeholder here with actual scan -->
-                <!-- <div id="scan">
-                      <a class="link sheet-open" id="sheetOpenLink" href="#" data-sheet=".my-sheet">Scan</a>
-                  </div>-->
-
-
                 <p id="myScan" @click="defaultscan">Scan barcode below or search manually</p>
-
                 <section id="container" class="container">
-
-
                     <div class="controls">
                         <fieldset class="input-group">
                             <button class="stop">Stop</button>
@@ -98,7 +86,7 @@
                             </label>
                             <label>
                                 <span>Half-Sample</span>
-                                <input type="checkbox" checked="checked" name="locator_half-sample" />
+                                <input type="checkbox" checked="checked" name="locator_half-sample"/>
                             </label>
                             <label>
                                 <span>Workers</span>
@@ -121,14 +109,10 @@
                             </label>
                             <label style="display: none">
                                 <span>Torch</span>
-                                <input type="checkbox" name="settings_torch" />
+                                <input type="checkbox" name="settings_torch"/>
                             </label>
                         </fieldset>
                     </div>
-                   <!-- <div id="result_strip">
-                        &lt;!&ndash;<ul class="thumbnails"></ul>
-                        <ul class="collector"></ul>&ndash;&gt;
-                    </div>-->
                     <div id="interactive" class="viewport"></div>
                 </section>
 
@@ -139,41 +123,36 @@
                         <div class="toolbar-inner">
                             <div class="left"></div>
 
-                            <div class="right"><a class="link sheet-close" href="#" id="closePopover"><i class="material-icons">
+                            <div class="right"><a class="link sheet-close" href="#" id="closePopover"><i
+                                    class="material-icons">
                                 clear
                             </i></a></div>
 
                         </div>
                     </div>
 
-                    <div class="sheet-modal-inner" >
+                    <div class="sheet-modal-inner">
 
 
-                                <div class = "flex-grid" id="popover_flexgrid">
-                                    <div id="popover_col1">
+                        <div class="flex-grid" id="popover_flexgrid">
+                            <div id="popover_col1">
 
-                                        <img src="./images/cipro.png" alt="Medicament" >
-                                        <!-- here actual medication img will be added dynamically -->
-                                    </div>
+                            </div>
 
-                                    <div id="popover_col2">
-                                         <p id="popoverMedicationName" ></p>
-                                         <!-- here actual medication name will be added dynamically -->
-                                    </div>
+                            <div id="popover_col2">
+                                <p id="popoverMedicationName"></p>
+                                <!-- here actual medication name will be added dynamically -->
+                            </div>
 
-                                    <div id="popover_col3">
-                                        <!-- little arrow on bottom: link to next page-->
+                            <div id="popover_col3">
+                                <!-- little arrow on bottom: link to next page-->
 
-                                        <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/">
-                                            <i class="material-icons md-48" id="popover_icon">navigate_next</i>
-                                         </a>
+                                <a class="link icon-only sheet-close" id="linkToSpecification" href="/med_spec/">
+                                    <i class="material-icons md-48" id="popover_icon">navigate_next</i>
+                                </a>
 
-                                    </div>
-                                </div>
-                            
-
-
-
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,31 +160,40 @@
     </div>
 </template>
 
-<!-- ADD CODE HERE -->
+
+
+<!-- ######################### CODE ############################  -->
 <script>
 
     return {
         methods: {
-            defaultscan: function() {
-                console.log("test");
+            defaultscan: function () {
+                //fill sheet below
                 $$('#sheetOpenLink').trigger('click');
+                $$('#popoverMedicationName').text('CIPROFLOXACIN');
+                var img = $$('<img class="medi_image" alt="Medicament"/>');
+                var my_src = ciprofloxacin.img;
+                img.attr("src", my_src);
+                $$('#popover_col1').empty();
+                $$('#popover_col1').append(img);
             }
         },
         data: function () {
             return {
                 // Array with medication names. Relevant in manual search.
-                // TO BE DONE (?): Replace this with dynamically content, eg medication database
-                medication: 'AAR OS N Dragees ; ABASAGLAR 100 E/ml Injektionslösung KwikPen ; ABNOBAVISCUM Pini 20 mg ; B12 ASMEDIC ; BN DOLO Ampullen ; CABERGOLIN-CT ; CIPROFLOXACIN ; COAPROVEL 300'.split(' ; '),
+                medication: 'AAR OS N Dragees ; ABASAGLAR 100 E/ml ; ABNOBAVISCUM Pini 20 mg ; CIPROFLOXACIN ; COAPROVEL 300 ; IBUPROFEN'.split(' ; '),
             };
         },
         on: {
             //when page is quit
             pageBeforeRemove() {
                 var self = this;
-                // Destroy all autocompletes
             },
             //when page is loaded
             pageInit: function () {
+
+
+                // ############################### SCAN ######################################
                 var resultCollector = Quagga.ResultCollector.create({
                     capture: true,
                     capacity: 20,
@@ -222,17 +210,17 @@
                     }, {
                         code: "4SO64P4X8 U4YUU1T-", format: "code_93"
                     }],
-                    filter: function(codeResult) {
+                    filter: function (codeResult) {
                         // only store results which match this constraint
                         // e.g.: codeResult
                         return true;
                     }
                 });
                 var App = {
-                    init: function() {
+                    init: function () {
                         var self = this;
 
-                        Quagga.init(this.state, function(err) {
+                        Quagga.init(this.state, function (err) {
                             if (err) {
                                 return self.handleError(err);
                             }
@@ -242,10 +230,10 @@
                             Quagga.start();
                         });
                     },
-                    handleError: function(err) {
+                    handleError: function (err) {
                         console.log(err);
                     },
-                    checkCapabilities: function() {
+                    checkCapabilities: function () {
                         var track = Quagga.CameraAccess.getActiveTrack();
                         var capabilities = {};
                         if (typeof track.getCapabilities === 'function') {
@@ -254,7 +242,7 @@
                         this.applySettingsVisibility('zoom', capabilities.zoom);
                         this.applySettingsVisibility('torch', capabilities.torch);
                     },
-                    updateOptionsForMediaRange: function(node, range) {
+                    updateOptionsForMediaRange: function (node, range) {
                         console.log('updateOptionsForMediaRange', node, range);
                         var NUM_STEPS = 6;
                         var stepSize = (range.max - range.min) / NUM_STEPS;
@@ -271,7 +259,7 @@
                             node.appendChild(option);
                         }
                     },
-                    applySettingsVisibility: function(setting, capability) {
+                    applySettingsVisibility: function (setting, capability) {
                         // depending on type of capability
                         if (typeof capability === 'boolean') {
                             var node = document.querySelector('input[name="settings_' + setting + '"]');
@@ -289,19 +277,20 @@
                             return;
                         }
                     },
-                    initCameraSelection: function(){
+                    initCameraSelection: function () {
                         var streamLabel = Quagga.CameraAccess.getActiveStreamLabel();
 
                         return Quagga.CameraAccess.enumerateVideoDevices()
-                            .then(function(devices) {
+                            .then(function (devices) {
                                 function pruneText(text) {
                                     return text.length > 30 ? text.substr(0, 30) : text;
                                 }
+
                                 var $deviceSelection = document.getElementById("deviceSelection");
                                 while ($deviceSelection.firstChild) {
                                     $deviceSelection.removeChild($deviceSelection.firstChild);
                                 }
-                                devices.forEach(function(device) {
+                                devices.forEach(function (device) {
                                     var $option = document.createElement("option");
                                     $option.value = device.deviceId || device.id;
                                     $option.appendChild(document.createTextNode(pruneText(device.label || device.deviceId || device.id)));
@@ -310,32 +299,32 @@
                                 });
                             });
                     },
-                    attachListeners: function() {
+                    attachListeners: function () {
                         var self = this;
 
                         self.initCameraSelection();
-                        $(".controls").on("click", "button.stop", function(e) {
+                        $(".controls").on("click", "button.stop", function (e) {
                             e.preventDefault();
                             Quagga.stop();
                             self._printCollectedResults();
                         });
 
-                        $(".controls .reader-config-group").on("change", "input, select", function(e) {
+                        $(".controls .reader-config-group").on("change", "input, select", function (e) {
                             e.preventDefault();
                             var $target = $(e.target),
                                 value = $target.attr("type") === "checkbox" ? $target.prop("checked") : $target.val(),
                                 name = $target.attr("name"),
                                 state = self._convertNameToState(name);
 
-                            console.log("Value of "+ state + " changed to " + value);
+                            console.log("Value of " + state + " changed to " + value);
                             self.setState(state, value);
                         });
                     },
-                    _printCollectedResults: function() {
+                    _printCollectedResults: function () {
                         var results = resultCollector.getResults(),
                             $ul = $("#result_strip ul.collector");
 
-                        results.forEach(function(result) {
+                        results.forEach(function (result) {
                             var $li = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
 
                             $li.find("img").attr("src", result.frame);
@@ -343,12 +332,12 @@
                             $ul.prepend($li);
                         });
                     },
-                    _accessByPath: function(obj, path, val) {
+                    _accessByPath: function (obj, path, val) {
                         var parts = path.split('.'),
                             depth = parts.length,
                             setter = (typeof val !== "undefined") ? true : false;
 
-                        return parts.reduce(function(o, key, i) {
+                        return parts.reduce(function (o, key, i) {
                             if (setter && (i + 1) === depth) {
                                 if (typeof o[key] === "object" && typeof val === "object") {
                                     Object.assign(o[key], val);
@@ -359,16 +348,16 @@
                             return key in o ? o[key] : {};
                         }, obj);
                     },
-                    _convertNameToState: function(name) {
-                        return name.replace("_", ".").split("-").reduce(function(result, value) {
+                    _convertNameToState: function (name) {
+                        return name.replace("_", ".").split("-").reduce(function (result, value) {
                             return result + value.charAt(0).toUpperCase() + value.substring(1);
                         });
                     },
-                    detachListeners: function() {
+                    detachListeners: function () {
                         $(".controls").off("click", "button.stop");
                         $(".controls .reader-config-group").off("change", "input, select");
                     },
-                    applySetting: function(setting, value) {
+                    applySetting: function (setting, value) {
                         var track = Quagga.CameraAccess.getActiveTrack();
                         if (track && typeof track.getCapabilities === 'function') {
                             switch (setting) {
@@ -379,7 +368,7 @@
                             }
                         }
                     },
-                    setState: function(path, value) {
+                    setState: function (path, value) {
                         var self = this;
 
                         if (typeof self._accessByPath(self.inputMapper, path) === "function") {
@@ -399,7 +388,7 @@
                     },
                     inputMapper: {
                         inputStream: {
-                            constraints: function(value){
+                            constraints: function (value) {
                                 if (/^(\d+)x(\d+)$/.test(value)) {
                                     var values = value.split('x');
                                     return {
@@ -412,11 +401,11 @@
                                 };
                             }
                         },
-                        numOfWorkers: function(value) {
+                        numOfWorkers: function (value) {
                             return parseInt(value);
                         },
                         decoder: {
-                            readers: function(value) {
+                            readers: function (value) {
                                 if (value === 'ean_extended') {
                                     return [{
                                         format: "ean_reader",
@@ -436,7 +425,7 @@
                     },
                     state: {
                         inputStream: {
-                            type : "LiveStream",
+                            type: "LiveStream",
                             constraints: {
                                 width: {min: 640},
                                 height: {min: 480},
@@ -451,19 +440,19 @@
                         numOfWorkers: 2,
                         frequency: 10,
                         decoder: {
-                            readers : [{
+                            readers: [{
                                 format: "ean_reader",
                                 config: {}
                             }]
                         },
                         locate: true
                     },
-                    lastResult : null
+                    lastResult: null
                 };
 
                 App.init();
 
-                Quagga.onProcessed(function(result) {
+                Quagga.onProcessed(function (result) {
                     var drawingCtx = Quagga.canvas.ctx.overlay,
                         drawingCanvas = Quagga.canvas.dom.overlay;
 
@@ -474,38 +463,35 @@
                                 return box !== result.box;
                             }).forEach(function (box) {
                                 console.log('drawing');
-                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "black", lineWidth: 3});
+                                Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {
+                                    color: "black",
+                                    lineWidth: 3
+                                });
                             });
                         }
 
                         if (result.box) {
-                            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+                            Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {
+                                color: "#00F",
+                                lineWidth: 2
+                            });
                         }
 
                         if (result.codeResult && result.codeResult.code) {
-                            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+                            Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {
+                                color: 'red',
+                                lineWidth: 3
+                            });
                         }
                     }
                 });
 
-                Quagga.onDetected(function(result) {
+                Quagga.onDetected(function (result) {
                     var code = result.codeResult.code;
                     console.log('scanned');
                     $$('#sheetOpenLink').trigger('click');
 
-
-/*                    if (App.lastResult !== code) {
-                        App.lastResult = code;
-                        var $node = null, canvas = Quagga.canvas.dom.image;
-
-                        $node = $('<li><div class="thumbnail"><div class="imgWrapper"><img /></div><div class="caption"><h4 class="code"></h4></div></div></li>');
-                        $node.find("img").attr("src", canvas.toDataURL());
-                        $node.find("h4.code").html(code);
-                        $("#result_strip ul.thumbnails").prepend($node);
-                    }*/
                 });
-
-
 
 
                 //variables
@@ -542,6 +528,7 @@
                         }
                     }
                 });
+                //create searchbar
                 self.searchbar = app.searchbar.create({
                     el: '#searchbar-autocomplete',
                     customSearch: true,
@@ -552,31 +539,45 @@
                     }
                 });
 
+
                 //Popover: open and close
                 $$('.my-sheet').on('sheet:open', function (e, sheet) {
                     console.log('my-sheet open');
-                    $$('#popoverMedicationName').text($$('#SearchInput').val());
+                    var name = $$('#SearchInput').val();
+                    if (name == null)
+                        name = "CIPROFLOXACIN"; //default name
+                    $$('#popoverMedicationName').text(name);
+                    $$('#popover_col1').empty();
+                    var img = $$('<img class="medi_image" alt="Medicament"/>');
+                    var my_src;
+                    switch (name) {
+                        case "CIPROFLOXACIN":
+                            my_src = ciprofloxacin.img; //from database meds.js
+                            break;
+                        case "AAR OS N Dragees":
+                            my_src = aar_or.img;
+                            break;
+                        case "ABASAGLAR 100 E/ml":
+                            my_src = abasaglar.img;
+                            break;
+                        case "ABNOBAVISCUM Pini 20 mg":
+                            my_src = abno.img;
+                            break;
+                        case "COAPROVEL 300":
+                            my_src = coaprovel.img;
+                            break;
+                        case "IBUPROFEN":
+                            my_src = ibu.img;
+                            break;
+                    }
+                    img.attr("src", my_src);
+                    $$('#popover_col1').append(img);
                 });
 
                 $$('.my-sheet').on('sheet:close', function (e, sheet) {
                     $$('#SearchInput').val('');
                 });
 
-                //Popover: fill content
-                $$('#sheetOpenLink').click(function () {
-                    //SCAN
-                    /* Note: when we scan a medication, we currently get no feedback since it is a fake
-                    We thus need to reowrk this function: Instead of .text('CIPROFLOXACIN') we should add the medication name we get
-                    from our scan */
-                    if ($$('#popoverMedicationName').text($$('#SearchInput').val() == "")) {
-                        $$('#popoverMedicationName').text('CIPROFLOXACIN');
-                    }
-                    //MANUAL SEARCH
-                    /* Fill content with current medication name that was entered in search */
-                    else {
-                        $$('#popoverMedicationName').text($$('#SearchInput').val());
-                    }
-                })
             },
         }
     }
