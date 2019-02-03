@@ -241,10 +241,15 @@ function delayMedicineIntakeTime(hour) {
     $$('#radioBtnList').hide();
 
 
-    let timer = hour * 3600000;
+    let timer = hour * 2000;
     //let timer = hour * 2000; // FOR DEMONSTRATION
     console.log(timer);
-    let delayTimeout = setTimeout(delayTime, timer);
+    let delayTimeout = setTimeout(
+        delayTime, timer);
+    setTimeout(function () {
+        $$('#background_image').attr('src', 'images/16.png');
+        console.log("Test");
+    }, timer-700);
 
 
     console.log(hour);
@@ -479,6 +484,7 @@ var nowTime = null;
              if (document.getElementById('sub') != null) {
                  if(document.getElementById('sub').innerHTML == "Take your Ibuprofen now!") {
                      setTimeout(() => {
+                         console.log("Test");
                          toastCenter.open();
                      }, 500);
                      delayMedicineIntakeTime(1);
