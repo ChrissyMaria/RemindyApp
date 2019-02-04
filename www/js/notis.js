@@ -39,7 +39,7 @@ var notificationBuyCall = {
     link: ibu.link,
 
     buy_confirmation_title: 'New ' + ibu.name + ' ordered!',
-    confirmation: 'Your \' + ibu.name + \' will be sent home. Find your order confirmation in your mailbox.'
+    confirmation: 'Your ' + ibu.name + ' will be sent home. Find your order confirmation in your mailbox.'
 };
 
 
